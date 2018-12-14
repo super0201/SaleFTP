@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.team2.saleftp.R;
 
 /**
  * Created By JohnNguyen - Onesoft on 11/12/2018
