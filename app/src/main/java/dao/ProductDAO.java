@@ -32,12 +32,11 @@ public class ProductDAO {
             Product fm = null;
             String id = cs.getString(0);
             String nam = cs.getString(1);
-            Double price = cs.getDouble(2);
+            String price = cs.getString(2);
             String sum = cs.getString(3);
             String image = cs.getString(4);
-            Integer amount = cs.getInt(5);
 
-            fm = new Product(id, price, nam, sum, image,amount);
+            fm = new Product(id, price, nam, sum, image);
             list.add(fm);
             cs.moveToNext();
         }
