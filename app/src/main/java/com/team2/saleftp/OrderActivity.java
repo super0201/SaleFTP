@@ -30,7 +30,6 @@ public class OrderActivity extends AppCompatActivity {
     private ArrayList<User> listUser = new ArrayList<>();
 
     private OrderAdapter orderAdapter = null;
-    private CartDAO cartDAO;
 
     private UserDAO userDAO;
 
@@ -41,10 +40,6 @@ public class OrderActivity extends AppCompatActivity {
         setTitle("TIẾN HÀNH ĐẶT HÀNG");
 
         analyze();
-
-        cartDAO = new CartDAO(OrderActivity.this);
-        listCart = cartDAO.getAllProduct();
-
 
     }
 

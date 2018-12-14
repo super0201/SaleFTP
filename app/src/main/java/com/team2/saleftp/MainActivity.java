@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             }
         });
 
-
         //slide auto image
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
