@@ -7,7 +7,6 @@
     android:layout_marginBottom="@dimen/_3sdp"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_170sdp"
-    android:background="@drawable/linear_rounded_border"
     android:orientation="vertical">
 
     <ImageView

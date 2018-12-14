@@ -20,7 +20,6 @@ public class ProductDB extends SQLiteOpenHelper {
 
         sqlProd = "Insert Into Product values ( 'SM021','Samsung Galaxy Note 9','17.000.000 Đ', '', 'Flagship hàng đầu của Samsung ra mắt', 'https://i.imgur.com/gru5CzF.jpg')";
         db.execSQL(sqlProd);
-
     }
 
     @Override

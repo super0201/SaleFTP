@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.View;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     ImageView imvProfile;
     ProductMainAdapter mAdapter;
     RecyclerView mRecyclerView;
-    public static ArrayList<Cart>arrCart;
+    public static ArrayList<Cart> arrCart;
 
     @SuppressLint("ResourceType")
     @Override
@@ -69,6 +70,15 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/WItCuxV.jpg"));
         viewPager.setAdapter(adapter);
 
+        //list product adapter
+        mRecyclerView = (RecyclerView) findViewById(R.id.rvMain);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mAdapter = new ProductMainAdapter(getBaseContext(), list);
+        mRecyclerView.setAdapter(mAdapter);
+
         //slide auto image
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
@@ -82,22 +92,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         timer = new
 
-                Timer(); // This will create a new Thread
+        Timer(); // This will create a new Thread
         timer.schedule(new
-
-                               TimerTask() { // task to be scheduled
-                                   @Override
-                                   public void run () {
-                                       handler.post(Update);
-                                   }
-                               },DELAY_MS,PERIOD_MS);
-
-        //Add sp vô giỏ hàng
-        if (arrCart != null){
-
-        }else {
-            arrCart = new ArrayList<>();
-        }
+           TimerTask() { // task to be scheduled
+               @Override
+               public void run () {
+                   handler.post(Update);
+               }
+           },DELAY_MS,PERIOD_MS);
     }
 
 
