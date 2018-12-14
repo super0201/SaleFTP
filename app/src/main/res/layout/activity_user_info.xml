@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".UserInfoActivity">
 
@@ -18,21 +19,51 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_18sdp"
             android:src="@raw/logo" />
 
-        <android.support.design.widget.TextInputLayout
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="#e5e5e5" />
+
+        <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/edUserName"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:hint="Username:"
-                android:textColor="@android:color/black"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="@dimen/_8sdp"
+                android:text="Giỏ Hàng"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:layout_columnWeight="1" />
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="@dimen/_2sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="#e5e5e5"
+                app:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hóa Đơn"
+                android:textSize="@dimen/_16sdp"
+                android:layout_margin="@dimen/_8sdp"
+                android:textAlignment="center"
+                app:layout_columnWeight="1"/>
+
+        </android.support.v7.widget.GridLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="#e5e5e5" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -95,27 +126,33 @@
                 android:textColor="@android:color/black"/>
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btnUpdate"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_12sdp"
-            android:textStyle="bold"
-            android:textSize="@dimen/_12sdp"
-            android:text="Cập Nhật Thông Tin"
-            android:theme="@style/AppTheme.Dark" />
+            android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btnChangePass"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_18sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textStyle="bold"
-            android:padding="@dimen/_12sdp"
-            android:textSize="@dimen/_12sdp"
-            android:text="Đổi Mật Khẩu"
-            android:theme="@style/AppTheme.Dark" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_12sdp"
+                android:text="Cập Nhật Thông Tin"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:theme="@style/AppTheme.Dark" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnChangePass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_12sdp"
+                android:text="Đổi Mật Khẩu"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:layout_weight="2"
+                android:theme="@style/AppTheme.Dark" />
+        </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnLogout"
