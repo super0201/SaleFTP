@@ -1,10 +1,7 @@
 package session;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-
-import com.team2.salemanager.LoginActivity;
 
 import java.util.HashMap;
 
@@ -62,15 +59,15 @@ public class SessionManager {
         // Check login status
         if(!this.isLoggedIn()){
             // user is not logged in redirect him to Login Activity
-            Intent i = new Intent(_context, LoginActivity.class);
-            // Closing all the Activities
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            // Add new Flag to start new Activity
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            // Staring Login Activity
-            _context.startActivity(i);
+//            Intent i = new Intent(_context, LoginActivity.class);
+//            // Closing all the Activities
+//            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//            // Add new Flag to start new Activity
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//            // Staring Login Activity
+//            _context.startActivity(i);
         }
     }
 
@@ -93,16 +90,16 @@ public class SessionManager {
         editor.clear();
         editor.commit();
 
-        // After logout redirect user to Loing Activity
-        Intent i = new Intent(_context, LoginActivity.class);
-        // Closing all the Activities
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        // Add new Flag to start new Activity
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        // Staring Login Activity
-        _context.startActivity(i);
+//        // After logout redirect user to Loing Activity
+//        Intent i = new Intent(_context, LoginActivity.class);
+//        // Closing all the Activities
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//        // Add new Flag to start new Activity
+//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//        // Staring Login Activity
+//        _context.startActivity(i);
     }
 
     // Get Login State
