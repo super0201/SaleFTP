@@ -32,7 +32,6 @@
         <item name="titleTextColor">@color/white</item>
     </style>
 
-
     <style name="indicator_style">
         <item name="android:layout_margin">10dp</item>
         <item name="android:layout_width">10dp</item>
@@ -40,4 +39,5 @@
         <item name="android:button">@null</item>
         <item name="android:background">@color/colorSilver</item>
     </style>
+
 </resources>

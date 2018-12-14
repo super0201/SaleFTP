@@ -1,18 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <SearchView
+            android:id="@+id/search"
+            style="@style/AppTheme.Dark.Widget"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:baselineAligned="false"
+            android:focusedByDefault="false"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/search"
+            android:searchIcon="@raw/search_bar">
+        </SearchView>
+
+        <ImageView
+            android:id="@+id/imvProfile"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:src="@raw/user"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/image_slider"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/_4sdp"
+        android:layout_height="300dp"
+        android:background="@color/white" />
+
+    <RadioGroup
+        android:id="@+id/slider_indicator_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+        <RadioButton
+            android:id="@+id/page1"
+            style="@style/indicator_style"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/page2"
+            style="@style/indicator_style" />
+
+        <RadioButton
+            android:id="@+id/page3"
+            style="@style/indicator_style" />
+
+        <RadioButton
+            android:id="@+id/page4"
+            style="@style/indicator_style" />
+
+        <RadioButton
+            android:id="@+id/page5"
+            style="@style/indicator_style" />
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMain"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
