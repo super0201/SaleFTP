@@ -47,15 +47,13 @@
                     android:layout_height="wrap_content"
                     android:text="Thông tin đặt hàng"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_18sdp" />
+                    android:textSize="@dimen/_18sdp"/>
 
                 <ImageView
                     android:id="@+id/imvInfoOrder"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
-                    android:layout_gravity="end"
-                    android:layout_weight="1"
-                    android:visibility="visible"
+                    android:tra
                     app:srcCompat="@android:drawable/ic_menu_edit" />
             </LinearLayout>
 

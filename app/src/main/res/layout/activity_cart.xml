@@ -46,7 +46,7 @@
                 android:layout_height="match_parent">
                 <TextView
                     android:textSize="25sp"
-                    android:textColor="#7361bc9f"
+                    android:textColor="#ff22"
                     android:text="Tổng cộng: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -60,7 +60,7 @@
                     android:id="@+id/tvTotal"
                     android:layout_gravity="center"
                     android:textSize="25sp"
-                    android:textColor="#7361bc9f"
+                    android:textColor="#ff22"
                     android:text="Giá tiền: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
