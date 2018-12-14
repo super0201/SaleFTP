@@ -81,25 +81,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         mAdapter = new ProductMainAdapter(getApplicationContext(), list);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-//                Intent i = new Intent(getBaseContext(), BasketActivity.class);
-//                i.putExtra("data", list);
-//                startActivity(i);
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean b) {
-
-            }
-        });
-
         //slide auto image
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {

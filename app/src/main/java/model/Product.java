@@ -3,9 +3,6 @@ package model;
 public class Product {
     private String name, summary, image, id, price, detail;
 
-    public Product() {
-    }
-
     public Product(String name, String price, String summary, String image, String id, String detail) {
         this.name = name;
         this.price = price;

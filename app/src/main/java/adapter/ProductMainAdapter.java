@@ -24,7 +24,6 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.data = data;
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder;
@@ -40,11 +39,11 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Product Product = data.get(position);
         MyItemHolder myItemHolder = (MyItemHolder) holder;
+        myItemHolder.tvName.setText(Product.getName());
         myItemHolder.tvPrice.setText(Product.getPrice());
 
         Glide.with(context).load(data.get(position).getId())
                 .into(((MyItemHolder) holder).imvProduct);
-
     }
 
     @Override

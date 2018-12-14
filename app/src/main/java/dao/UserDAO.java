@@ -107,6 +107,7 @@ public class UserDAO {
         if (cs.getCount() <= 0) {
             return -1;
         }
+        cs.close();
         return 1;
     }
 
