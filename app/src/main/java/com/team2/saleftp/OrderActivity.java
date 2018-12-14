@@ -84,7 +84,7 @@ public class OrderActivity extends AppCompatActivity {
             }
         });
 
-        edtName = (EditText) findViewById(R.id.edtNameOrder;
+        edtName = (EditText) findViewById(R.id.edtNameOrder);
         edtName.setEnabled(false);
 
         edtPhone = (EditText) findViewById(R.id.edtPhoneOrder);
