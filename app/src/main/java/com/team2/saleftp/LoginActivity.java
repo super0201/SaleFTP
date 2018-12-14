@@ -17,6 +17,7 @@ import java.text.ParseException;
 
 import dao.UserDAO;
 import model.User;
+import session.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -126,21 +127,19 @@ public class LoginActivity extends AppCompatActivity {
 
     public boolean validate() {
         boolean valid = true;
-
         String user = etUser.getText().toString();
         String password = etPass.getText().toString();
-
         if (user.isEmpty()) {
-            etUser.setError("Username Không Đúng Hoặc Để Trống!");
+            etUser.setError("Username không được để trống!");
             valid = false;
         }
-        if (password.isEmpty() || password.length() < 8) {
-            etPass.setError("Password Phải Từ 8 Kí Tự Trở Lên!");
-            valid = false;
-        }
+//        if (password.isEmpty() || password.length() < 8) {
+//            etPass.setError("Password Phải Từ 8 Kí Tự Trở Lên!");
+//            valid = false;
+//        }
         if (userDAO.checkLoginStat(user, password) < 0) {
-            etUser.setError("Username Không Đúng!");
-            etPass.setError("Password Không Đúng!");
+//            etUser.setError("Username Không Đúng!");
+            etPass.setError("Mật khẩu Không Đúng!");
             valid = false;
         }
         else {
