@@ -51,7 +51,7 @@ public class OrderAdapter extends BaseAdapter {
     }
 
     @Override
-    /*public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -69,5 +69,5 @@ public class OrderAdapter extends BaseAdapter {
 
 
         return convertView;
-    }*/
+    }
 }
