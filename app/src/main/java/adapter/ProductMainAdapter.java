@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import model.Product;
 
 public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
     Context context;
     ArrayList<Product> data;
 
