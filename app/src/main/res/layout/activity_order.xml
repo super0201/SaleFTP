@@ -53,43 +53,29 @@
                     android:id="@+id/imvInfoOrder"
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:visibility="visible"
                     app:srcCompat="@android:drawable/ic_menu_edit" />
             </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilNameOrder"
+            <EditText
+                android:id="@+id/edtNameOrder"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:hint="Tên" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/tiedtNameOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Tên" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/edtPhoneOrder"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:hint="Số điện thoại" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/tiedtPhoneOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Số điện thoại" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/edtAddressOrder"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/tiedtAddressOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Địa chỉ" />
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="Địa chỉ" />
         </LinearLayout>
 
         <ListView
