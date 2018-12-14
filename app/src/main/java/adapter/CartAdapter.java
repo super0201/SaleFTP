@@ -59,54 +59,65 @@ public class CartAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder = null;
+        ViewHolder viewHolder = null;
         if (view == null){
-            holder = new ViewHolder();
+            viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_cart, null);
-            holder.tvName = view.findViewById(R.id.tvNameCart);
-            holder.tvPrice = view.findViewById(R.id.tvPriceCart);
-            holder.imvCart = view.findViewById(R.id.imvCart);
-            holder.btnMinus = view.findViewById(R.id.btnMinus);
-            holder.btnAmount = view.findViewById(R.id.btnAmount);
-            holder.btnPlus = view.findViewById(R.id.btnPlus);
-            view.setTag(holder);
+            viewHolder.tvName = view.findViewById(R.id.tvNameCart);
+            viewHolder.tvPrice = view.findViewById(R.id.tvPriceCart);
+            viewHolder.imvCart = view.findViewById(R.id.imvCart);
+            viewHolder.btnMinus = view.findViewById(R.id.btnMinus);
+            viewHolder.btnAmount = view.findViewById(R.id.btnAmount);
+            viewHolder.btnPlus = view.findViewById(R.id.btnPlus);
+            view.setTag(viewHolder);
         }else{
-            holder = (ViewHolder)view.getTag();
+            viewHolder = (ViewHolder)view.getTag();
         }
         Cart cart = (Cart) getItem(i);
-        holder.tvName.setText(cart.getName());
+        viewHolder.tvName.setText(cart.getName());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.tvPrice.setText(decimalFormat.format(cart.getPrice()) + "Đ");
-        Glide.with(ct).load(products.get(i).getImage()).into(holder.imvCart);
-        holder.btnAmount.setText(cart.getAmount() + "");
-        int sl = Integer.parseInt(holder.btnAmount.getText().toString());
+        viewHolder.tvPrice.setText(decimalFormat.format(cart.getPrice()) + "Đ");
+        Glide.with(ct).load(products.get(i).getImage()).into(viewHolder.imvCart);
+        viewHolder.btnAmount.setText(cart.getAmount());
+        int sl = Integer.parseInt(viewHolder.btnAmount.getText().toString());
         if(sl>10){
-            holder.btnPlus.setVisibility(View.INVISIBLE);
-            holder.btnMinus.setVisibility(View.VISIBLE);
+            viewHolder.btnPlus.setVisibility(View.INVISIBLE);
+            viewHolder.btnMinus.setVisibility(View.VISIBLE);
         }else if(sl <=1){
-            holder.btnMinus.setVisibility(View.INVISIBLE);
+            viewHolder.btnMinus.setVisibility(View.INVISIBLE);
         }else if(sl >= 1){
-            holder.btnMinus.setVisibility(View.VISIBLE);
-            holder.btnPlus.setVisibility(View.VISIBLE);
+            viewHolder.btnMinus.setVisibility(View.VISIBLE);
+            viewHolder.btnPlus.setVisibility(View.VISIBLE);
         }
 
-        holder.btnPlus.setOnClickListener(new View.OnClickListener() {
+        final ViewHolder finalViewHolder = viewHolder;
+        viewHolder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int newamount = Integer.parseInt(holder.btnAmount.getText().toString()) +1;
+                int newamount = Integer.parseInt(finalViewHolder.btnAmount.getText().toString()) +1;
                 int nowamount = MainActivity.arrCart.get(i).getAmount();
                 double pricenow = MainActivity.arrCart.get(i).getPrice();
                 MainActivity.arrCart.get(i).setAmount(newamount);
                 double newprice = (pricenow * newamount) / nowamount;
                 MainActivity.arrCart.get(i).setPrice(newprice);
                 DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-                holder.tvPrice.setText(decimalFormat.format(newprice) + "Đ");
+                finalViewHolder.tvPrice.setText(decimalFormat.format(newprice) + "Đ");
                 CartActivity.Event();
                 if(newamount > 9){
-                    holder.btnPlus.setVisibility(View.INVISIBLE);
+                    finalViewHolder.btnPlus.setVisibility(View.INVISIBLE);
+                    finalViewHolder.btnMinus.setVisibility(View.VISIBLE);
+                    finalViewHolder.btnAmount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                }else {
+                    finalViewHolder.btnMinus.setVisibility(View.VISIBLE);
+                    finalViewHolder.btnPlus.setVisibility(View.VISIBLE);
                 }
-
+            }
+        });
+        viewHolder.btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
             }
         });
         return view;
