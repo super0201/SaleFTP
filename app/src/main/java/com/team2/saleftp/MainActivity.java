@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
 
+import com.team2.saleftp.fragment.SliderFragment;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;

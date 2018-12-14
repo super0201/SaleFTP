@@ -32,6 +32,11 @@
         <item name="titleTextColor">@color/white</item>
     </style>
 
+    <style name="AppTheme.Dark.Widget">
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+    </style>
+
     <style name="indicator_style">
         <item name="android:layout_margin">10dp</item>
         <item name="android:layout_width">10dp</item>
