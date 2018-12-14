@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SaleFTP</string>
+    <string name="search">Bạn Muốn Tìm Gì...</string>
+
 </resources>

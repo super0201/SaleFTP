@@ -3,7 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-<<<<<<< HEAD
 
     <color name="colorTeal">#008080</color>
     <color name="colorSilver">#C0C0C0</color>
@@ -37,6 +36,4 @@
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
 
-=======
->>>>>>> parent of 5a3e7b3... Update#5
 </resources>
