@@ -25,7 +25,7 @@ public class ProductDAO {
     public ArrayList<Product> viewAll(){
         ArrayList<Product> list = new ArrayList<>();
         SQLiteDatabase mydb = db.getReadableDatabase();
-        String sql = "Select * From Summary";
+        String sql = "Select * From Product";
         Cursor cs = mydb.rawQuery(sql, null);
         cs.moveToFirst();
         while (cs.isAfterLast() == false){
