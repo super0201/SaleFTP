@@ -31,7 +31,7 @@
                     android:textSize="@dimen/_18sdp"/>
 
                 <ImageView
-                    android:id="@+id/editInfoOrder"
+                    android:id="@+id/imvInfoOrder"
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
                     app:srcCompat="@android:drawable/ic_menu_edit" />
