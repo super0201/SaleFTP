@@ -89,23 +89,23 @@ public class CartAdapter extends BaseAdapter {
             holder.btnPlus.setVisibility(View.VISIBLE);
         }
 
-        /*holder.btnPlus.setOnClickListener(new View.OnClickListener() {
+        holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int newamount = Integer.parseInt(holder.btnAmount.getText().toString()) +1;
-//                int nowamount = MainActivity.arrCart.get(i).getAmount();
-//                double pricenow = MainActivity.arrCart.get(i).getPrice();
-//                MainActivity.arrCart.get(i).setAmount(newamount);
-//                double newprice = (pricenow * newamount) / nowamount;
-//                MainActivity.arrCart.get(i).setPrice(newprice);
-//                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-//                holder.tvPrice.setText(decimalFormat.format(newprice) + "Đ");
-//                CartActivity.Event();
-//                if(newamount > 9){
-//                    holder.btnPlus.setVisibility(View.INVISIBLE);
-//                }
+                int newamount = Integer.parseInt(holder.btnAmount.getText().toString()) +1;
+                int nowamount = MainActivity.arrCart.get(i).getAmount();
+                double pricenow = MainActivity.arrCart.get(i).getPrice();
+                MainActivity.arrCart.get(i).setAmount(newamount);
+                double newprice = (pricenow * newamount) / nowamount;
+                MainActivity.arrCart.get(i).setPrice(newprice);
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                holder.tvPrice.setText(decimalFormat.format(newprice) + "Đ");
+                CartActivity.Event();
+                if(newamount > 9){
+                    holder.btnPlus.setVisibility(View.INVISIBLE);
+                }
             }
-        });*/
+        });
         return view;
     }
 }
