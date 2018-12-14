@@ -57,16 +57,19 @@ public class ChangePassActivity extends AppCompatActivity {
     public int validateForm(){
         int check = 1;
         if (edPass.getText().length()==0 || edRePass.getText().length() == 0) {
-            Toast.makeText(getApplicationContext(), "Bạn phải nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "Bạn phải nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
+            edPass.setError("Mật khẩu Không được để trống!");
             check = -1;
-        }else if(edPass.getText().length()<6 || edPass.getText().length()>16) {
-            Toast.makeText(getApplicationContext(), "Mật khẩu phải lớn hơn 6 và nhỏ hơn 16 kí tự", Toast.LENGTH_SHORT).show();
+        }else if(edPass.getText().length()<8) {
+//            Toast.makeText(getApplicationContext(), "Mật khẩu phải lớn hơn 8 kí tự", Toast.LENGTH_SHORT).show();
+            edPass.setError("Mật khẩu phải lớn hơn 8 kí tự!");
             check = -1;
         } else{
             String pass = edPass.getText().toString();
             String rePass = edRePass.getText().toString();
             if (!pass.equals(rePass)) {
-                Toast.makeText(getApplicationContext(), "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+                edPass.setError("Mật khẩu không trùng khớp!");
+                edRePass.setError("Mật khẩu không trùng khớp!");
                 check = -1;
             }
         }
@@ -76,22 +79,22 @@ public class ChangePassActivity extends AppCompatActivity {
     public void changePassword() {
 
         strUserName = LoginActivity.USER.getUsername();
-        try {
+//        try {
             if (validateForm() > 0) {
                 if (userDAO.checkLoginStat(strUserName, edOldPass.getText().toString()) > 0) {
                     User user = new User(strUserName, edPass.getText().toString());
                     if (userDAO.changePasswordUser(user) > 0) {
-                        Toast.makeText(getApplicationContext(), "Lưu thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Lưu thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
                     }
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Sai mật khẩu cũ", Toast.LENGTH_SHORT).show();
+                    edOldPass.setError("Password Không Đúng!");
                 }
             }
-        } catch (Exception ex) {
-            Log.e("Error", ex.toString());
-        }
+//        } catch (Exception ex) {
+//            Log.e("Error", ex.toString());
+//        }
     }
 }
