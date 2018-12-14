@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.team2.saleftp.CartActivity;
 import com.team2.saleftp.R;
 
 import java.text.DecimalFormat;
@@ -32,6 +33,7 @@ public class CartAdapter extends BaseAdapter {
         this.products = products;
 
     }
+
 
     @Override
     public int getCount() {
