@@ -26,7 +26,6 @@ public class CartActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.tvTotal);
         btnPayment = findViewById(R.id.btnPay);
         btnContinue = findViewById(R.id.btnContinue);
-        cartAdapter = new CartAdapter(CartActivity.this, MainActivity.arrCart);
         lvCart.setAdapter(cartAdapter);
     }
 }
