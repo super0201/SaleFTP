@@ -13,17 +13,16 @@ import com.team2.saleftp.R;
 import java.util.ArrayList;
 
 import dao.ProductDAO;
-import model.Cart;
 import model.Product;
 
 public class OrderAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    ArrayList<Cart> arrCart;
+    ArrayList<Product> arrCart;
     ProductDAO dao;
 
-    public OrderAdapter(Context context, ArrayList<Cart> arrayCart) {
+    public OrderAdapter(Context context, ArrayList<Product> arrayCart) {
         super();
         this.context = context;
         this.arrCart = arrayCart;
@@ -63,9 +62,9 @@ public class OrderAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Cart entry = (Cart) arrCart.get(position);
-        holder.imvIconP.setImageResource(Integer.parseInt(entry.image));
-        holder.tvNameP.setText(entry.name);
+        Product entry = (Product) arrCart.get(position);
+        holder.imvIconP.setImageResource(Integer.parseInt(entry.getImage()));
+        holder.tvNameP.setText(entry.getName());
 
 
         return convertView;
