@@ -79,7 +79,7 @@ public class CartAdapter extends BaseAdapter {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         viewHolder.tvPrice.setText(decimalFormat.format(cart.getPrice()) + "Đ");
         Glide.with(ct).load(products.get(i).getImage()).into(viewHolder.imvCart);
-        viewHolder.btnAmount.setText(cart.getAmount());
+        viewHolder.btnAmount.setText(cart.getAmount() + "");
         int sl = Integer.parseInt(viewHolder.btnAmount.getText().toString());
         if(sl>10){
             viewHolder.btnPlus.setVisibility(View.INVISIBLE);
@@ -91,33 +91,55 @@ public class CartAdapter extends BaseAdapter {
             viewHolder.btnPlus.setVisibility(View.VISIBLE);
         }
 
-        final ViewHolder finalViewHolder = viewHolder;
-        viewHolder.btnPlus.setOnClickListener(new View.OnClickListener() {
+        final Button btnplus = viewHolder.btnPlus;
+        final Button btnminus = viewHolder.btnMinus;
+        final Button btnamount = viewHolder.btnAmount;
+        final TextView tvnewprice = viewHolder.tvPrice;
+
+        btnplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int newamount = Integer.parseInt(finalViewHolder.btnAmount.getText().toString()) +1;
+                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
                 int nowamount = MainActivity.arrCart.get(i).getAmount();
                 double pricenow = MainActivity.arrCart.get(i).getPrice();
                 MainActivity.arrCart.get(i).setAmount(newamount);
                 double newprice = (pricenow * newamount) / nowamount;
                 MainActivity.arrCart.get(i).setPrice(newprice);
                 DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-                finalViewHolder.tvPrice.setText(decimalFormat.format(newprice) + "Đ");
+                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
                 CartActivity.Event();
                 if(newamount > 9){
-                    finalViewHolder.btnPlus.setVisibility(View.INVISIBLE);
-                    finalViewHolder.btnMinus.setVisibility(View.VISIBLE);
-                    finalViewHolder.btnAmount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                    btnplus.setVisibility(View.INVISIBLE);
+                    btnminus.setVisibility(View.VISIBLE);
+                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
                 }else {
-                    finalViewHolder.btnMinus.setVisibility(View.VISIBLE);
-                    finalViewHolder.btnPlus.setVisibility(View.VISIBLE);
+                    btnminus.setVisibility(View.VISIBLE);
+                    btnplus.setVisibility(View.VISIBLE);
+                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
                 }
             }
         });
         viewHolder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
+                int nowamount = MainActivity.arrCart.get(i).getAmount();
+                double pricenow = MainActivity.arrCart.get(i).getPrice();
+                MainActivity.arrCart.get(i).setAmount(newamount);
+                double newprice = (pricenow * newamount) / nowamount;
+                MainActivity.arrCart.get(i).setPrice(newprice);
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
+                CartActivity.Event();
+                if(newamount < 2){
+                    btnminus.setVisibility(View.INVISIBLE);
+                    btnplus.setVisibility(View.VISIBLE);
+                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                }else {
+                    btnminus.setVisibility(View.VISIBLE);
+                    btnplus.setVisibility(View.VISIBLE);
+                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                }
             }
         });
         return view;
