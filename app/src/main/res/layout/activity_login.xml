@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_45sdp"
+        android:paddingBottom="@dimen/_60sdp"
+        android:paddingLeft="@dimen/_24sdp"
+        android:paddingRight="@dimen/_24sdp">
+
+        <ImageView android:src="@raw/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_gravity="center_horizontal" />
+
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:theme="@style/AppTheme.Dark">
+
+            <EditText
+                android:id="@+id/etUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/black"
+            android:theme="@style/AppTheme.Dark">
+
+            <EditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/ckbRemember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_weight="1"
+            android:textSize="@dimen/_12sdp"
+            android:text="Remember Me"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:theme="@style/AppTheme.Dark" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:padding="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:text="Đăng Nhập"
+            android:textStyle="bold"
+            android:theme="@style/AppTheme.Dark" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnSignUp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            android:text="Chưa Có Tài Khoản?"
+            android:theme="@style/AppTheme.Dark" />
+    </LinearLayout>
+
+</ScrollView>
