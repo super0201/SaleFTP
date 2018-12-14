@@ -4,13 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -71,15 +68,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/0vR2t75.jpg"));
         adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/WItCuxV.jpg"));
         viewPager.setAdapter(adapter);
-
-        //list product adapter
-        mRecyclerView = (RecyclerView) findViewById(R.id.rvMain);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
-
-        mRecyclerView.setHasFixedSize(true);
-
-        mAdapter = new ProductMainAdapter(getApplicationContext(), list);
-        mRecyclerView.setAdapter(mAdapter);
 
         //slide auto image
         final Handler handler = new Handler();
