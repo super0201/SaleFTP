@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() throws ParseException {
-        String user = etUser.getText().toString();
+        String user = etUser.getText().toString().toLowerCase();
         String pass = etPass.getText().toString();
 
         if(userDAO.checkLoginStat(user, pass) > 0){
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             btnLogin.setEnabled(false);
             USER = userDAO.getUserByUsername(user);
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            Intent intent = new Intent(getBaseContext(), UserInfoActivity.class);
             startActivity(intent);
             Toast.makeText(getBaseContext(), "Đăng Nhập Thành Công!", Toast.LENGTH_SHORT).show();
             finish();

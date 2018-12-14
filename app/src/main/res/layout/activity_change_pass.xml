@@ -23,31 +23,46 @@
             android:id="@+id/tvUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
             android:layout_marginBottom="@dimen/_10sdp"
             android:text="Username"
-            android:visibility="visible" />
+            android:textColor="@color/oil"
+            android:textSize="@dimen/_16sdp" />
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/edOldPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu cũ"
             android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/edNewPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu mới"
             android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/edRePass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập lại mật khẩu"
             android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnUpdate"

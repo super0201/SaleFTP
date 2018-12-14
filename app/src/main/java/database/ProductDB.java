@@ -32,7 +32,7 @@ public class ProductDB extends SQLiteOpenHelper {
 
         sqlProd = "Insert Into Product values ( 'SO435','Sony Xperia XZ2','16.000.000 Đ', 'Sản phẩm mới nhất đến từ Samsung, sản phẩmm high-end', 'Flagship hàng đầu của Sony ra mắt', 'https://i.imgur.com/WItCuxV.jpg')";
         db.execSQL(sqlProd);
-        
+
     }
 
     @Override

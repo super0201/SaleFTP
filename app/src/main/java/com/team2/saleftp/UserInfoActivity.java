@@ -9,13 +9,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import dao.UserDAO;
 import model.User;
 
 public class UserInfoActivity extends AppCompatActivity {
-
+    TextView tvInvoice, tvCart;
     EditText edType, edAdr, edUserName, edMail, edName, edPhone;
     Button btnUpdate, btnChangePass, btnLogout;
     ImageView imvAvatar;
@@ -29,6 +30,8 @@ public class UserInfoActivity extends AppCompatActivity {
         setTitle("Thông tin cá nhân");
         setContentView(R.layout.activity_user_info);
 
+        tvCart = findViewById(R.id.tvCart);
+        tvInvoice = findViewById(R.id.tvInvoice);
         edType = (EditText) findViewById(R.id.edType);
         edAdr = (EditText) findViewById(R.id.edAdr);
         edUserName = (EditText) findViewById(R.id.edUsername);
@@ -85,6 +88,24 @@ public class UserInfoActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        tvCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvInvoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), OrderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
