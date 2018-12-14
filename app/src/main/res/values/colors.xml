@@ -12,7 +12,7 @@
     <color name="colorThistle3">#CDB5CD</color>
     <color name="colorMediumPurple4">#5D478B</color>
     <color name="colorMediumPurple2">#9F79EE</color>
-    <color name="colorChocolate">#D2691E</color>
+    <color name="colorChocolate">#d2691e</color>
     <color name="colorBurlywood">#DEB887</color>
     <color name="colorOliveDrab3">#9ACD32</color>
     <color name="colorAzure1">#F0FFFF</color>
@@ -26,7 +26,7 @@
     <color name="accent">#FFFFFF</color>
     <color name="header">#ffd000</color>
 
-    <color name="black">#000</color>
+    <color name="black">#000000</color>
     <color name="jet">#222222</color>
     <color name="oil">#333333</color>
     <color name="monsoon">#777777</color>
