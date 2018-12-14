@@ -40,7 +40,6 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Product Product = data.get(position);
         MyItemHolder myItemHolder = (MyItemHolder) holder;
-//Note
         //myItemHolder.tvName.setText(Product.getPrice());
         myItemHolder.tvPrice.setText(Product.getSummary());
 
