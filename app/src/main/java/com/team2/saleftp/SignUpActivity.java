@@ -165,10 +165,10 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if(userDAO.checkUser(user) > 0){
-            _mobileText.setError("SĐT Này Đã Được Sử Dụng!");
+            _userText.setError("Username đã tồn tại!");
             valid = false;
         } else {
-            _mobileText.setError(null);
+            _userText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {

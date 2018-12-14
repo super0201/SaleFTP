@@ -18,13 +18,13 @@ public class UserDAO {
 
     public UserDAO(Context context) {
         dbHelper = new UserDB(context);
-        db = dbHelper.getWritableDatabase();
-        db = dbHelper.getReadableDatabase();
+//        db = dbHelper.getWritableDatabase();
+//        db = dbHelper.getReadableDatabase();
     }
     //insert
     public long insertUser(String username, String pass, String name, String email, String addr, String phone){
         ContentValues values = new ContentValues();
-        values.put("Username", username);
+        values.put("Username", username.toLowerCase());
         values.put("Password", pass);
         values.put("Email", email);
         values.put("Address", addr);
@@ -36,6 +36,7 @@ public class UserDAO {
 
     //getAll
     public List<User> getAllUser() throws ParseException {
+        db = dbHelper.getReadableDatabase();
         List<User> dsUser = new ArrayList<>();
         Cursor c = db.query("User",null,null,null,null,null,null);
         c.moveToFirst();
@@ -68,6 +69,7 @@ public class UserDAO {
     }
 
     public int changePasswordUser(User nd){
+        db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Username",nd.getUsername());
         values.put("Password",nd.getPassword());
@@ -89,8 +91,9 @@ public class UserDAO {
 
     //check login
     public int checkLoginStat(String user, String pass){
+        db = dbHelper.getReadableDatabase();
         try {
-            String check = "SELECT * FROM " + "User" + " WHERE Username='" + user + "'AND Password='" + pass + "'";
+            String check = "SELECT * FROM User WHERE Username='" + user + "' COLLATE NOCASE AND Password='" + pass + "'";
             Cursor cs = db.rawQuery(check, null);
             if (cs.getCount() == 0){
                 return -1;
@@ -102,6 +105,7 @@ public class UserDAO {
     }
 
     public int checkUser(String username) {
+        db = dbHelper.getReadableDatabase();
         String sql = "SELECT * FROM " + "User" + " WHERE Username='" + username + "'";
         Cursor cs = db.rawQuery(sql, null);
         if (cs.getCount() <= 0) {
@@ -112,6 +116,7 @@ public class UserDAO {
     }
 
     public User getUserByUsername(String username) {
+        db = dbHelper.getReadableDatabase();
         User m = null;
         //WHERE clause
         String selection = "username = ?";
@@ -126,7 +131,7 @@ public class UserDAO {
             m.setPassword(c.getString(2));
             m.setPhone((c.getString(3)));
             m.setAddr(c.getString(4));
-            m.setEmail(c.getString(6));
+            m.setEmail(c.getString(5));
             break;
         } c.close();
         return m;
