@@ -1,6 +1,7 @@
 package com.team2.saleftp;
 
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,19 +13,26 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import adapter.OrderAdapter;
+import dao.UserDAO;
 import model.Cart;
+import model.User;
 
 public class OrderActivity extends AppCompatActivity {
 
     private ImageView imvInfo, imvBack;
     private TextInputEditText tiedtName, tiedtPhone, tiedtAddress;
+    private TextInputLayout tilNameOrder;
     private ListView lvOrder;
     private TextView tvAmount, tvTotal;
     private Button btnOrder;
 
     private ArrayList<Cart> listCart = new ArrayList<>();
+    private ArrayList<User> listUser = new ArrayList<>();
+
     private OrderAdapter orderAdapter = null;
-    private UserAdapter userAdapter = null;
+    private CartDAO cartDAO;
+
+    private UserDAO userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,10 @@ public class OrderActivity extends AppCompatActivity {
         setTitle("TIẾN HÀNH ĐẶT HÀNG");
 
         analyze();
+
+        cartDAO = new CartDAO(OrderActivity.this);
+        listCart = cartDAO.getAllProduct();
+
 
     }
 
@@ -48,9 +60,15 @@ public class OrderActivity extends AppCompatActivity {
 
         imvInfo = (ImageView) findViewById(R.id.imvInfoOrder);
 
+        tilNameOrder = (TextInputLayout) findViewById(R.id.tilNameOrder);
         tiedtName = (TextInputEditText) findViewById(R.id.tiedtNameOrder);
+        tiedtName.setEnabled(false);
+
         tiedtPhone = (TextInputEditText) findViewById(R.id.tiedtPhoneOrder);
+        tiedtPhone.setEnabled(false);
+
         tiedtAddress = (TextInputEditText) findViewById(R.id.tiedtAddressOrder);
+        tiedtAddress.setEnabled(false);
 
         lvOrder = (ListView) findViewById(R.id.lvOrder);
 
