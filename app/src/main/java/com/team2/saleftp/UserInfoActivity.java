@@ -31,7 +31,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
         edType = (EditText) findViewById(R.id.edType);
         edAdr = (EditText) findViewById(R.id.edAdr);
-        edUserName = (EditText) findViewById(R.id.edUserName);
+        edUserName = (EditText) findViewById(R.id.edUsername);
         edName = (EditText) findViewById(R.id.edName);
         edMail = (EditText) findViewById(R.id.edMail);
         edPhone = (EditText) findViewById(R.id.edPhone);

@@ -57,6 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/tvTotal"
                     android:layout_gravity="center"
                     android:textSize="25sp"
                     android:textColor="#ff22"
@@ -73,11 +74,13 @@
         android:layout_height="0dp"
         android:weightSum="2">
         <Button
+            android:id="@+id/btnPay"
             android:layout_weight="1"
             android:text="Thanh toán"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
+            android:id="@+id/btnContinue"
             android:layout_weight="1"
             android:text="Tiếp tục mua hàng"
             android:layout_width="match_parent"

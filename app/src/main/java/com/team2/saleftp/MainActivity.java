@@ -26,6 +26,7 @@ import java.util.TimerTask;
 import adapter.ProductMainAdapter;
 import adapter.SliderAdapter;
 import dao.ProductDAO;
+import model.Cart;
 import model.Product;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     ImageView imvProfile;
     ProductMainAdapter mAdapter;
     RecyclerView mRecyclerView;
+    public static ArrayList<Cart>arrCart;
 
     @SuppressLint("ResourceType")
     @Override
@@ -121,6 +123,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                                    }
                                },DELAY_MS,PERIOD_MS);
 
+        //Add sp vô giỏ hàng
+        if (arrCart != null){
+
+        }else {
+            arrCart = new ArrayList<>();
+        }
     }
 
 
