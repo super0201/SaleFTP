@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.team2.saleftp.R;
 
 import java.util.ArrayList;
 
@@ -40,8 +41,7 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Product Product = data.get(position);
         MyItemHolder myItemHolder = (MyItemHolder) holder;
-        //myItemHolder.tvName.setText(Product.getPrice());
-        myItemHolder.tvPrice.setText(Product.getSummary());
+        myItemHolder.tvPrice.setText(Product.getPrice());
 
         Glide.with(context).load(data.get(position).getId())
                 .into(((MyItemHolder) holder).imvProduct);
