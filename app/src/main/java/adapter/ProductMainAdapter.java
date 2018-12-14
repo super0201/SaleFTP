@@ -42,7 +42,7 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         myItemHolder.tvName.setText(Product.getName());
         myItemHolder.tvPrice.setText(Product.getPrice());
 
-        Glide.with(context).load(data.get(position).getImage())
+        Glide.with(context).load(data.get(position).getId())
                 .into(((MyItemHolder) holder).imvProduct);
     }
 

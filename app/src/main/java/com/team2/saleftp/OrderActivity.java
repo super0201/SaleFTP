@@ -1,13 +1,11 @@
 package com.team2.saleftp;
 
-import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,27 +13,25 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import adapter.OrderAdapter;
-import dao.ProductDAO;
 import dao.UserDAO;
-import model.Product;
+import model.Cart;
 import model.User;
-
 
 public class OrderActivity extends AppCompatActivity {
 
     private ImageView imvInfo, imvBack;
-    private EditText edtName, edtPhone, edtAddress;
+    private TextInputEditText tiedtName, tiedtPhone, tiedtAddress;
+    private TextInputLayout tilNameOrder;
     private ListView lvOrder;
     private TextView tvAmount, tvTotal;
     private Button btnOrder;
 
-    private ArrayList<Product> listCart = new ArrayList<Product>();
+    private ArrayList<Cart> listCart = new ArrayList<>();
+    private ArrayList<User> listUser = new ArrayList<>();
 
     private OrderAdapter orderAdapter = null;
 
     private UserDAO userDAO;
-    private ProductDAO productDAO;
-    private static User updateUSER = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +41,7 @@ public class OrderActivity extends AppCompatActivity {
 
         analyze();
 
+<<<<<<< HEAD
         userDAO = new UserDAO(OrderActivity.this);
 /*
         edtName.setText(LoginActivity.USER.getName());
@@ -57,6 +54,8 @@ public class OrderActivity extends AppCompatActivity {
         orderAdapter = new OrderAdapter(this, listCart);
         lvOrder.setAdapter(orderAdapter);
 
+=======
+>>>>>>> parent of 515945e... Z
     }
 
     private void analyze() {
@@ -70,6 +69,7 @@ public class OrderActivity extends AppCompatActivity {
         });
 
         imvInfo = (ImageView) findViewById(R.id.imvInfoOrder);
+<<<<<<< HEAD
         imvInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +93,18 @@ public class OrderActivity extends AppCompatActivity {
 
         edtAddress = (EditText) findViewById(R.id.edtAddressOrder);
         edtAddress.setEnabled(false);
+=======
+
+        tilNameOrder = (TextInputLayout) findViewById(R.id.tilNameOrder);
+        tiedtName = (TextInputEditText) findViewById(R.id.tiedtNameOrder);
+        tiedtName.setEnabled(false);
+
+        tiedtPhone = (TextInputEditText) findViewById(R.id.tiedtPhoneOrder);
+        tiedtPhone.setEnabled(false);
+
+        tiedtAddress = (TextInputEditText) findViewById(R.id.tiedtAddressOrder);
+        tiedtAddress.setEnabled(false);
+>>>>>>> parent of 515945e... Z
 
         lvOrder = (ListView) findViewById(R.id.lvOrder);
 
