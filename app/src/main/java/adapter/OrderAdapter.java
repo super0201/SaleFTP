@@ -63,8 +63,8 @@ public class OrderAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         Product entry = (Product) arrCart.get(position);
-        holder.imvIconP.setImageResource(Integer.parseInt(entry.getImage()));
-        holder.tvNameP.setText(entry.getName());
+//        holder.imvIconP.setImageResource(entry.getImage());
+//        holder.tvNameP.setText(entry.getName());
 
 
         return convertView;

@@ -89,7 +89,7 @@ public class CartAdapter extends BaseAdapter {
             holder.btnPlus.setVisibility(View.VISIBLE);
         }
 
-        holder.btnPlus.setOnClickListener(new View.OnClickListener() {
+        /*holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int newamount = Integer.parseInt(holder.btnAmount.getText().toString()) +1;
@@ -105,7 +105,7 @@ public class CartAdapter extends BaseAdapter {
                     holder.btnPlus.setVisibility(View.INVISIBLE);
                 }
             }
-        });
+        });*/
         return view;
     }
 }

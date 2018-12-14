@@ -46,13 +46,10 @@ public class OrderActivity extends AppCompatActivity {
         analyze();
 
         userDAO = new UserDAO(OrderActivity.this);
-
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
+/*
         edtName.setText(LoginActivity.USER.getName());
         edtAddress.setText(LoginActivity.USER.getAddr());
-        edtPhone.setText(LoginActivity.USER.getPhone());
+        edtPhone.setText(LoginActivity.USER.getPhone());*/
 
         productDAO = new ProductDAO(OrderActivity.this);
         listCart = productDAO.viewAll();
@@ -76,20 +73,25 @@ public class OrderActivity extends AppCompatActivity {
         imvInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                edtName.setEnabled(true);
-                edtPhone.setEnabled(true);
-                edtAddress.setEnabled(true);
-                imvInfo.setImageResource(android.R.drawable.ic_menu_save);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        edtName.setEnabled(true);
+                        edtPhone.setEnabled(true);
+                        edtAddress.setEnabled(true);
+                        imvInfo.setImageResource(android.R.drawable.ic_menu_save);
+                    }
+                }).start();
             }
         });
 
-        edtName = (EditText) findViewById(R.id.tiedtNameOrder);
+        edtName = (EditText) findViewById(R.id.edtNameOder);
         edtName.setEnabled(false);
 
-        edtPhone = (EditText) findViewById(R.id.tiedtPhoneOrder);
+        edtPhone = (EditText) findViewById(R.id.edtPhoneOrder);
         edtPhone.setEnabled(false);
 
-        edtAddress = (EditText) findViewById(R.id.tiedtAddressOrder);
+        edtAddress = (EditText) findViewById(R.id.edtAddressOrder);
         edtAddress.setEnabled(false);
 
         lvOrder = (ListView) findViewById(R.id.lvOrder);
