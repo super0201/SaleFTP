@@ -36,6 +36,8 @@ public class OrderActivity extends AppCompatActivity {
     private UserDAO userDAO;
     private ProductDAO productDAO;
 
+    int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,17 +74,23 @@ public class OrderActivity extends AppCompatActivity {
         imvInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+
+                    if (count == 0) {
                         edtName.setEnabled(true);
                         edtPhone.setEnabled(true);
                         edtAddress.setEnabled(true);
                         imvInfo.setImageResource(android.R.drawable.ic_menu_save);
+                        count++;
+                    } else {
+                        edtName.setEnabled(false);
+                        edtPhone.setEnabled(false);
+                        edtAddress.setEnabled(false);
+                        imvInfo.setImageResource(android.R.drawable.ic_menu_edit);
+                        --count;
                     }
-                }).start();
             }
         });
+
 
         edtName = (EditText) findViewById(R.id.edtNameOrder);
         edtName.setEnabled(false);
