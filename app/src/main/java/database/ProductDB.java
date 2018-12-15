@@ -56,7 +56,6 @@ public class ProductDB extends SQLiteOpenHelper {
         db.execSQL(sqlProd);
 
         //insert detail Product
-
         sqlDetail = "Insert Into Detail values ( 'SM01', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
         db.execSQL(sqlDetail);
 
