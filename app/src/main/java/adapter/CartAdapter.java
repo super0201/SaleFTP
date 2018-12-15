@@ -111,11 +111,11 @@ public class CartAdapter extends BaseAdapter {
                 if(newamount > 9){
                     btnplus.setVisibility(View.INVISIBLE);
                     btnminus.setVisibility(View.VISIBLE);
-                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                    btnamount.setText(String.valueOf(newamount));
                 }else {
                     btnminus.setVisibility(View.VISIBLE);
                     btnplus.setVisibility(View.VISIBLE);
-                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                    btnamount.setText(String.valueOf(newamount));
                 }
             }
         });
@@ -134,11 +134,11 @@ public class CartAdapter extends BaseAdapter {
                 if(newamount < 2){
                     btnminus.setVisibility(View.INVISIBLE);
                     btnplus.setVisibility(View.VISIBLE);
-                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                    btnamount.setText(String.valueOf(newamount));
                 }else {
                     btnminus.setVisibility(View.VISIBLE);
                     btnplus.setVisibility(View.VISIBLE);
-                    btnamount.setVisibility(Integer.parseInt(String.valueOf(newamount)));
+                    btnamount.setText(String.valueOf(newamount));
                 }
             }
         });
