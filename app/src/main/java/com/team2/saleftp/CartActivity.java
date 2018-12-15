@@ -1,8 +1,11 @@
 package com.team2.saleftp;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +34,44 @@ public class CartActivity extends AppCompatActivity {
         btnPayment = findViewById(R.id.btnPay);
         btnContinue = findViewById(R.id.btnContinue);
         CheckData();
+        CatchOnItemListView();
+    }
+
+    private void CatchOnItemListView(){
+        lvCart.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+                builder.setTitle("Xác nhận");
+                builder.setMessage("Bạn có muốn xóa sản phẩm này ?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(MainActivity.arrCart.size()<=0){
+                            tvNoti.setVisibility(View.INVISIBLE);
+                        }else {
+                            MainActivity.arrCart.remove(i);
+                            cartAdapter.notifyDataSetChanged();
+                            Event();
+                            if(MainActivity.arrCart.size() <= 0){
+                                tvNoti.setVisibility(View.VISIBLE);
+                            }else {
+                                tvNoti.setVisibility(View.INVISIBLE);
+                            }
+                        }
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        cartAdapter.notifyDataSetChanged();
+                        Event();
+                    }
+                });
+                builder.show();
+                return true;
+            }
+        });
     }
 
     private void CheckData(){
