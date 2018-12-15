@@ -49,9 +49,9 @@ public class OrderActivity extends AppCompatActivity {
 
         userDAO = new UserDAO(OrderActivity.this);
 
-        /*edtName.setText(LoginActivity.USER.getName());
+        edtName.setText(LoginActivity.USER.getName());
         edtAddress.setText(LoginActivity.USER.getAddr());
-        edtPhone.setText(LoginActivity.USER.getPhone());*/
+        edtPhone.setText(LoginActivity.USER.getPhone());
 
         productDAO = new ProductDAO(OrderActivity.this);
         listCart = productDAO.viewAll();

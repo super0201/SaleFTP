@@ -105,8 +105,6 @@ public class UserInfoActivity extends AppCompatActivity {
             }
         });
 
-
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
