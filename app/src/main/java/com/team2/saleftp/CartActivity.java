@@ -1,6 +1,7 @@
 package com.team2.saleftp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,11 +32,29 @@ public class CartActivity extends AppCompatActivity {
         lvCart = findViewById(R.id.lvCart);
         tvNoti = findViewById(R.id.tvNoti);
         tvTotal = findViewById(R.id.tvTotal);
-        btnPayment = findViewById(R.id.btnPay);
-        btnContinue = findViewById(R.id.btnContinue);
+
         CheckData();
         CatchOnItemListView();
+
+        btnPayment = findViewById(R.id.btnPay);
+        btnContinue = findViewById(R.id.btnContinue);
+        btnPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), OrderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void CatchOnItemListView(){
         lvCart.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
