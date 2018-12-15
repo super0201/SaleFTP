@@ -25,7 +25,7 @@ public class OrderActivity extends AppCompatActivity {
     private ImageView imvInfo, imvBack;
     private EditText edtName, edtPhone, edtAddress;
     private ListView lvOrder;
-    private TextView tvAmount, tvTotal;
+    private TextView tvAmountOrder, tvTotalOrder;
     private Button btnOrder;
 
     private ArrayList<Cart> listCart = new ArrayList<>();
@@ -60,12 +60,12 @@ public class OrderActivity extends AppCompatActivity {
         for (Cart x : listCart) {
             a = x.getAmount();
             b = x.getPrice();
-            c = (a*b) + c;
+            c += (a*b);
             return;
         }
 
-        tvAmount.setText(a);
-        tvTotal.setText(String.valueOf(c));
+        tvAmountOrder.setText(a);
+        tvTotalOrder.setText(CartActivity.tvTotal.getText());
     }
 
     private void analyze() {
@@ -111,8 +111,8 @@ public class OrderActivity extends AppCompatActivity {
 
         lvOrder = (ListView) findViewById(R.id.lvOrder);
 
-        tvAmount = (TextView) findViewById(R.id.tvAmountOrder);
-        tvTotal = (TextView) findViewById(R.id.tvTotalOrder);
+        tvAmountOrder = (TextView) findViewById(R.id.tvAmountOrder);
+        tvTotalOrder = (TextView) findViewById(R.id.tvTotalOrder);
 
         btnOrder = (Button) findViewById(R.id.btnOrder);
 
