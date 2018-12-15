@@ -61,6 +61,14 @@ public class CartActivity extends AppCompatActivity {
                         }
                     }
                 });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        cartAdapter.notifyDataSetChanged();
+                        Event();
+                    }
+                });
+                builder.show();
                 return true;
             }
         });
