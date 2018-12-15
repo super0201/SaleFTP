@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginRight="@dimen/_2sdp"
     android:layout_marginLeft="@dimen/_2sdp"
     android:layout_marginBottom="@dimen/_3sdp"
+    android:background="@drawable/linear_rounded"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_170sdp"
     android:orientation="vertical">

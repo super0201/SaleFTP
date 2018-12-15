@@ -15,14 +15,11 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
 
-import com.team2.saleftp.fragment.SliderFragment;
-
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import adapter.ProductMainAdapter;
-import adapter.SliderAdapter;
 import dao.ProductDAO;
 import model.Cart;
 import model.Product;
@@ -51,24 +48,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         dao = new ProductDAO(getBaseContext());
         list = dao.viewAll();
 
-        search = (SearchView) findViewById(R.id.search);
-        viewPager = (ViewPager) findViewById(R.id.image_slider);
-        group = (RadioGroup) findViewById(R.id.slider_indicator_group);
-        group.setOnCheckedChangeListener(this);
-        viewPager.addOnPageChangeListener(this);
+        search = findViewById(R.id.search);
 
         //custom searchview
         search.isIconfiedByDefault();
         closeKeyboard();
-
-        //slide adapter
-        SliderAdapter adapter = new SliderAdapter(getSupportFragmentManager());
-        adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/gru5CzF.jpg"));
-        adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/gje3Qrp.jpg"));
-        adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/KtfZl9w.jpg"));
-        adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/0vR2t75.jpg"));
-        adapter.addFragment(SliderFragment.newInstance("https://i.imgur.com/WItCuxV.jpg"));
-        viewPager.setAdapter(adapter);
 
         //list product adapter
         mRecyclerView = (RecyclerView) findViewById(R.id.rvMain);
@@ -78,28 +62,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         mAdapter = new ProductMainAdapter(getBaseContext(), list);
         mRecyclerView.setAdapter(mAdapter);
-
-        //slide auto image
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (1 == 5 - 1) {
-                    currentPage = 0;
-                }
-                viewPager.setCurrentItem(currentPage++, true);
-            }
-        };
-
-        timer = new
-
-        Timer(); // This will create a new Thread
-        timer.schedule(new
-           TimerTask() { // task to be scheduled
-               @Override
-               public void run () {
-                   handler.post(Update);
-               }
-           },DELAY_MS,PERIOD_MS);
     }
 
 
