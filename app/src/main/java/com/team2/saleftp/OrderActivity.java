@@ -28,15 +28,15 @@ public class OrderActivity extends AppCompatActivity {
     private TextView tvAmount, tvTotal;
     private Button btnOrder;
 
-    private ArrayList<Product> listCart = new ArrayList<>();
+    private ArrayList<Cart> listCart = new ArrayList<>();
     private ArrayList<User> listUser = new ArrayList<>();
 
     private OrderAdapter orderAdapter = null;
 
     private UserDAO userDAO;
-    private ProductDAO productDAO;
 
-    int count = 0;
+    int count = 0, a = 0;
+    double b = 0, c = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +49,23 @@ public class OrderActivity extends AppCompatActivity {
 
         userDAO = new UserDAO(OrderActivity.this);
 
-        /*edtName.setText(LoginActivity.USER.getName());
+        edtName.setText(LoginActivity.USER.getName());
         edtAddress.setText(LoginActivity.USER.getAddr());
-        edtPhone.setText(LoginActivity.USER.getPhone());*/
+        edtPhone.setText(LoginActivity.USER.getPhone());
 
-        productDAO = new ProductDAO(OrderActivity.this);
-        listCart = productDAO.viewAll();
 
         orderAdapter = new OrderAdapter(this, listCart);
         lvOrder.setAdapter(orderAdapter);
+
+        for (Cart x : listCart) {
+            a = x.getAmount();
+            b = x.getPrice();
+            c = (a*b) + c;
+            return;
+        }
+
+        tvAmount.setText(a);
+        tvTotal.setText(String.valueOf(c));
     }
 
     private void analyze() {
