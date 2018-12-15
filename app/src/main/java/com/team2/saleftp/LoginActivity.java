@@ -133,12 +133,12 @@ public class LoginActivity extends AppCompatActivity {
             etUser.setError("Username không được để trống!");
             valid = false;
         }
-//        if (password.isEmpty() || password.length() < 8) {
-//            etPass.setError("Password Phải Từ 8 Kí Tự Trở Lên!");
-//            valid = false;
-//        }
+        if (password.isEmpty() || password.length() < 8) {
+            etPass.setError("Password Phải Từ 8 Kí Tự Trở Lên!");
+            valid = false;
+        }
         if (userDAO.checkLoginStat(user, password) < 0) {
-//            etUser.setError("Username Không Đúng!");
+            etUser.setError("Username Không Đúng!");
             etPass.setError("Mật khẩu Không Đúng!");
             valid = false;
         }

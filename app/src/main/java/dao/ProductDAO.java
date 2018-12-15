@@ -36,7 +36,7 @@ public class ProductDAO {
             String detail = cs.getString(3);
             String sum = cs.getString(4);
             String image = cs.getString(5);
-            fm = new Product(id, price, nam, detail, sum, image);
+            fm = new Product(nam, price, id, image, detail, sum);
             list.add(fm);
             cs.moveToNext();
         }
