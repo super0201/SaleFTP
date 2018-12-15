@@ -18,13 +18,7 @@
         <activity android:name=".UserInfoActivity"/>
         <activity android:name=".ChangePassActivity"/>
         <activity android:name=".OrderActivity"/>
-        <activity android:name=".DetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".DetailActivity"/>
     </application>
 
 </manifest>
