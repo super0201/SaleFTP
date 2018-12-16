@@ -19,6 +19,9 @@ import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
 import model.Product;
 
+/**
+ * Created By JohnNguyen - Onesoft on 12/12/2018
+ */
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> list = new ArrayList<>();
     ProductDAO dao;

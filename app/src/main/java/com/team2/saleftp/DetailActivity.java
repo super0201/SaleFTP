@@ -15,6 +15,9 @@ import dao.ProductDAO;
 import model.Product;
 import model.ProductDetail;
 
+/**
+ * Created By JohnNguyen - Onesoft on 14/12/2018
+ */
 public class DetailActivity extends AppCompatActivity {
     private ArrayList<Product> data = new ArrayList<>();
     private ArrayList<ProductDetail> list = new ArrayList<>();
@@ -68,6 +71,20 @@ public class DetailActivity extends AppCompatActivity {
         });
 
         cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //add Dao insert to CartDB
+            }
+        });
+
+        btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

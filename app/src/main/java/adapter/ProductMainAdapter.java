@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 import model.Product;
 
+/**
+ * Created By JohnNguyen - Onesoft on 14/12/2018
+ */
 public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<Product> data;
     Context context;
