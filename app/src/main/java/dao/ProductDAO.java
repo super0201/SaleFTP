@@ -47,8 +47,7 @@ public class ProductDAO {
     public ArrayList<ProductDetail> viewDetail(String ID){
         ArrayList<ProductDetail> list2 = new ArrayList<>();
         SQLiteDatabase mydb = db.getReadableDatabase();
-//        String sql = "SELECT * FROM " + "Detail" + " WHERE ID = '" + ID + "'";
-        String sql = "Select * From Detail";
+        String sql = "SELECT * FROM " + "Detail" + " WHERE ID = '" + ID + "'";
         Cursor cs = mydb.rawQuery(sql, null);
         cs.moveToFirst();
         while (cs.isAfterLast() == false){

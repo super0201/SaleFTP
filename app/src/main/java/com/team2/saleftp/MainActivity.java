@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-//                        //run search data in Detail table with id in Product table
-//                        String id = list.get(position).getId();
-//                        list2 = dao.viewDetail(id);
+                        //run search data in Detail table with id in Product table
+                        String id = list.get(position).getId();
+                        list2 = dao.viewDetail(id);
 
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         intent.putParcelableArrayListExtra("data", list);
-//                        intent.putParcelableArrayListExtra("data2", list2);
+                        intent.putParcelableArrayListExtra("data2", list2);
                         intent.putExtra("pos", position);
                     }
                 }));
