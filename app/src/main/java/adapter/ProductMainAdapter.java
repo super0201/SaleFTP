@@ -59,9 +59,9 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         private MyItemHolder(View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
-            imvProduct = itemView.findViewById(R.id.imvProduct);
+            tvName = (TextView) itemView.findViewById(R.id.tvName);
+            tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+            imvProduct = (ImageView) itemView.findViewById(R.id.imvProduct);
         }
     }
 }

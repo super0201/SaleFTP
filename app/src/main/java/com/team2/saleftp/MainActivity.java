@@ -18,11 +18,9 @@ import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
 import model.Product;
-import model.ProductDetail;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> list = new ArrayList<>();
-    private ArrayList<ProductDetail> list2 = new ArrayList<>();
     ProductDAO dao;
     SearchView search;
     ImageView imvProfile;
@@ -39,10 +37,19 @@ public class MainActivity extends AppCompatActivity {
         list = dao.viewAll();
 
         search = findViewById(R.id.search);
+        imvProfile = findViewById(R.id.imvProfile);
 
         //custom searchview
         search.isIconfiedByDefault();
         closeKeyboard();
+
+        //setOnClick profile
+        imvProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert your profile code here
+            }
+        });
 
         //list product adapter
         mRecyclerView = findViewById(R.id.rvMain);
@@ -53,18 +60,16 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ProductMainAdapter(getBaseContext(), list);
         mRecyclerView.setAdapter(mAdapter);
 
+        //setOnClick event
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getBaseContext(),
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-//                        //run search data in Detail table with id in Product table
-//                        String id = list.get(position).getId();
-//                        list2 = dao.viewDetail(id);
-
+                        //intent Parcelable data to DetailActivity
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         intent.putParcelableArrayListExtra("data", list);
-//                        intent.putParcelableArrayListExtra("data2", list2);
                         intent.putExtra("pos", position);
+                        startActivityForResult(intent, 10001);
                     }
                 }));
     }
