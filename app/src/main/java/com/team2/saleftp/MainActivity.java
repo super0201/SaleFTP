@@ -1,6 +1,7 @@
 package com.team2.saleftp;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
@@ -20,24 +21,19 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import adapter.ProductMainAdapter;
+import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
 import model.Cart;
 import model.Product;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
-    private ViewPager viewPager;
-    private RadioGroup group;
+public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> list = new ArrayList<>();
-    int currentPage = 0;
-    final long DELAY_MS = 2000;
-    final long PERIOD_MS = 6000;
+    public static ArrayList<Cart> arrCart;
     ProductDAO dao;
-    Timer timer;
     SearchView search;
     ImageView imvProfile;
     ProductMainAdapter mAdapter;
     RecyclerView mRecyclerView;
-    public static ArrayList<Cart> arrCart;
 
     @SuppressLint("ResourceType")
     @Override
@@ -62,6 +58,17 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         mAdapter = new ProductMainAdapter(getBaseContext(), list);
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getBaseContext(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getBaseContext(), DetailActivity.class);
+                        intent.putParcelableArrayListExtra("data", list);
+                        intent.putExtra("pos", position);
+                        startActivityForResult(intent, 10001);
+                    }
+                }));
     }
 
 
@@ -80,25 +87,5 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        // when current page change -> update radio button state
-        int radioButtonId = group.getChildAt(position).getId();
-        group.check(radioButtonId);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-    }
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        // when checked radio button -> update current page
-        viewPager.setCurrentItem(group.indexOfChild(group.findViewById(checkedId)), true);
-    }
 
 }

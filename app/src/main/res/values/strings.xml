@@ -14,5 +14,8 @@
     <string name="memCard">Thẻ Nhớ: </string>
     <string name="battCap">Dung Lượng Pin: </string>
     <string name="os">OS: </string>
+    <string name="buy">Mua Ngay</string>
+    <string name="addCart">Thêm Vào Giỏ Hàng</string>
+    <string name="title">Thông Số Sản Phẩm</string>
 
 </resources>
