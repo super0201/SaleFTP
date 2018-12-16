@@ -65,6 +65,11 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+
+
+        //        //run search data in ProductDetail with id in ProductDB
+//        list = dao.viewDetail(id);
+
         //run method
         setDetail();
 
@@ -80,7 +85,8 @@ public class DetailActivity extends AppCompatActivity {
         image = data.get(pos).getImage();
         nam = data.get(pos).getName();
         pric = data.get(pos).getPrice();
-//        detaill = data.get(pos).getDetail();
+        detaill = data.get(pos).getDetail();
+
 
         Glide.with(getBaseContext()).load(image).into(prod);
         name.setText(nam);

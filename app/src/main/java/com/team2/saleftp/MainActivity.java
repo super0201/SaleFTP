@@ -17,12 +17,14 @@ import java.util.ArrayList;
 import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
+import model.Cart;
 import model.Product;
 import model.ProductDetail;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> list = new ArrayList<>();
     private ArrayList<ProductDetail> list2 = new ArrayList<>();
+    public static ArrayList<Cart> arrCart;
     ProductDAO dao;
     SearchView search;
     ImageView imvProfile;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         closeKeyboard();
 
         //list product adapter
-        mRecyclerView = findViewById(R.id.rvMain);
+        mRecyclerView = (RecyclerView) findViewById(R.id.rvMain);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
 
         mRecyclerView.setHasFixedSize(true);
@@ -57,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-//                        //run search data in Detail table with id in Product table
-//                        String id = list.get(position).getId();
-//                        list2 = dao.viewDetail(id);
+                        //run search data in Detail table with id in Product table
+                        String id = list.get(position).getId();
+                        list2 = dao.viewDetail(id);
 
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         intent.putParcelableArrayListExtra("data", list);
-//                        intent.putParcelableArrayListExtra("data2", list2);
+                        intent.putParcelableArrayListExtra("data2", list2);
                         intent.putExtra("pos", position);
                     }
                 }));
@@ -83,4 +85,5 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
+
 }

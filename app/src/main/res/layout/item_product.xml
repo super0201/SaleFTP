@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/linear_rounded"
     android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginRight="@dimen/_2sdp"
     android:layout_marginLeft="@dimen/_2sdp"
     android:layout_marginBottom="@dimen/_3sdp"
+    android:background="@drawable/linear_rounded"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_170sdp"
     android:orientation="vertical">
@@ -18,8 +18,8 @@
         android:layout_marginRight="@dimen/_5sdp"
         android:layout_width="@dimen/_135sdp"
         android:layout_height="@dimen/_115sdp"
-        android:contentDescription="@string/title"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher_round" />
 
     <TextView
         android:id="@+id/tvName"
@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="@dimen/_14sdp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:text="Hello"/>
 
     <TextView
         android:id="@+id/tvPrice"
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="@dimen/_10sdp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:text="Hello"/>
 
 </LinearLayout>

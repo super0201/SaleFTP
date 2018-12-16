@@ -1,7 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +16,8 @@ import java.util.ArrayList;
 import model.Product;
 
 public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<Product> data;
     Context context;
+    ArrayList<Product> data;
 
     public ProductMainAdapter(Context context, ArrayList<Product> data) {
         this.context = context;
@@ -26,7 +25,7 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder;
         View v;
         v = LayoutInflater.from(parent.getContext()).inflate(
@@ -37,7 +36,7 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Product Product = data.get(position);
         MyItemHolder myItemHolder = (MyItemHolder) holder;
         myItemHolder.tvName.setText(Product.getName());
@@ -45,6 +44,8 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         Glide.with(context)
                 .load(data.get(position).getImage())
+                .asBitmap()
+                .override(600, 300)
                 .into(((MyItemHolder) holder).imvProduct);
     }
 
@@ -57,11 +58,11 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         ImageView imvProduct;
         TextView tvName, tvPrice;
 
-        private MyItemHolder(View itemView) {
+        public MyItemHolder(View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
-            imvProduct = itemView.findViewById(R.id.imvProduct);
+            tvName = (TextView) itemView.findViewById(R.id.tvName);
+            tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+            imvProduct = (ImageView) itemView.findViewById(R.id.imvProduct);
         }
     }
 }

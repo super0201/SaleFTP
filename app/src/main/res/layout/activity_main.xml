@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/imvProfile"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
             android:layout_margin="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_alignParentRight="true"
@@ -39,7 +39,6 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvMain"
-        android:background="@color/colorSilver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:nestedScrollingEnabled="false">
