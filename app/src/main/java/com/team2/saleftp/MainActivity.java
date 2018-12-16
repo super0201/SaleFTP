@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void closeKeyboard() {
+    public void closeKeyboard() {
         View currentFocus = this.getCurrentFocus();
         if (currentFocus != null) {
             android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) this.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
