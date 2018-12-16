@@ -6,6 +6,16 @@ import android.os.Parcelable;
 public class Product implements Parcelable {
     private String name, summary, image, id, price, detail;
 
+    public Product(String name, String price, String summary, String image, String id, String detail) {
+        this.name = name;
+        this.price = price;
+        this.summary = summary;
+        this.id = id;
+        this.detail = detail;
+        this.image = image;
+    }
+
+
     protected Product(Parcel in) {
         name = in.readString();
         summary = in.readString();

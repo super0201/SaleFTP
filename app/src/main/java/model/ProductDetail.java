@@ -1,6 +1,9 @@
 package model;
 
-public class ProductDetail {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ProductDetail implements Parcelable {
     private String scr, scrRes, frCam, reCam, cpu, ram, rom, sim, mCard, battCap, os;
 
     public ProductDetail(String scr, String scrRes, String frCam, String reCam, String cpu, String ram, String rom, String sim, String mCard, String battCap, String os) {
@@ -16,6 +19,32 @@ public class ProductDetail {
         this.battCap = battCap;
         this.os = os;
     }
+
+    protected ProductDetail(Parcel in) {
+        scr = in.readString();
+        scrRes = in.readString();
+        frCam = in.readString();
+        reCam = in.readString();
+        cpu = in.readString();
+        ram = in.readString();
+        rom = in.readString();
+        sim = in.readString();
+        mCard = in.readString();
+        battCap = in.readString();
+        os = in.readString();
+    }
+
+    public static final Creator<ProductDetail> CREATOR = new Creator<ProductDetail>() {
+        @Override
+        public ProductDetail createFromParcel(Parcel in) {
+            return new ProductDetail(in);
+        }
+
+        @Override
+        public ProductDetail[] newArray(int size) {
+            return new ProductDetail[size];
+        }
+    };
 
     public String getScr() {
         return scr;
@@ -103,5 +132,25 @@ public class ProductDetail {
 
     public void setOs(String os) {
         this.os = os;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(scr);
+        dest.writeString(scrRes);
+        dest.writeString(frCam);
+        dest.writeString(reCam);
+        dest.writeString(cpu);
+        dest.writeString(ram);
+        dest.writeString(rom);
+        dest.writeString(sim);
+        dest.writeString(mCard);
+        dest.writeString(battCap);
+        dest.writeString(os);
     }
 }

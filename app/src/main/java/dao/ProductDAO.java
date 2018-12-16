@@ -17,7 +17,6 @@ public class ProductDAO {
     Context ct;
     ProductDB db;
 
-
     public ProductDAO(Context context) {
         this.ct = context;
         db = new ProductDB(ct);
@@ -37,7 +36,7 @@ public class ProductDAO {
             String detail = cs.getString(3);
             String sum = cs.getString(4);
             String image = cs.getString(5);
-            fm = new Product(nam, price, id, image, detail, sum);
+            fm = new Product(nam, price, detail, image, id, sum);
             list.add(fm);
             cs.moveToNext();
         }
@@ -48,7 +47,8 @@ public class ProductDAO {
     public ArrayList<ProductDetail> viewDetail(String ID){
         ArrayList<ProductDetail> list2 = new ArrayList<>();
         SQLiteDatabase mydb = db.getReadableDatabase();
-        String sql = "Select * From Detail WHERE ID = '" + ID + "'";
+//        String sql = "SELECT * FROM " + "Detail" + " WHERE ID = '" + ID + "'";
+        String sql = "Select * From Detail";
         Cursor cs = mydb.rawQuery(sql, null);
         cs.moveToFirst();
         while (cs.isAfterLast() == false){

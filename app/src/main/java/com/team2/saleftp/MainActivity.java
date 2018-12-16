@@ -3,9 +3,6 @@ package com.team2.saleftp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.IdRes;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,21 +10,20 @@ import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
 import model.Cart;
 import model.Product;
+import model.ProductDetail;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> list = new ArrayList<>();
+    private ArrayList<ProductDetail> list2 = new ArrayList<>();
     public static ArrayList<Cart> arrCart;
     ProductDAO dao;
     SearchView search;
@@ -63,14 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+//                        //run search data in Detail table with id in Product table
+//                        String id = list.get(position).getId();
+//                        list2 = dao.viewDetail(id);
+
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         intent.putParcelableArrayListExtra("data", list);
+//                        intent.putParcelableArrayListExtra("data2", list2);
                         intent.putExtra("pos", position);
-                        startActivityForResult(intent, 10001);
                     }
                 }));
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,6 +85,5 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
-
 
 }
