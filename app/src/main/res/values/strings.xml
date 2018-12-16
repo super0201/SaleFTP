@@ -3,4 +3,16 @@
     <string name="search">Bạn Muốn Tìm Gì...</string>
 
     //detail string
+    <string name="screen">Màn Hình: </string>
+    <string name="scrRes">Độ Phân Giải: </string>
+    <string name="fronCam">Camera Trước: </string>
+    <string name="reCam">Camera Sau: </string>
+    <string name="cpu">CPU: </string>
+    <string name="ram">Ram: </string>
+    <string name="rom">ROM: </string>
+    <string name="sim">SIM: </string>
+    <string name="memCard">Thẻ Nhớ: </string>
+    <string name="battCap">Dung Lượng Pin: </string>
+    <string name="os">OS: </string>
+
 </resources>
