@@ -111,11 +111,9 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void AddCart(){
-        int x = cartDAO.s;
-        if (x != 0){
-            for (int i = 0; i < x; i++) {
-                lvCart.setAdapter((ListAdapter) cartDAO.viewCart());
-            }
+        int x = cartDAO.viewCart().size();
+        for (int i = 0; i < x; i++) {
+            lvCart.setAdapter((ListAdapter) cartDAO.viewCart());
         }
 
     }

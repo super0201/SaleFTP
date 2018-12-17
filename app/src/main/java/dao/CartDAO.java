@@ -14,9 +14,9 @@ public class CartDAO {
     Context ct;
     CartDB cartDB;
 
-    public CartDAO(Context context) {
-        this.ct = context;
-        cartDB = new CartDB(ct);
+    public CartDAO(Context ct, CartDB cartDB) {
+        this.ct = ct;
+        this.cartDB = cartDB;
     }
 
     public long insertCart(String id) {
