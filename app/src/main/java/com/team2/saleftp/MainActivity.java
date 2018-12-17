@@ -18,6 +18,7 @@ import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
 import model.Product;
+import session.SessionManager;
 
 /**
  * Created By JohnNguyen - Onesoft on 12/12/2018
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imvProfile;
     ProductMainAdapter mAdapter;
     RecyclerView mRecyclerView;
+    SessionManager sessionManager;
 
     @SuppressLint("ResourceType")
     @Override
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sessionManager = new SessionManager(getBaseContext());
         dao = new ProductDAO(getBaseContext());
         list = dao.viewAll();
 
@@ -51,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //insert your profile code here
+                if (sessionManager.isLoggedIn()){
+                    Intent i = new Intent(getBaseContext(), UserInfoActivity.class);
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(i);
+                }
             }
         });
 
