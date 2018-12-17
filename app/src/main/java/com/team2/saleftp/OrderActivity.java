@@ -1,7 +1,5 @@
 package com.team2.saleftp;
 
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +8,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import adapter.OrderAdapter;
-import dao.ProductDAO;
 import dao.UserDAO;
 import model.Cart;
-import model.Product;
 import model.User;
 
 public class OrderActivity extends AppCompatActivity {
@@ -64,7 +58,7 @@ public class OrderActivity extends AppCompatActivity {
             return;
         }
 
-        tvAmountOrder.setText(a);
+        tvAmountOrder.setText(listCart.size());
         tvTotalOrder.setText(CartActivity.tvTotal.getText());
     }
 
