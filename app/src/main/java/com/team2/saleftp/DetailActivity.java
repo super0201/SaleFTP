@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import dao.CartDAO;
 import dao.ProductDAO;
 import model.Product;
 import model.ProductDetail;
@@ -23,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
     private ArrayList<Product> data = new ArrayList<>();
     private ArrayList<ProductDetail> list = new ArrayList<>();
     private ProductDAO dao;
+    private CartDAO cartDAO;
     int pos;
     String id, nam, pric, detaill, image;
     String scrDt, scrResDt, frCamDt, reCamDt, cpuDt, ramDt,romDt, simDt, mCardDt, battCapDt, osDt;
@@ -96,7 +98,7 @@ public class DetailActivity extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dao.insertCart(id);
+                cartDAO.insertCart(id);
                 Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
             }
         });
