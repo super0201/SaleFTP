@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -35,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         dao = new ProductDAO(getBaseContext());
-        dao.viewDetail(id);
+//        dao.viewDetail(id);
 
         //Textview
         name = findViewById(R.id.name);
@@ -62,6 +63,14 @@ public class DetailActivity extends AppCompatActivity {
         imvBack = findViewById(R.id.imvBack);
         cart = findViewById(R.id.cart);
 
+        //get intent data
+        data = getIntent().getParcelableArrayListExtra("data");
+        pos = getIntent().getIntExtra("pos", 0);
+
+        //get data from intent list on position
+        id = data.get(pos).getId();
+
+
         //imvBtn set event
         imvBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,14 +96,10 @@ public class DetailActivity extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dao.insertCart(id);
+                Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
             }
         });
-
-        //get intent data
-        data = getIntent().getParcelableArrayListExtra("data");
-        pos = getIntent().getIntExtra("pos", 0);
-
 
         //run method
         setDetail();

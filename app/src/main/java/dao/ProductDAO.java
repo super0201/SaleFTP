@@ -1,12 +1,15 @@
 package dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import database.CartDB;
 import database.ProductDB;
+import model.Cart;
 import model.Product;
 import model.ProductDetail;
 
@@ -16,10 +19,12 @@ import model.ProductDetail;
 public class ProductDAO {
     Context ct;
     ProductDB db;
+    CartDB cartDB;
 
     public ProductDAO(Context context) {
         this.ct = context;
         db = new ProductDB(ct);
+        cartDB = new CartDB(ct);
     }
 
     public ArrayList<Product> viewAll(){
@@ -69,5 +74,13 @@ public class ProductDAO {
         }
         cs.close();
         return list2;
+    }
+
+    public long insertCart(String id) {
+        SQLiteDatabase mydb = cartDB.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("ID", id);
+        long inta = mydb.insert("Cart", null, values);
+        return inta;
     }
 }
