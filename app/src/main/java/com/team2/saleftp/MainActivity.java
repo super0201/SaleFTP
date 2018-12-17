@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
@@ -86,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                         String id;
                         id = list.get(position).getId();
                         list2 = dao.viewDetail(id);
-
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         intent.putParcelableArrayListExtra("data", list);
                         intent.putExtra("pos", position);
@@ -95,19 +95,19 @@ public class MainActivity extends AppCompatActivity {
                 }));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
-
     public void closeKeyboard() {
         View currentFocus = this.getCurrentFocus();
         if (currentFocus != null) {
             android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) this.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+            assert imm != null;
+            Objects.requireNonNull(imm).hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
         }
-        this.getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 
     @SuppressLint("ResourceType")
