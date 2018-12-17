@@ -57,19 +57,19 @@ public class ProductDB extends SQLiteOpenHelper {
         db.execSQL(sqlProd);
 
         //insert detail Product
-        sqlDetail = "Insert Into Detail values ( 'SM021', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
+        sqlDetail = "Insert Into Detail values ( 'SM021', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh, có sạc nhanh', 'Android 8.0 (Oreo)')";
         db.execSQL(sqlDetail);
 
-        sqlDetail = "Insert Into Detail values ( 'SO32', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
+        sqlDetail = "Insert Into Detail values ( 'SO32', 'IPS HDR LCD, 5.7\", Full HD+', '1080 x 2160 Pixels', '5 MP', '19 MP', 'Snapdragon 845 8 nhân', '4 GB', '64 GB', '2 Nano SIM, Hỗ trợ 4G', 'MicroSD, hỗ trợ tối đa 400 GB', '3180 mAh, có sạc nhanh', 'Android 8.0 (Oreo)')";
         db.execSQL(sqlDetail);
 
-        sqlDetail = "Insert Into Detail values ( 'XO24', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
+        sqlDetail = "Insert Into Detail values ( 'XO24', 'Super AMOLED, 6.39\", Full HD+', '1080 x 2340 Pixels', '24 MP và 2 MP Dual Camera', 'Dual Camera 12 MP', 'Snapdragon 845 8 nhân', '10 GB', '512 GB', '2 Nano SIM, Hỗ trợ 4G', 'MicroSD, hỗ trợ tối đa 256 GB', '3200 mAh, có sạc nhanh', 'Android 9.0 (Pie)')";
         db.execSQL(sqlDetail);
 
-        sqlDetail = "Insert Into Detail values ( 'LG22', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
+        sqlDetail = "Insert Into Detail values ( 'LG22', '\tP-OLED, 6.0\", Quad HD (2K)', '1440 x 2560 pixels (~474 dpi)', '8 MP', 'Dual Camera 16MP + 13 MP', 'Qualcomm MSM8998 Snapdragon 835', '4 GB', '64 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 256 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
         db.execSQL(sqlDetail);
 
-        sqlDetail = "Insert Into Detail values ( 'XO43', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
+        sqlDetail = "Insert Into Detail values ( 'XO43', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '3300 mAh, có sạc nhanh', 'Android 7.1 (Nougat)')";
         db.execSQL(sqlDetail);
 
         sqlDetail = "Insert Into Detail values ( 'LG21', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
