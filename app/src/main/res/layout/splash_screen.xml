@@ -8,10 +8,19 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_marginTop="@dimen/_100sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_100sdp"
         android:src="@raw/logo" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="133dp"
+        android:indeterminateDrawable="@drawable/progress" />
 
     <TextView
         android:id="@+id/textView2"

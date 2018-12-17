@@ -5,21 +5,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 public class SplashActivity extends Activity {
     private boolean mIsBackButtonPressed;
-    private static final int SPLASH_DURATION = 1500; // 1.5 seconds
-
+    private static final int SPLASH_DURATION = 2500; // 2.5 seconds
+    private ProgressBar mProgress;
 
     @SuppressLint("ResourceType")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.splash_screen);
+
+        mProgress = findViewById(R.id.progressBar);
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 finish();
@@ -29,19 +34,17 @@ public class SplashActivity extends Activity {
                 }
             }
         }, SPLASH_DURATION);
-
     }
+
 
     @Override
     protected void onPause() {
         super.onPause();
     }
 
-
     @Override
     public void onBackPressed() {
         mIsBackButtonPressed = true;
         super.onBackPressed();
-
     }
 }
