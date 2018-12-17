@@ -8,15 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
 import adapter.CartAdapter;
-import dao.CartDAO;
-import database.CartDB;
 import model.Cart;
 import model.Product;
 
@@ -26,7 +23,6 @@ public class CartActivity extends AppCompatActivity {
     static TextView tvTotal;
     Button btnPayment, btnContinue;
     CartAdapter cartAdapter;
-    CartDAO cartDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +35,6 @@ public class CartActivity extends AppCompatActivity {
 
         CheckData();
         CatchOnItemListView();
-        AddCart();
 
         btnPayment = findViewById(R.id.btnPay);
         btnContinue = findViewById(R.id.btnContinue);
@@ -110,11 +105,7 @@ public class CartActivity extends AppCompatActivity {
 //        }
     }
 
-    private void AddCart(){
-        int x = cartDAO.viewCart().size();
-        for (int i = 0; i < x; i++) {
-            lvCart.setAdapter((ListAdapter) cartDAO.viewCart());
-        }
+    private void AddCart(View view){
 
     }
 
