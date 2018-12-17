@@ -18,6 +18,7 @@ import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
 import model.Product;
+import model.ProductDetail;
 import session.SessionManager;
 
 /**
@@ -25,6 +26,7 @@ import session.SessionManager;
  */
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> list = new ArrayList<>();
+    public static ProductDetail list2;
     ProductDAO dao;
     SearchView search;
     ImageView imvProfile;
@@ -79,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         //intent Parcelable data to DetailActivity
+                        String id;
+                        id = list.get(position).getId();
+                        list2 = dao.viewDetail(id);
+
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         intent.putParcelableArrayListExtra("data", list);
                         intent.putExtra("pos", position);

@@ -1,6 +1,7 @@
 package database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -56,7 +57,7 @@ public class ProductDB extends SQLiteOpenHelper {
         db.execSQL(sqlProd);
 
         //insert detail Product
-        sqlDetail = "Insert Into Detail values ( 'SM01', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
+        sqlDetail = "Insert Into Detail values ( 'SM021', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
         db.execSQL(sqlDetail);
 
         sqlDetail = "Insert Into Detail values ( 'SO32', 'Super AMOLED, 6.4\", Quad HD+ (2K+)', '1440 x 2960 pixels', '8 MP', 'Dual Camera 12 MP', 'Exynos 9810 8 nhân 64 bit', '6 GB', '128 GB', '1 Sim (Nano Sim)', 'MicroSD, hỗ trợ tối đa 512 GB', '4000 mAh', 'Android 8.0 (Oreo)')";
@@ -94,4 +95,5 @@ public class ProductDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 }

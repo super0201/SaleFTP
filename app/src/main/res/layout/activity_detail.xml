@@ -494,7 +494,7 @@
                 android:layout_width="@dimen/_150sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/_4sdp"
+                android:layout_margin="@dimen/_3sdp"
                 android:padding="@dimen/_12sdp"
                 android:textSize="@dimen/_12sdp"
                 android:text="@string/addCart"

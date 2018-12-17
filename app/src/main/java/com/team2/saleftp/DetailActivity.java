@@ -21,11 +21,10 @@ import model.ProductDetail;
  */
 public class DetailActivity extends AppCompatActivity {
     private ArrayList<Product> data = new ArrayList<>();
-    private ArrayList<ProductDetail> list = new ArrayList<>();
+    public static ProductDetail list;
     private ProductDAO dao;
     int pos;
     String id, nam, pric, detaill, image;
-    String scrDt, scrResDt, frCamDt, reCamDt, cpuDt, ramDt,romDt, simDt, mCardDt, battCapDt, osDt;
     TextView name, price, detail, scr, scrRes, frCam, reCam, cpu, ram ,rom, sim, mCard, battCap, os;
     Button btnBuy, btnAddCart;
     ImageView prod, imvBack, cart;
@@ -36,7 +35,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         dao = new ProductDAO(getBaseContext());
-//        dao.viewDetail(id);
 
         //Textview
         name = findViewById(R.id.name);
@@ -69,7 +67,6 @@ public class DetailActivity extends AppCompatActivity {
 
         //get data from intent list on position
         id = data.get(pos).getId();
-
 
         //imvBtn set event
         imvBack.setOnClickListener(new View.OnClickListener() {
@@ -114,35 +111,22 @@ public class DetailActivity extends AppCompatActivity {
         pric = data.get(pos).getPrice();
         detaill = data.get(pos).getSummary();
 
-        //get data2
-//        scrDt = list.get(scr).toString();
-//        scrResDt = data2.get(pos).getScrRes();
-//        frCamDt = data2.get(pos).getFrCam();
-//        reCamDt = data2.get(pos).getReCam();
-//        cpuDt = data2.get(pos).getCpu();
-//        ramDt = data2.get(pos).getRam();
-//        romDt = data2.get(pos).getRom();
-//        simDt = data2.get(pos).getSim();
-//        mCardDt = data2.get(pos).getmCard();
-//        battCapDt = data2.get(pos).getBattCap();
-//        osDt = data2.get(pos).getOs();
-
         //set data to textview and imageview
         Glide.with(getBaseContext()).load(image).into(prod);
         name.setText(nam);
         price.setText(pric);
         detail.setText(detaill);
 
-//        scr.setText(scrDt);
-//        scrRes.setText(scrResDt);
-//        frCam.setText(frCamDt);
-//        reCam.setText(reCamDt);
-//        cpu.setText(cpuDt);
-//        ram.setText(ramDt);
-//        rom.setText(romDt);
-//        sim.setText(simDt);
-//        mCard.setText(mCardDt);
-//        battCap.setText(battCapDt);
-//        os.setText(osDt);
+        scr.setText(MainActivity.list2.getScr());
+        scrRes.setText(MainActivity.list2.getScrRes());
+        frCam.setText(MainActivity.list2.getFrCam());
+        reCam.setText(MainActivity.list2.getReCam());
+        cpu.setText(MainActivity.list2.getCpu());
+        ram.setText(MainActivity.list2.getRam());
+        rom.setText(MainActivity.list2.getRom());
+        sim.setText(MainActivity.list2.getSim());
+        mCard.setText(MainActivity.list2.getmCard());
+        battCap.setText(MainActivity.list2.getBattCap());
+        os.setText(MainActivity.list2.getOs());
     }
 }

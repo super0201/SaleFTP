@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import database.CartDB;
 import database.ProductDB;
-import model.Cart;
 import model.Product;
 import model.ProductDetail;
 
@@ -33,7 +32,7 @@ public class ProductDAO {
         String sql = "Select * From Product";
         Cursor cs = mydb.rawQuery(sql, null);
         cs.moveToFirst();
-        while (cs.isAfterLast() == false){
+        while (!cs.isAfterLast()){
             Product fm = null;
             String id = cs.getString(0);
             String nam = cs.getString(1);
@@ -49,31 +48,31 @@ public class ProductDAO {
         return list;
     }
 
-    public ArrayList<ProductDetail> viewDetail(String ID){
-        ArrayList<ProductDetail> list2 = new ArrayList<>();
+    public ProductDetail viewDetail(String ID){
+        ProductDetail pd = null;
         SQLiteDatabase mydb = db.getReadableDatabase();
-        String sql = "SELECT * FROM " + "Detail" + " WHERE ID = '" + ID + "'";
+        String sql = "SELECT * FROM Detail WHERE ID = '"+ ID +"'";
         Cursor cs = mydb.rawQuery(sql, null);
         cs.moveToFirst();
-        while (cs.isAfterLast() == false){
-            ProductDetail fm = null;
-                String scr = cs.getString(1);
-                String scrRes = cs.getString(2);
-                String frCam = cs.getString(3);
-                String reCam = cs.getString(4);
-                String cpu = cs.getString(5);
-                String ram = cs.getString(6);
-                String rom = cs.getString(7);
-                String sim = cs.getString(8);
-                String mCard = cs.getString(9);
-                String battCap = cs.getString(10);
-                String os = cs.getString(11);
-            fm = new ProductDetail(scr, scrRes, frCam, reCam, cpu, ram, rom, sim, mCard, battCap, os);
-            list2.add(fm);
-            cs.moveToNext();
+        while (!cs.isAfterLast()){
+            pd = new ProductDetail();
+                pd.setId(cs.getString(0));
+                pd.setScr(cs.getString(1));
+                pd.setScrRes(cs.getString(2));
+                pd.setFrCam(cs.getString(3));
+                pd.setReCam(cs.getString(4));
+                pd.setCpu(cs.getString(5));
+                pd.setRam(cs.getString(6));
+                pd.setRom(cs.getString(7));
+                pd.setSim(cs.getString(8));
+                pd.setmCard(cs.getString(9));
+                pd.setBattCap(cs.getString(10));
+                pd.setOs(cs.getString(11));
+            break;
         }
         cs.close();
-        return list2;
+        return pd;
+
     }
 
     public long insertCart(String id) {
