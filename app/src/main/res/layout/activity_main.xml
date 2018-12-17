@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/imvProfile"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_margin="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_alignParentRight="true"
@@ -37,45 +37,9 @@
 
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/image_slider"
-        android:layout_width="match_parent"
-        android:layout_margin="@dimen/_4sdp"
-        android:layout_height="@dimen/_220sdp"
-        android:background="@color/white" />
-
-    <RadioGroup
-        android:id="@+id/slider_indicator_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/page1"
-            style="@style/indicator_style"
-            android:checked="true" />
-
-        <RadioButton
-            android:id="@+id/page2"
-            style="@style/indicator_style" />
-
-        <RadioButton
-            android:id="@+id/page3"
-            style="@style/indicator_style" />
-
-        <RadioButton
-            android:id="@+id/page4"
-            style="@style/indicator_style" />
-
-        <RadioButton
-            android:id="@+id/page5"
-            style="@style/indicator_style" />
-    </RadioGroup>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvMain"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/colorSilver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:nestedScrollingEnabled="false">

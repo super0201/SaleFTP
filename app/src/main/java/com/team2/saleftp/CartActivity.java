@@ -1,6 +1,7 @@
 package com.team2.saleftp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,11 +32,29 @@ public class CartActivity extends AppCompatActivity {
         lvCart = findViewById(R.id.lvCart);
         tvNoti = findViewById(R.id.tvNoti);
         tvTotal = findViewById(R.id.tvTotal);
-        btnPayment = findViewById(R.id.btnPay);
-        btnContinue = findViewById(R.id.btnContinue);
+
         CheckData();
         CatchOnItemListView();
+
+        btnPayment = findViewById(R.id.btnPay);
+        btnContinue = findViewById(R.id.btnContinue);
+        btnPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), OrderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void CatchOnItemListView(){
         lvCart.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -47,18 +66,18 @@ public class CartActivity extends AppCompatActivity {
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(MainActivity.arrCart.size()<=0){
-                            tvNoti.setVisibility(View.INVISIBLE);
-                        }else {
-                            MainActivity.arrCart.remove(i);
-                            cartAdapter.notifyDataSetChanged();
-                            Event();
-                            if(MainActivity.arrCart.size() <= 0){
-                                tvNoti.setVisibility(View.VISIBLE);
-                            }else {
-                                tvNoti.setVisibility(View.INVISIBLE);
-                            }
-                        }
+//                        if(MainActivity.arrCart.size()<=0){
+//                            tvNoti.setVisibility(View.INVISIBLE);
+//                        }else {
+//                            MainActivity.arrCart.remove(i);
+//                            cartAdapter.notifyDataSetChanged();
+//                            Event();
+//                            if(MainActivity.arrCart.size() <= 0){
+//                                tvNoti.setVisibility(View.VISIBLE);
+//                            }else {
+//                                tvNoti.setVisibility(View.INVISIBLE);
+//                            }
+//                        }
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -75,15 +94,15 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void CheckData(){
-        if(MainActivity.arrCart.size() <= 0){
-            cartAdapter.notifyDataSetChanged();
-            tvNoti.setVisibility(View.VISIBLE);
-            lvCart.setVisibility(View.INVISIBLE);
-        }else {
-            cartAdapter.notifyDataSetChanged();
-            tvNoti.setVisibility(View.INVISIBLE);
-            lvCart.setVisibility(View.VISIBLE);
-        }
+//        if(MainActivity.arrCart.size() <= 0){
+//            cartAdapter.notifyDataSetChanged();
+//            tvNoti.setVisibility(View.VISIBLE);
+//            lvCart.setVisibility(View.INVISIBLE);
+//        }else {
+//            cartAdapter.notifyDataSetChanged();
+//            tvNoti.setVisibility(View.INVISIBLE);
+//            lvCart.setVisibility(View.VISIBLE);
+//        }
     }
 
     private void AddCart(View view){
@@ -91,11 +110,11 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public static void Event(){
-        long total = 0;
-        for (int i = 0; i<MainActivity.arrCart.size(); i++){
-            total += MainActivity.arrCart.get(i).getPrice();
-        }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        tvTotal.setText(decimalFormat.format(total)+ "Đ");
+//        long total = 0;
+//        for (int i = 0; i<MainActivity.arrCart.size(); i++){
+//            total += MainActivity.arrCart.get(i).getPrice();
+//        }
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//        tvTotal.setText(decimalFormat.format(total)+ "Đ");
     }
 }

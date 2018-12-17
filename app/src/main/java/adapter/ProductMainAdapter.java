@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,12 @@ import java.util.ArrayList;
 
 import model.Product;
 
+/**
+ * Created By JohnNguyen - Onesoft on 14/12/2018
+ */
 public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    Context context;
     ArrayList<Product> data;
+    Context context;
 
     public ProductMainAdapter(Context context, ArrayList<Product> data) {
         this.context = context;
@@ -25,7 +29,7 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder;
         View v;
         v = LayoutInflater.from(parent.getContext()).inflate(
@@ -36,13 +40,14 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Product Product = data.get(position);
         MyItemHolder myItemHolder = (MyItemHolder) holder;
         myItemHolder.tvName.setText(Product.getName());
         myItemHolder.tvPrice.setText(Product.getPrice());
 
-        Glide.with(context).load(data.get(position).getId())
+        Glide.with(context)
+                .load(data.get(position).getImage())
                 .into(((MyItemHolder) holder).imvProduct);
     }
 
@@ -55,7 +60,7 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         ImageView imvProduct;
         TextView tvName, tvPrice;
 
-        public MyItemHolder(View itemView) {
+        private MyItemHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);

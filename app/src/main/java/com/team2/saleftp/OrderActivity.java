@@ -25,18 +25,18 @@ public class OrderActivity extends AppCompatActivity {
     private ImageView imvInfo, imvBack;
     private EditText edtName, edtPhone, edtAddress;
     private ListView lvOrder;
-    private TextView tvAmount, tvTotal;
+    private TextView tvAmountOrder, tvTotalOrder;
     private Button btnOrder;
 
-    private ArrayList<Product> listCart = new ArrayList<>();
+    private ArrayList<Cart> listCart = new ArrayList<>();
     private ArrayList<User> listUser = new ArrayList<>();
 
     private OrderAdapter orderAdapter = null;
 
     private UserDAO userDAO;
-    private ProductDAO productDAO;
 
-    int count = 0;
+    int count = 0, a = 0;
+    double b = 0, c = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +53,19 @@ public class OrderActivity extends AppCompatActivity {
         edtAddress.setText(LoginActivity.USER.getAddr());
         edtPhone.setText(LoginActivity.USER.getPhone());
 
-        productDAO = new ProductDAO(OrderActivity.this);
-        listCart = productDAO.viewAll();
 
         orderAdapter = new OrderAdapter(this, listCart);
         lvOrder.setAdapter(orderAdapter);
+
+        for (Cart x : listCart) {
+            a = x.getAmount();
+            b = x.getPrice();
+            c += (a*b);
+            return;
+        }
+
+        tvAmountOrder.setText(a);
+        tvTotalOrder.setText(CartActivity.tvTotal.getText());
     }
 
     private void analyze() {
@@ -103,8 +111,8 @@ public class OrderActivity extends AppCompatActivity {
 
         lvOrder = (ListView) findViewById(R.id.lvOrder);
 
-        tvAmount = (TextView) findViewById(R.id.tvAmountOrder);
-        tvTotal = (TextView) findViewById(R.id.tvTotalOrder);
+        tvAmountOrder = (TextView) findViewById(R.id.tvAmountOrder);
+        tvTotalOrder = (TextView) findViewById(R.id.tvTotalOrder);
 
         btnOrder = (Button) findViewById(R.id.btnOrder);
 

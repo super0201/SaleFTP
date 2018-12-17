@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.team2.saleftp.R;
 
 import java.util.ArrayList;
@@ -20,10 +22,10 @@ public class OrderAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    ArrayList<Product> arrCart;
+    ArrayList<Cart> arrCart;
     ProductDAO dao;
 
-    public OrderAdapter(Context context, ArrayList<Product> arrayCart) {
+    public OrderAdapter(Context context, ArrayList<Cart> arrayCart) {
         super();
         this.context = context;
         this.arrCart = arrayCart;
@@ -63,12 +65,16 @@ public class OrderAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Product entry = (Product) arrCart.get(position);
-//        holder.imvIconP.setImageResource(entry.getImage());
-//        holder.tvNameP.setText(entry.getName());
 
+        Cart cart = arrCart.get(position);
+        holder.tvNameP.setText(cart.getName());
+        holder.tvAmountP.setText(cart.getAmount());
+        holder.tvPriceP.setText(String.valueOf(cart.getPrice()));
 
+        Glide.with(context).load(arrCart.get(position).getIdproduct())
+                .into(holder.imvIconP);
 
         return convertView;
     }
+
 }
