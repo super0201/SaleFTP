@@ -129,7 +129,7 @@ public class OrderActivity extends AppCompatActivity {
         dialog.show();
         TextView tvCode = (TextView) dialog.findViewById(R.id.tvCode);
         Button btnBack = (Button)dialog.findViewById(R.id.btnBack);
-        int Code = 0;
+        int Code;
         int min = 11111;
         int max = 22222;
         tvCode.setText("");
