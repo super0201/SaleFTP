@@ -77,7 +77,6 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     public void changePassword() {
-
         strUserName = LoginActivity.USER.getUsername();
 //        try {
             if (validateForm() > 0) {
