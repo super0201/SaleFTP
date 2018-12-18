@@ -13,7 +13,7 @@ public class Cart implements Parcelable {
     public Cart() {
     }
 
-    public Cart(String idproduct, String name, String image, double price) {
+    public Cart(String idproduct, String name, String image, int amount, double price) {
         this.idproduct = idproduct;
         this.name = name;
         this.image = image;
@@ -40,6 +40,7 @@ public class Cart implements Parcelable {
             return new Cart[size];
         }
     };
+
 
     public String getIdproduct() {
         return idproduct;

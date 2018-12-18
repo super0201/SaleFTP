@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Date;
 
 import adapter.OrderAdapter;
+import dao.InvoiceDAO;
 import dao.UserDAO;
 import model.Cart;
-import model.User;
-
 public class OrderActivity extends AppCompatActivity {
 
     private ImageView imvInfo, imvBack;
@@ -25,8 +25,9 @@ public class OrderActivity extends AppCompatActivity {
     private TextView tvAmountOrder, tvTotalOrder;
     private Button btnOrder;
 
+    InvoiceDAO invoiceDAO;
+
     private ArrayList<Cart> listCart = new ArrayList<>();
-    private ArrayList<User> listUser = new ArrayList<>();
 
     private OrderAdapter orderAdapter = null;
 
@@ -35,14 +36,23 @@ public class OrderActivity extends AppCompatActivity {
     int count = 0, a = 0;
     double b = 0, c = 0;
 
+    int Code;
+    int min = 111111;
+    int max = 222222;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         setTitle("TIẾN HÀNH ĐẶT HÀNG");
 
-        analyze();
+        final Date date = new Date();
 
+        Code = min+(int)(Math.random()*(max-min+1));
+
+        analyze();
 
         userDAO = new UserDAO(OrderActivity.this);
 
@@ -54,21 +64,22 @@ public class OrderActivity extends AppCompatActivity {
         orderAdapter = new OrderAdapter(this, listCart);
         lvOrder.setAdapter(orderAdapter);
 
-/*
+
         for (Cart x : listCart) {
             a = x.getAmount();
             b = x.getPrice();
             c += (a*b);
             return;
         }
-*/
 
-//        tvAmountOrder.setText(listCart.size());
- //       tvTotalOrder.setText(CartActivity.tvTotal.getText());
+
+        tvAmountOrder.setText(listCart.size());
+        tvTotalOrder.setText(CartActivity.tvTotal.getText());
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                invoiceDAO.insertInvoice(getNameCart(), String.valueOf(Code), String.valueOf(date), getStt());
                 dialogOrder();
             }
         });
@@ -124,17 +135,32 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
+    private String getNameCart() {
+        String nam = null;
+        for (Cart x : listCart) {
+            nam = x.getName();
+        }
+        return nam;
+    }
+
+    private String getStt() {
+        String stt;
+        if (btnOrder.isClickable()) {
+            stt = "Đang giao hàng";
+        } else {
+            stt = null;
+        }
+        return stt;
+    }
     private void dialogOrder(){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog);
         dialog.show();
         TextView tvCode = (TextView) dialog.findViewById(R.id.tvCode);
         Button btnBack = (Button)dialog.findViewById(R.id.btnBack);
-        int Code;
-        int min = 111111;
-        int max = 222222;
+
         tvCode.setText("");
-        Code = min+(int)(Math.random()*(max-min+1));
+
         tvCode.append("FTP" + Code);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,7 +23,6 @@ public class OrderAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     ArrayList<Cart> arrCart;
-    ProductDAO dao;
 
     public OrderAdapter(Context context, ArrayList<Cart> arrayCart) {
         super();

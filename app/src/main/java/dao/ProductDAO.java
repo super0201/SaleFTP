@@ -76,12 +76,13 @@ public class ProductDAO {
 
     }
 
-    public long insertCart(String id, String Name, String Price, String Image) {
+    public long insertCart(String id, String Name, String Price, int Amount, String Image) {
         SQLiteDatabase mydb = cartDB.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ID", id);
         values.put("Name", Name);
         values.put("Price", Price);
+        values.put("Amount", Amount);
         values.put("Image", Image);
         long inta = mydb.insert("Cart", null, values);
         return inta;
@@ -98,8 +99,9 @@ public class ProductDAO {
             String id = cs.getString(0);
             String nam = cs.getString(1);
             Double price = cs.getDouble(2);
-            String image = cs.getString(3);
-            ca = new Cart(id, nam, image, price);
+            Integer amount = cs.getInt(3);
+            String image = cs.getString(4);
+            ca = new Cart(id, nam, image, amount, price);
             list.add(ca);
             cs.moveToNext();
         }
