@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.team2.saleftp.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import model.Cart;
@@ -44,7 +46,8 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         myItemHolder.tvName.setText(cart.getName());
         Integer i = cart.getPrice();
         myItemHolder.tvPrice.setText(String.valueOf(i));
-//        myItemHolder.btnAmount.setText(cart.getAmount());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        myItemHolder.tvPrice.setText(decimalFormat.format(i)+ "Đ");
         Glide.with(context).load(data.get(position).getImage())
                 .thumbnail(0.4f)
                 .into(((MyItemHolder) holder).imvCart);
@@ -57,15 +60,42 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class MyItemHolder extends RecyclerView.ViewHolder {
         ImageView imvCart;
-        TextView tvName, tvPrice;
-        Button btnAmount;
+        TextView tvName;
+        TextView tvPrice;
+        TextView tvAmount;
+        Button  btnPlus, btnMinus;
+        int amount =1;
+        Cart cart;
+
 
         public MyItemHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvNameCart);
             imvCart = itemView.findViewById(R.id.imvCart);
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
-            btnAmount = itemView.findViewById(R.id.btnAmount);
+            tvAmount = itemView.findViewById(R.id.tvAmount);
+            btnPlus = itemView.findViewById(R.id.btnPlus);
+            btnMinus = itemView.findViewById(R.id.btnMinus);
+            tvAmount.setText(""+amount);
+
+            btnPlus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    amount++;
+                    tvAmount.setText(""+ amount);
+
+                }
+            });
+            btnMinus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(amount > 0)
+                    {
+                        amount--;
+                        tvAmount.setText("" + amount);
+                    }
+                }
+            });
         }
     }
 }

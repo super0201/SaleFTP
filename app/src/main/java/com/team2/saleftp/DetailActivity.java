@@ -27,9 +27,9 @@ public class DetailActivity extends AppCompatActivity {
     public static ProductDetail list;
     public static ArrayList<Cart>arrCart = new ArrayList<>();
     private ProductDAO dao;
-    int pos, amount;
+    int pos;
     String id, nam, detaill, image;
-    Integer pric;
+    Integer pric, amount;
     TextView name, price, detail, scr, scrRes, frCam, reCam, cpu, ram ,rom, sim, mCard, battCap, os;
     Button btnBuy, btnAddCart;
     ImageView prod, imvBack, cart;
@@ -121,7 +121,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 }
                 */
-                amount =1;
+
                 //already have in setDetail() method, no need to call again
                 dao.insertCart(id, nam, pric, amount, image);
                 Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();

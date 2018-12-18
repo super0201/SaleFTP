@@ -52,10 +52,12 @@
                 android:text="-"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content" />
-            <Button
+            <TextView
+                android:hint="số lượng"
+                android:gravity="center"
                 android:background="@null"
                 android:focusable="false"
-                android:id="@+id/btnAmount"
+                android:id="@+id/tvAmount"
                 android:layout_marginTop="5dp"
                 android:textSize="30sp"
                 android:text=""
