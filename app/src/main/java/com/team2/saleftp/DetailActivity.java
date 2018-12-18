@@ -1,7 +1,9 @@
 package com.team2.saleftp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -95,8 +97,30 @@ public class DetailActivity extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dao.insertCart(id);
-                Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
+//                dao.insertCart(id);
+//                Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
+                int amount=1;
+                if (arrCart.size()>0){
+                    for (int i=0;i<arrCart.size();i++){
+                        if (arrCart.get(i).getIdproduct()==id){
+                            arrCart.get(i).setAmount(arrCart.get(i).getAmount()+amount);
+                            if (arrCart.get(i).getAmount()>=10){
+                                arrCart.get(i).setAmount(10);
+                            }
+                            arrCart.get(i).setPrice((Double.parseDouble(pric)*arrCart.get(i).getAmount()));
+                        }
+                    }
+                    double newprice=(Double.parseDouble(pric))*amount;
+                    Log.e("addGioHang=",nam+"soluong="+amount+"Giamoi="+newprice);
+                    arrCart.add(new Cart(id,nam,image,amount,newprice));
+                }else {
+                    double newprice=amount*(Double.parseDouble(pric));
+                    Log.e("addGioHang222=",nam+"soluong="+amount+"Giamoi="+newprice);
+                    arrCart.add(new Cart(id,nam,image,amount,newprice));
+
+                }
+                Intent intent=new Intent(getApplicationContext(),Cart.class);
+                startActivity(intent);
             }
         });
 

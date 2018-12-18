@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.team2.saleftp.CartActivity;
+import com.team2.saleftp.DetailActivity;
 import com.team2.saleftp.MainActivity;
 import com.team2.saleftp.R;
 
@@ -100,46 +101,46 @@ public class CartAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
-//                int nowamount = MainActivity.arrCart.get(i).getAmount();
-//                double pricenow = MainActivity.arrCart.get(i).getPrice();
-//                MainActivity.arrCart.get(i).setAmount(newamount);
-//                double newprice = (pricenow * newamount) / nowamount;
-//                MainActivity.arrCart.get(i).setPrice(newprice);
-//                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-//                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
-//                CartActivity.Event();
-//                if(newamount > 9){
-//                    btnplus.setVisibility(View.INVISIBLE);
-//                    btnminus.setVisibility(View.VISIBLE);
-//                    btnamount.setText(String.valueOf(newamount));
-//                }else {
-//                    btnminus.setVisibility(View.VISIBLE);
-//                    btnplus.setVisibility(View.VISIBLE);
-//                    btnamount.setText(String.valueOf(newamount));
-//                }
+                int nowamount = DetailActivity.arrCart.get(i).getAmount();
+                double pricenow = DetailActivity.arrCart.get(i).getPrice();
+                DetailActivity.arrCart.get(i).setAmount(newamount);
+                double newprice = (pricenow * newamount) / nowamount;
+                DetailActivity.arrCart.get(i).setPrice(newprice);
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
+                CartActivity.Event();
+                if(newamount > 9){
+                    btnplus.setVisibility(View.INVISIBLE);
+                    btnminus.setVisibility(View.VISIBLE);
+                    btnamount.setText(String.valueOf(newamount));
+                }else {
+                    btnminus.setVisibility(View.VISIBLE);
+                    btnplus.setVisibility(View.VISIBLE);
+                    btnamount.setText(String.valueOf(newamount));
+                }
             }
         });
         viewHolder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
-//                int nowamount = MainActivity.arrCart.get(i).getAmount();
-//                double pricenow = MainActivity.arrCart.get(i).getPrice();
-//                MainActivity.arrCart.get(i).setAmount(newamount);
-//                double newprice = (pricenow * newamount) / nowamount;
-//                MainActivity.arrCart.get(i).setPrice(newprice);
-//                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-//                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
-//                CartActivity.Event();
-//                if(newamount < 2){
-//                    btnminus.setVisibility(View.INVISIBLE);
-//                    btnplus.setVisibility(View.VISIBLE);
-//                    btnamount.setText(String.valueOf(newamount));
-//                }else {
-//                    btnminus.setVisibility(View.VISIBLE);
-//                    btnplus.setVisibility(View.VISIBLE);
-//                    btnamount.setText(String.valueOf(newamount));
-//                }
+                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
+                int nowamount = DetailActivity.arrCart.get(i).getAmount();
+                double pricenow = DetailActivity.arrCart.get(i).getPrice();
+                DetailActivity.arrCart.get(i).setAmount(newamount);
+                double newprice = (pricenow * newamount) / nowamount;
+                DetailActivity.arrCart.get(i).setPrice(newprice);
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
+                CartActivity.Event();
+                if(newamount < 2){
+                    btnminus.setVisibility(View.INVISIBLE);
+                    btnplus.setVisibility(View.VISIBLE);
+                    btnamount.setText(String.valueOf(newamount));
+                }else {
+                    btnminus.setVisibility(View.VISIBLE);
+                    btnplus.setVisibility(View.VISIBLE);
+                    btnamount.setText(String.valueOf(newamount));
+                }
             }
         });
         return view;
