@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import dao.ProductDAO;
+import model.Cart;
 import model.Product;
 import model.ProductDetail;
 
@@ -22,6 +23,7 @@ import model.ProductDetail;
 public class DetailActivity extends AppCompatActivity {
     private ArrayList<Product> data = new ArrayList<>();
     public static ProductDetail list;
+    public static ArrayList<Cart>arrCart = new ArrayList<>();
     private ProductDAO dao;
     int pos;
     String id, nam, pric, detaill, image;
