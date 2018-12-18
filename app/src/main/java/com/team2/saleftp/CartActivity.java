@@ -42,12 +42,17 @@ public class CartActivity extends AppCompatActivity {
         dao = new ProductDAO(getBaseContext());
         cart = dao.viewAllCart();
 
-        lvCart = (RecyclerView) findViewById(R.id.lvCart);
+        lvCart = findViewById(R.id.lvCart);
         lvCart.setLayoutManager(new GridLayoutManager(getBaseContext(), 1));
 
         lvCart.setHasFixedSize(true);
 
         cartAdapter = new CartAdapter(getBaseContext(), cart);
+
+        if (cart.size() > 0){
+            cartAdapter.notifyDataSetChanged();
+        }
+
         lvCart.setAdapter(cartAdapter);
 
 //        CheckData();
@@ -108,6 +113,20 @@ public class CartActivity extends AppCompatActivity {
 //                return true;
 //            }
 //        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onResume() {
+        if (cart.size() > 0){
+            cartAdapter.notifyDataSetChanged();
+        }
+        super.onResume();
     }
 
     private void CheckData(){

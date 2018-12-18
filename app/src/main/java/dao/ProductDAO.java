@@ -37,7 +37,7 @@ public class ProductDAO {
             Product fm = null;
             String id = cs.getString(0);
             String nam = cs.getString(1);
-            String price = cs.getString(2);
+            Double price = cs.getDouble(2);
             String detail = cs.getString(3);
             String sum = cs.getString(4);
             String image = cs.getString(5);

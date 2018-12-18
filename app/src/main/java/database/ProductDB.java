@@ -16,44 +16,44 @@ public class ProductDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlProd = "CREATE TABLE Product(ID text primary key," + "Name text, Price text, Detail text, Summary text, Image text)";
+        String sqlProd = "CREATE TABLE Product(ID text primary key," + "Name text, Price double, Detail text, Summary text, Image text)";
         db.execSQL(sqlProd);
 
         String sqlDetail = "CREATE TABLE Detail(ID text primary key," + "Screen text, ScrRes, FrCam text, ReaCam text, CPU text, Ram text, Rom text, Sim text, MCard text, BattCapa text, OS text)";
         db.execSQL(sqlDetail);
 
         // insert basic info to Product
-        sqlProd = "Insert Into Product values ( 'SM021','Samsung Galaxy Note 9','17.000.000 Đ', 'Điện thoại flagship đến từ Samsung đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Samsung ra mắt', 'https://i.imgur.com/gru5CzFh.jpg')";
+        sqlProd = "Insert Into Product values ( 'SM021','Samsung Galaxy Note 9', 17000000 , 'Điện thoại flagship đến từ Samsung đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Samsung ra mắt', 'https://i.imgur.com/gru5CzFh.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'SO32','Sony XZ2','15.000.000 Đ', 'Điện thoại flagship đến từ Sony đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Sony ra mắt', 'https://i.imgur.com/WItCuxVh.jpg')";
+        sqlProd = "Insert Into Product values ( 'SO32','Sony XZ2', 15000000 , 'Điện thoại flagship đến từ Sony đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Sony ra mắt', 'https://i.imgur.com/WItCuxVh.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'XO24','Xiaomi Mi Mix 3','19.000.000 Đ', 'Điện thoại flagship đến từ Xiaomi đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Xiaomi ra mắt', 'https://i.imgur.com/gje3Qrph.jpg')";
+        sqlProd = "Insert Into Product values ( 'XO24','Xiaomi Mi Mix 3', 19000000, 'Điện thoại flagship đến từ Xiaomi đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Xiaomi ra mắt', 'https://i.imgur.com/gje3Qrph.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'LG22','LG V30','8.000.000 Đ', 'Điện thoại flagship đến từ LG đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của LG ra mắt', 'https://i.imgur.com/u8OuZXhh.jpg')";
+        sqlProd = "Insert Into Product values ( 'LG22','LG V30', 8000000, 'Điện thoại flagship đến từ LG đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của LG ra mắt', 'https://i.imgur.com/u8OuZXhh.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'XO43','Xiaomi Mi 8','17.000.000 Đ', 'Điện thoại flagship đến từ Xiaomi đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Xiaomi ra mắt', 'https://i.imgur.com/hlvPY0Lh.jpg')";
+        sqlProd = "Insert Into Product values ( 'XO43','Xiaomi Mi 8', 17000000, 'Điện thoại flagship đến từ Xiaomi đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Xiaomi ra mắt', 'https://i.imgur.com/hlvPY0Lh.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'LG21','LG G7 ThinQ','10.000.000 Đ', 'Điện thoại flagship đến từ LG đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của LG ra mắt', 'https://i.imgur.com/bQ1ETEmh.jpg')";
+        sqlProd = "Insert Into Product values ( 'LG21','LG G7 ThinQ', 10000000, 'Điện thoại flagship đến từ LG đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của LG ra mắt', 'https://i.imgur.com/bQ1ETEmh.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'IP8P','IPhone 8 Plus','19.000.000 Đ', 'Điện thoại flagship đến từ Apple đã nhanh chóng vượt mặt LG trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Apple ra mắt', 'https://i.imgur.com/poL5xMih.jpg')";
+        sqlProd = "Insert Into Product values ( 'IP8P','IPhone 8 Plus', 19000000, 'Điện thoại flagship đến từ Apple đã nhanh chóng vượt mặt LG trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Apple ra mắt', 'https://i.imgur.com/poL5xMih.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'SV1P','VSmart Active 1+','6.500.000 Đ', 'Điện thoại flagship đến từ VSmart đã nhanh chóng vượt mặt Xiaomo trong cuộc đua phân khúc trung cấp', 'Flagship hàng đầu của VSmart ra mắt', 'https://i.imgur.com/d2UD2xih.jpg')";
+        sqlProd = "Insert Into Product values ( 'SV1P','VSmart Active 1+', 6500000, 'Điện thoại flagship đến từ VSmart đã nhanh chóng vượt mặt Xiaomo trong cuộc đua phân khúc trung cấp', 'Flagship hàng đầu của VSmart ra mắt', 'https://i.imgur.com/d2UD2xih.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'HW8','Huawei Honor 8','10.000.000 Đ', 'Điện thoại flagship đến từ Huawei đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Huawei ra mắt', 'https://i.imgur.com/XsBveYAh.jpg')";
+        sqlProd = "Insert Into Product values ( 'HW8','Huawei Honor 8', 10000000, 'Điện thoại flagship đến từ Huawei đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Huawei ra mắt', 'https://i.imgur.com/XsBveYAh.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'IPXS','IPhone Xs Max','24.000.000 Đ', 'Điện thoại flagship đến từ Apple đã nhanh chóng vượt mặt Sasung trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Apple ra mắt', 'https://i.imgur.com/KtfZl9wh.jpg')";
+        sqlProd = "Insert Into Product values ( 'IPXS','IPhone Xs Max', 24000000, 'Điện thoại flagship đến từ Apple đã nhanh chóng vượt mặt Sasung trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Apple ra mắt', 'https://i.imgur.com/KtfZl9wh.jpg')";
         db.execSQL(sqlProd);
 
-        sqlProd = "Insert Into Product values ( 'HW20','Huawei Mate 20 Pro','24.000.000 Đ', 'Điện thoại flagship đến từ Huawei đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Huawei ra mắt', 'https://i.imgur.com/0vR2t75h.jpg')";
+        sqlProd = "Insert Into Product values ( 'HW20','Huawei Mate 20 Pro', 24000000, 'Điện thoại flagship đến từ Huawei đã nhanh chóng vượt mặt Apple trong cuộc đua phân khúc cao cấp', 'Flagship hàng đầu của Huawei ra mắt', 'https://i.imgur.com/0vR2t75h.jpg')";
         db.execSQL(sqlProd);
 
         //insert detail Product
