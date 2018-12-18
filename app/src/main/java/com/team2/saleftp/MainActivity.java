@@ -59,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //insert your profile code here
-                if (sessionManager.isLoggedIn()){
-                    Intent i = new Intent(getBaseContext(), UserInfoActivity.class);
-                    startActivity(i);
-                } else {
+//                if (sessionManager.isLoggedIn()){
+//                    Intent i = new Intent(getBaseContext(), UserInfoActivity.class);
+//                    startActivity(i);
+//                } else {
                     Intent i = new Intent(getBaseContext(), LoginActivity.class);
                     startActivity(i);
                 }
-            }
+//            }
         });
 
         //list product adapter

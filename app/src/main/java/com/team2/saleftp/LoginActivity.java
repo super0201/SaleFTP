@@ -108,16 +108,37 @@ public class LoginActivity extends AppCompatActivity {
         String pass = etPass.getText().toString();
 
         if(userDAO.checkLoginStat(user, pass) > 0){
-            if(ckbRemember.isChecked()){
-                session.createLoginSession("pass", "user");
-            }
+//            if(ckbRemember.isChecked()){
+                session.createLoginSession(pass, user);
+//            }
             btnLogin.setEnabled(false);
             USER = userDAO.getUserByUsername(user);
-            Intent intent = new Intent(getBaseContext(), OrderActivity.class);
+            Intent intent = new Intent(getBaseContext(), UserInfoActivity.class);
             startActivity(intent);
             Toast.makeText(getBaseContext(), "Đăng Nhập Thành Công!", Toast.LENGTH_SHORT).show();
             finish();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initial();
+    }
+
+    private void initial() {
+        session = new SessionManager(getBaseContext());
+        if (session.isLoggedIn()){
+            etUser.setText(session.pref.getString(session.KEY_USER, ""));
+            etPass.setText(session.pref.getString(session.KEY_PASS,""));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    btnLogin.performClick();
+                }
+            },0);
+        }
+
     }
 
     public void onLoginFailed() {
