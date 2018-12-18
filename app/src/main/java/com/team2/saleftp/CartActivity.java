@@ -36,7 +36,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         setTitle("Giỏ hàng");
         lvCart = findViewById(R.id.lvCart);
-//        tvNoti = findViewById(R.id.tvNoti);
+        tvNoti = findViewById(R.id.tvNoti);
         tvTotal = findViewById(R.id.tvTotal);
 
         dao = new ProductDAO(getBaseContext());
@@ -50,7 +50,7 @@ public class CartActivity extends AppCompatActivity {
         cartAdapter = new CartAdapter(getBaseContext(), cart);
         lvCart.setAdapter(cartAdapter);
 
-//        CheckData();
+        CheckData();
         CatchOnItemListView();
         Event();
 
@@ -111,12 +111,12 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void CheckData(){
-        if(DetailActivity.arrCart.size() <= 0){
-//            cartAdapter.notifyDataSetChanged();
+        if(cart.size() <= 0){
+            cartAdapter.notifyDataSetChanged();
             tvNoti.setVisibility(View.VISIBLE);
             lvCart.setVisibility(View.INVISIBLE);
         }else {
-//            cartAdapter.notifyDataSetChanged();
+            cartAdapter.notifyDataSetChanged();
             tvNoti.setVisibility(View.INVISIBLE);
             lvCart.setVisibility(View.VISIBLE);
         }
