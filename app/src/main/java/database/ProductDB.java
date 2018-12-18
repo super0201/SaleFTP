@@ -16,7 +16,7 @@ public class ProductDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlProd = "CREATE TABLE Product(ID text primary key," + "Name text, Price double, Detail text, Summary text, Image text)";
+        String sqlProd = "CREATE TABLE Product(ID text primary key," + "Name text, Price integer, Detail text, Summary text, Image text)";
         db.execSQL(sqlProd);
 
         String sqlDetail = "CREATE TABLE Detail(ID text primary key," + "Screen text, ScrRes, FrCam text, ReaCam text, CPU text, Ram text, Rom text, Sim text, MCard text, BattCapa text, OS text)";

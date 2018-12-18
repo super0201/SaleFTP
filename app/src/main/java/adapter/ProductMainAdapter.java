@@ -44,7 +44,8 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Product Product = data.get(position);
         MyItemHolder myItemHolder = (MyItemHolder) holder;
         myItemHolder.tvName.setText(Product.getName());
-        myItemHolder.tvPrice.setText(Product.getPrice());
+        Integer d = Product.getPrice();
+        myItemHolder.tvPrice.setText(String.valueOf(d));
 
         Glide.with(context)
                 .load(data.get(position).getImage())

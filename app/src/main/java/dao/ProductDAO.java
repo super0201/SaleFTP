@@ -37,11 +37,11 @@ public class ProductDAO {
             Product fm = null;
             String id = cs.getString(0);
             String nam = cs.getString(1);
-            Double price = cs.getDouble(2);
+            Integer price = cs.getInt(2);
             String detail = cs.getString(3);
             String sum = cs.getString(4);
             String image = cs.getString(5);
-            fm = new Product(nam, price, detail, image, id, sum);
+            fm = new Product(nam, sum, image, id, detail, price);
             list.add(fm);
             cs.moveToNext();
         }
@@ -73,10 +73,9 @@ public class ProductDAO {
         }
         cs.close();
         return pd;
-
     }
 
-    public long insertCart(String id, String Name, String Price, int Amount, String Image) {
+    public long insertCart(String id, String Name, Integer Price, int Amount, String Image) {
         SQLiteDatabase mydb = cartDB.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ID", id);
@@ -98,7 +97,7 @@ public class ProductDAO {
             Cart ca = null;
             String id = cs.getString(0);
             String nam = cs.getString(1);
-            Double price = cs.getDouble(2);
+            Integer price = cs.getInt(2);
             Integer amount = cs.getInt(3);
             String image = cs.getString(4);
             ca = new Cart(id, nam, image, amount, price);

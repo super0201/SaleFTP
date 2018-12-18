@@ -28,7 +28,8 @@ public class DetailActivity extends AppCompatActivity {
     public static ArrayList<Cart>arrCart = new ArrayList<>();
     private ProductDAO dao;
     int pos, amount;
-    String id, nam, pric, detaill, image;
+    String id, nam, detaill, image;
+    Integer pric;
     TextView name, price, detail, scr, scrRes, frCam, reCam, cpu, ram ,rom, sim, mCard, battCap, os;
     Button btnBuy, btnAddCart;
     ImageView prod, imvBack, cart;
@@ -120,12 +121,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 }
                 */
-                id = data.get(pos).getId();
-                image = data.get(pos).getImage();
-                nam = data.get(pos).getName();
-                pric = data.get(pos).getPrice();
                 amount = 1;
-                dao.insertCart(id, nam, pric,amount,image);
+                //already have in setDetail() method, no need to call again
+                dao.insertCart(id, nam, pric, amount, image);
                 Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
             }
         });
@@ -146,7 +144,8 @@ public class DetailActivity extends AppCompatActivity {
         //set data to textview and imageview
         Glide.with(getBaseContext()).load(image).into(prod);
         name.setText(nam);
-        price.setText(pric);
+        long d = pric;
+        price.setText(String.valueOf(d));
         detail.setText(detaill);
 
         scr.setText(MainActivity.list2.getScr());

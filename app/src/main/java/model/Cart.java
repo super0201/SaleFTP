@@ -8,12 +8,12 @@ public class Cart implements Parcelable {
     public String name;
     public String image;
     public int amount;
-    public double price;
+    public Integer price;
 
     public Cart() {
     }
 
-    public Cart(String idproduct, String name, String image, int amount, double price) {
+    public Cart(String idproduct, String name, String image, int amount, Integer price) {
         this.idproduct = idproduct;
         this.name = name;
         this.image = image;
@@ -26,7 +26,7 @@ public class Cart implements Parcelable {
         name = in.readString();
         image = in.readString();
         amount = in.readInt();
-        price = in.readDouble();
+        price = in.readInt();
     }
 
     public static final Creator<Cart> CREATOR = new Creator<Cart>() {
@@ -74,12 +74,16 @@ public class Cart implements Parcelable {
         this.amount = amount;
     }
 
-    public double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public static Creator<Cart> getCREATOR() {
+        return CREATOR;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         setTitle("Giỏ hàng");
         lvCart = findViewById(R.id.lvCart);
-        tvNoti = findViewById(R.id.tvNoti);
+//        tvNoti = findViewById(R.id.tvNoti);
         tvTotal = findViewById(R.id.tvTotal);
 
         dao = new ProductDAO(getBaseContext());

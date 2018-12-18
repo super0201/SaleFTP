@@ -15,7 +15,7 @@ public class CartDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlCart = "CREATE TABLE Cart (ID text primary key," + "Name text, Price text, Amount text, Image text)";
+        String sqlCart = "CREATE TABLE Cart (ID text primary key," + "Name text, Price integer, Amount text, Image text)";
         db.execSQL(sqlCart);
 
     }
