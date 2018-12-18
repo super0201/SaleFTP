@@ -132,11 +132,11 @@ public class CartActivity extends AppCompatActivity {
     private void CheckData(){
         if(cart.size() <= 0){
             cartAdapter.notifyDataSetChanged();
-            tvNoti.setVisibility(View.VISIBLE);
+//            tvNoti.setVisibility(View.VISIBLE);
             lvCart.setVisibility(View.INVISIBLE);
         }else {
             cartAdapter.notifyDataSetChanged();
-            tvNoti.setVisibility(View.INVISIBLE);
+//            tvNoti.setVisibility(View.INVISIBLE);
             lvCart.setVisibility(View.VISIBLE);
         }
     }

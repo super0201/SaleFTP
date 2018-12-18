@@ -43,7 +43,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         myItemHolder.tvName.setText(cart.getName());
         Integer i = cart.getPrice();
-        myItemHolder.tvPrice.setText(i);
+        myItemHolder.tvPrice.setText(String.valueOf(i));
 //        myItemHolder.btnAmount.setText(cart.getAmount());
 //        myItemHolder.tvPrice.setText((int) cart.getPrice());
         Glide.with(context).load(data.get(position).getImage())
