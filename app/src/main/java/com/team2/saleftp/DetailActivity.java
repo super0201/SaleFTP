@@ -121,7 +121,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 }
                 */
-                amount = 1;
+                amount =1;
                 //already have in setDetail() method, no need to call again
                 dao.insertCart(id, nam, pric, amount, image);
                 Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();

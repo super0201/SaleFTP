@@ -75,7 +75,7 @@ public class ProductDAO {
         return pd;
     }
 
-    public long insertCart(String id, String Name, Integer Price, int Amount, String Image) {
+    public long insertCart(String id, String Name, Integer Price, Integer Amount, String Image) {
         SQLiteDatabase mydb = cartDB.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ID", id);

@@ -55,7 +55,7 @@ public class CartActivity extends AppCompatActivity {
 
         lvCart.setAdapter(cartAdapter);
 
-        CheckData();
+//        CheckData();
         CatchOnItemListView();
         Event();
 
@@ -129,26 +129,26 @@ public class CartActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void CheckData(){
-        if(cart.size() <= 0){
-            cartAdapter.notifyDataSetChanged();
-//            tvNoti.setVisibility(View.VISIBLE);
-            lvCart.setVisibility(View.INVISIBLE);
-        }else {
-            cartAdapter.notifyDataSetChanged();
-//            tvNoti.setVisibility(View.INVISIBLE);
-            lvCart.setVisibility(View.VISIBLE);
-        }
-    }
+//    private void CheckData(){
+//        if(cart.size() <= 0){
+//            cartAdapter.notifyDataSetChanged();
+////            tvNoti.setVisibility(View.VISIBLE);
+//            lvCart.setVisibility(View.INVISIBLE);
+//        }else {
+//            cartAdapter.notifyDataSetChanged();
+////            tvNoti.setVisibility(View.INVISIBLE);
+//            lvCart.setVisibility(View.VISIBLE);
+//        }
+//    }
 
     private void AddCart(View view){
 
     }
 
-    public static void Event(){
+    public  void Event(){
         double total = 0;
-        for (int i = 0; i<DetailActivity.arrCart.size(); i++){
-            total += DetailActivity.arrCart.get(i).getPrice();
+        for (int i = 0; i<cart.size(); i++){
+            total += cart.get(i).getPrice();
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         tvTotal.setText(decimalFormat.format(total)+ "Đ");
