@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class SessionManager {
     // Shared Preferences
-    public SharedPreferences pref;
+    SharedPreferences pref;
 
     // Editor for Shared preferences
     SharedPreferences.Editor editor;
@@ -39,7 +39,7 @@ public class SessionManager {
     // Constructor
     public SessionManager(Context context){
         this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        pref = _context.getSharedPreferences(PREF_NAME, 0);
         editor = pref.edit();
     }
 
@@ -91,12 +91,14 @@ public class SessionManager {
     }
 
     public void logoutUser(){
-        // Clearing all data from Shared Preferences
-        editor.clear().apply();
-//        editor.apply();
+        // Clearing all user data from Shared Preferences
+        editor.clear();
+        editor.commit();
 
-        // After logout redirect user to Main Activity
+
+        // After logout redirect user to Login Activity
         Intent i = new Intent(_context, LoginActivity.class);
+
         // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -110,6 +112,16 @@ public class SessionManager {
     // Get Login State
     public boolean isLoggedIn(){
         return pref.getBoolean(IS_LOGIN, false);
+    }
+
+    public String getSharedUsername(){
+        String u = pref.getString(KEY_USER, "");
+        return u;
+    }
+
+    public String getSharedPass(){
+        String p = pref.getString(KEY_PASS, "");
+        return p;
     }
 
 }

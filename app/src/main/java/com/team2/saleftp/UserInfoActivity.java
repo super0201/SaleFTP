@@ -46,6 +46,7 @@ public class UserInfoActivity extends AppCompatActivity {
         imvAvatar = (ImageView) findViewById(R.id.imvAvatar);
 
         userDAO = new UserDAO(this);
+        sessionManager= new SessionManager(getBaseContext());
         edUserName.setText(LoginActivity.USER.getUsername());
         edName.setText(LoginActivity.USER.getName());
         edMail.setText(LoginActivity.USER.getEmail());

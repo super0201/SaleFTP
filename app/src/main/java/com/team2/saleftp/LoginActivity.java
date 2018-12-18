@@ -129,8 +129,8 @@ public class LoginActivity extends AppCompatActivity {
     private void initial() {
         session = new SessionManager(getBaseContext());
         if (session.isLoggedIn()){
-            etUser.setText(session.pref.getString(session.KEY_USER, ""));
-            etPass.setText(session.pref.getString(session.KEY_PASS,""));
+            etUser.setText(session.getSharedUsername());
+            etPass.setText(session.getSharedPass());
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
