@@ -27,7 +27,7 @@ public class DetailActivity extends AppCompatActivity {
     public static ProductDetail list;
     public static ArrayList<Cart>arrCart = new ArrayList<>();
     private ProductDAO dao;
-    int pos;
+    int pos, amount;
     String id, nam, pric, detaill, image;
     TextView name, price, detail, scr, scrRes, frCam, reCam, cpu, ram ,rom, sim, mCard, battCap, os;
     Button btnBuy, btnAddCart;
@@ -124,7 +124,8 @@ public class DetailActivity extends AppCompatActivity {
                 image = data.get(pos).getImage();
                 nam = data.get(pos).getName();
                 pric = data.get(pos).getPrice();
-                dao.insertCart(id, nam, pric, image);
+                amount = 1;
+                dao.insertCart(id, nam, pric,amount,image);
                 Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
             }
         });
