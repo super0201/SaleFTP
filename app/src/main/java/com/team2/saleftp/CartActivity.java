@@ -35,6 +35,7 @@ public class CartActivity extends AppCompatActivity {
 
         CheckData();
         CatchOnItemListView();
+        Event();
 
         btnPayment = findViewById(R.id.btnPay);
         btnContinue = findViewById(R.id.btnContinue);
@@ -66,18 +67,18 @@ public class CartActivity extends AppCompatActivity {
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        if(MainActivity.arrCart.size()<=0){
-//                            tvNoti.setVisibility(View.INVISIBLE);
-//                        }else {
-//                            MainActivity.arrCart.remove(i);
-//                            cartAdapter.notifyDataSetChanged();
-//                            Event();
-//                            if(MainActivity.arrCart.size() <= 0){
-//                                tvNoti.setVisibility(View.VISIBLE);
-//                            }else {
-//                                tvNoti.setVisibility(View.INVISIBLE);
-//                            }
-//                        }
+                        if(DetailActivity.arrCart.size()<=0){
+                            tvNoti.setVisibility(View.INVISIBLE);
+                        }else {
+                            DetailActivity.arrCart.remove(i);
+                            cartAdapter.notifyDataSetChanged();
+                            Event();
+                            if(DetailActivity.arrCart.size() <= 0){
+                                tvNoti.setVisibility(View.VISIBLE);
+                            }else {
+                                tvNoti.setVisibility(View.INVISIBLE);
+                            }
+                        }
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -94,15 +95,15 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void CheckData(){
-//        if(MainActivity.arrCart.size() <= 0){
-//            cartAdapter.notifyDataSetChanged();
-//            tvNoti.setVisibility(View.VISIBLE);
-//            lvCart.setVisibility(View.INVISIBLE);
-//        }else {
-//            cartAdapter.notifyDataSetChanged();
-//            tvNoti.setVisibility(View.INVISIBLE);
-//            lvCart.setVisibility(View.VISIBLE);
-//        }
+        if(DetailActivity.arrCart.size() <= 0){
+            cartAdapter.notifyDataSetChanged();
+            tvNoti.setVisibility(View.VISIBLE);
+            lvCart.setVisibility(View.INVISIBLE);
+        }else {
+            cartAdapter.notifyDataSetChanged();
+            tvNoti.setVisibility(View.INVISIBLE);
+            lvCart.setVisibility(View.VISIBLE);
+        }
     }
 
     private void AddCart(View view){
@@ -110,11 +111,11 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public static void Event(){
-//        long total = 0;
-//        for (int i = 0; i<MainActivity.arrCart.size(); i++){
-//            total += MainActivity.arrCart.get(i).getPrice();
-//        }
-//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-//        tvTotal.setText(decimalFormat.format(total)+ "Đ");
+        double total = 0;
+        for (int i = 0; i<DetailActivity.arrCart.size(); i++){
+            total += DetailActivity.arrCart.get(i).getPrice();
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        tvTotal.setText(decimalFormat.format(total)+ "Đ");
     }
 }

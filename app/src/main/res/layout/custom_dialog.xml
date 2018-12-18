@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:weightSum="10"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_weight="3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_64sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_gravity="center"
+        android:src="@raw/order" />
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="@dimen/_15sdp"
+            android:id="@+id/tvNamebuy"
+            android:gravity="center"
+            android:textSize="@dimen/_20sdp"
+            android:text="Chúc mừng bạn đã đặt hàng thành công."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="center"
+            android:textSize="@dimen/_20sdp"
+            android:text="Mã đơn hàng của bạn là:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#dc7f7f"
+            android:textStyle="bold"
+            android:text="DT101029"
+            android:gravity="center"
+            android:id="@+id/tvCode"
+            android:textSize="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/bgHeader"
+        android:padding="@dimen/_4sdp"
+        android:text="Quay lại trang chủ"
+        android:textColor="#f4f4f0"
+        android:textSize="@dimen/_15sdp" />
+
+</LinearLayout>

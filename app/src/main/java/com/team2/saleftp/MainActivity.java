@@ -1,8 +1,10 @@
 package com.team2.saleftp;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,11 +15,13 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
 import model.Product;
+import model.ProductDetail;
 import session.SessionManager;
 
 /**
@@ -25,6 +29,7 @@ import session.SessionManager;
  */
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> list = new ArrayList<>();
+    public static ProductDetail list2;
     ProductDAO dao;
     SearchView search;
     ImageView imvProfile;
@@ -54,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //insert your profile code here
-                if (sessionManager.isLoggedIn()){
-                    Intent i = new Intent(getBaseContext(), UserInfoActivity.class);
-                    startActivity(i);
-                } else {
+//                if (sessionManager.isLoggedIn()){
+//                    Intent i = new Intent(getBaseContext(), UserInfoActivity.class);
+//                    startActivity(i);
+//                } else {
                     Intent i = new Intent(getBaseContext(), LoginActivity.class);
                     startActivity(i);
                 }
-            }
+//            }
         });
 
         //list product adapter
@@ -79,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         //intent Parcelable data to DetailActivity
+                        String id;
+                        id = list.get(position).getId();
+                        list2 = dao.viewDetail(id);
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                         intent.putParcelableArrayListExtra("data", list);
                         intent.putExtra("pos", position);
@@ -87,18 +95,37 @@ public class MainActivity extends AppCompatActivity {
                 }));
     }
 
+    public void closeKeyboard() {
+        View currentFocus = this.getCurrentFocus();
+        if (currentFocus != null) {
+            android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) this.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            Objects.requireNonNull(imm).hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+        }
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void closeKeyboard() {
-        View currentFocus = this.getCurrentFocus();
-        if (currentFocus != null) {
-            android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) this.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
-        }
-        this.getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    @SuppressLint("ResourceType")
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.raw.logo)
+                .setTitle("FTP")
+                .setMessage("You Want To Exit App?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        moveTaskToBack(true);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import dao.UserDAO;
 import model.User;
+import session.SessionManager;
 
 public class UserInfoActivity extends AppCompatActivity {
     TextView tvInvoice, tvCart;
@@ -21,6 +22,7 @@ public class UserInfoActivity extends AppCompatActivity {
     Button btnUpdate, btnChangePass, btnLogout;
     ImageView imvAvatar;
     UserDAO userDAO;
+    SessionManager sessionManager;
     public static User updateUSER = null;
 
     @SuppressLint("ResourceType")
@@ -78,14 +80,9 @@ public class UserInfoActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                SharedPreferences pref = getSharedPreferences("USER_FILE", MODE_PRIVATE);
-//                SharedPreferences.Editor edit = pref.edit();
-//                //xoa tinh trang luu tru truoc do
-//                edit.clear();
-//                edit.apply();
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
+                sessionManager.logoutUser();
+//                Intent i = new Intent(getBaseContext(), MainActivity.class);
+//                startActivity(i);
             }
         });
 

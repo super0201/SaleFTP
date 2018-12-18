@@ -1,7 +1,7 @@
 package com.team2.saleftp;
 
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
+import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +10,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 import adapter.OrderAdapter;
-import dao.ProductDAO;
 import dao.UserDAO;
 import model.Cart;
-import model.Product;
 import model.User;
 
 public class OrderActivity extends AppCompatActivity {
@@ -57,15 +54,24 @@ public class OrderActivity extends AppCompatActivity {
         orderAdapter = new OrderAdapter(this, listCart);
         lvOrder.setAdapter(orderAdapter);
 
+/*
         for (Cart x : listCart) {
             a = x.getAmount();
             b = x.getPrice();
             c += (a*b);
             return;
         }
+*/
 
-        tvAmountOrder.setText(a);
-        tvTotalOrder.setText(CartActivity.tvTotal.getText());
+//        tvAmountOrder.setText(listCart.size());
+ //       tvTotalOrder.setText(CartActivity.tvTotal.getText());
+
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogOrder();
+            }
+        });
     }
 
     private void analyze() {
@@ -116,6 +122,27 @@ public class OrderActivity extends AppCompatActivity {
 
         btnOrder = (Button) findViewById(R.id.btnOrder);
 
+    }
+
+    private void dialogOrder(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog);
+        dialog.show();
+        TextView tvCode = (TextView) dialog.findViewById(R.id.tvCode);
+        Button btnBack = (Button)dialog.findViewById(R.id.btnBack);
+        int Code;
+        int min = 111111;
+        int max = 222222;
+        tvCode.setText("");
+        Code = min+(int)(Math.random()*(max-min+1));
+        tvCode.append("FTP" + Code);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
