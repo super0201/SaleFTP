@@ -55,15 +55,17 @@ public class OrderActivity extends AppCompatActivity {
         orderAdapter = new OrderAdapter(this, listCart);
         lvOrder.setAdapter(orderAdapter);
 
+/*
         for (Cart x : listCart) {
             a = x.getAmount();
             b = x.getPrice();
             c += (a*b);
             return;
         }
+*/
 
-        tvAmountOrder.setText(listCart.size());
-        tvTotalOrder.setText(CartActivity.tvTotal.getText());
+//        tvAmountOrder.setText(listCart.size());
+ //       tvTotalOrder.setText(CartActivity.tvTotal.getText());
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override

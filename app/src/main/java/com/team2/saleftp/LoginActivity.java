@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             btnLogin.setEnabled(false);
             USER = userDAO.getUserByUsername(user);
-            Intent intent = new Intent(getBaseContext(), UserInfoActivity.class);
+            Intent intent = new Intent(getBaseContext(), OrderActivity.class);
             startActivity(intent);
             Toast.makeText(getBaseContext(), "Đăng Nhập Thành Công!", Toast.LENGTH_SHORT).show();
             finish();
