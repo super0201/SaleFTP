@@ -10,7 +10,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(String idproduct, String name, String image, int amount, double price) {
+    public Cart(String idproduct, String name, String image, double price) {
         this.idproduct = idproduct;
         this.name = name;
         this.image = image;

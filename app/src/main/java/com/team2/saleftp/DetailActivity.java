@@ -83,7 +83,7 @@ public class DetailActivity extends AppCompatActivity {
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getBaseContext(), CartActivity.class));
             }
         });
 
@@ -99,7 +99,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                dao.insertCart(id);
 //                Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
-                int amount=1;
+                /*int amount=1;
                 if (arrCart.size()>0){
                     for (int i=0;i<arrCart.size();i++){
                         if (arrCart.get(i).getIdproduct()==id){
@@ -113,14 +113,19 @@ public class DetailActivity extends AppCompatActivity {
                     double newprice=(Double.parseDouble(pric))*amount;
                     Log.e("addGioHang=",nam+"soluong="+amount+"Giamoi="+newprice);
                     arrCart.add(new Cart(id,nam,image,amount,newprice));
-//                }else {
-//                    double newprice=amount*(Double.parseDouble(pric));
-//                    Log.e("addGioHang222=",nam+"soluong="+amount+"Giamoi="+newprice);
-//                    arrCart.add(new Cart(id,nam,image,amount,newprice));
+                }else {
+                    double newprice=amount*(Double.parseDouble(pric));
+                    Log.e("addGioHang222=",nam+"soluong="+amount+"Giamoi="+newprice);
+                    arrCart.add(new Cart(id,nam,image,amount,newprice));
 
                 }
-                Intent intent=new Intent(getApplicationContext(),CartActivity.class);
-                startActivity(intent);
+                */
+                id = data.get(pos).getId();
+                image = data.get(pos).getImage();
+                nam = data.get(pos).getName();
+                pric = data.get(pos).getPrice();
+                dao.insertCart(id, nam, pric, image);
+
             }
         });
 

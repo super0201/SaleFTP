@@ -12,8 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import adapter.CartAdapter;
+import dao.ProductDAO;
+import database.CartDB;
 import model.Cart;
 import model.Product;
 
@@ -23,6 +26,8 @@ public class CartActivity extends AppCompatActivity {
     static TextView tvTotal;
     Button btnPayment, btnContinue;
     CartAdapter cartAdapter;
+    ProductDAO dao;
+    Cart list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,12 @@ public class CartActivity extends AppCompatActivity {
         lvCart = findViewById(R.id.lvCart);
         tvNoti = findViewById(R.id.tvNoti);
         tvTotal = findViewById(R.id.tvTotal);
+        dao = new ProductDAO(getBaseContext());
+
+
+        cartAdapter = new CartAdapter(CartActivity.this, carts, null, null);
+
+        lvCart.setAdapter(cartAdapter);
 
         CheckData();
         CatchOnItemListView();
@@ -96,11 +107,11 @@ public class CartActivity extends AppCompatActivity {
 
     private void CheckData(){
         if(DetailActivity.arrCart.size() <= 0){
-            cartAdapter.notifyDataSetChanged();
+//            cartAdapter.notifyDataSetChanged();
             tvNoti.setVisibility(View.VISIBLE);
             lvCart.setVisibility(View.INVISIBLE);
         }else {
-            cartAdapter.notifyDataSetChanged();
+//            cartAdapter.notifyDataSetChanged();
             tvNoti.setVisibility(View.INVISIBLE);
             lvCart.setVisibility(View.VISIBLE);
         }

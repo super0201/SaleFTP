@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import database.CartDB;
 import database.ProductDB;
+import model.Cart;
 import model.Product;
 import model.ProductDetail;
 
@@ -75,11 +76,33 @@ public class ProductDAO {
 
     }
 
-    public long insertCart(String id) {
+    public long insertCart(String id, String Name, String Price, String Image) {
         SQLiteDatabase mydb = cartDB.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ID", id);
+        values.put("Name", Name);
+        values.put("Price", Price);
+        values.put("Image", Image);
         long inta = mydb.insert("Cart", null, values);
         return inta;
+    }
+
+    public Cart viewDetailCart(){
+        Cart pd = null;
+        SQLiteDatabase mydb = cartDB.getReadableDatabase();
+        String sql = "SELECT * FROM Cart";
+        Cursor cs = mydb.rawQuery(sql, null);
+        cs.moveToFirst();
+        while (!cs.isAfterLast()){
+            pd = new Cart();
+            pd.setIdproduct(cs.getString(0));
+            pd.setName(cs.getString(1));
+            pd.setPrice(cs.getDouble(2));
+            pd.setImage(cs.getString(3));
+            break;
+        }
+        cs.close();
+        return pd;
+
     }
 }
