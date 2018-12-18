@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Random;
 
 import adapter.OrderAdapter;
 import dao.UserDAO;
@@ -132,8 +131,8 @@ public class OrderActivity extends AppCompatActivity {
         TextView tvCode = (TextView) dialog.findViewById(R.id.tvCode);
         Button btnBack = (Button)dialog.findViewById(R.id.btnBack);
         int Code;
-        int min = 11111;
-        int max = 22222;
+        int min = 111111;
+        int max = 222222;
         tvCode.setText("");
         Code = min+(int)(Math.random()*(max-min+1));
         tvCode.append("FTP" + Code);
