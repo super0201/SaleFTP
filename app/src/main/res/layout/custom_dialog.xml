@@ -42,15 +42,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     <Button
         android:id="@+id/btnBack"
-        android:textSize="@dimen/_15sdp"
-        android:textColor="#f4f4f0"
-        android:background="#318de9"
-        android:text="Quay lại trang chủ"
-        android:padding="@dimen/_4sdp"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/bgHeader"
+        android:padding="@dimen/_4sdp"
+        android:text="Quay lại trang chủ"
+        android:textColor="#f4f4f0"
+        android:textSize="@dimen/_15sdp" />
 
 </LinearLayout>
