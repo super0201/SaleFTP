@@ -103,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Đăng Kí Thành Công!", Toast.LENGTH_SHORT).show();
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-
+        finish();
     }
 
     public void onSignupFailed() {
@@ -190,7 +190,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
-        finish();
+//        moveTaskToBack(true);
+//        finish();
+        super.onBackPressed();
     }
 }

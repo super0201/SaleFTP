@@ -118,4 +118,9 @@ public class UserInfoActivity extends AppCompatActivity {
         edPhone.setText(updateUSER.getPhone());
         edType.setText("Member");
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
