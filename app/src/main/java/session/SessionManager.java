@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.team2.saleftp.LoginActivity;
+import com.team2.saleftp.MainActivity;
 import com.team2.saleftp.UserInfoActivity;
 
 import java.util.HashMap;
@@ -91,29 +92,24 @@ public class SessionManager {
 
     public void logoutUser(){
         // Clearing all data from Shared Preferences
-        editor.clear();
-        editor.commit();
+        editor.clear().apply();
+//        editor.apply();
 
-//        // After logout redirect user to Loing Activity
+        // After logout redirect user to Main Activity
         Intent i = new Intent(_context, LoginActivity.class);
-//        // Closing all the Activities
+        // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//        // Add new Flag to start new Activity
+
+        // Add new Flag to start new Activity
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//        // Staring Login Activity
+
+        // Staring Login Activity
         _context.startActivity(i);
     }
 
     // Get Login State
     public boolean isLoggedIn(){
         return pref.getBoolean(IS_LOGIN, false);
-    }
-
-    public String getUserName(){
-        String un = pref.getString(KEY_USER, null);
-        return un;
     }
 
 }

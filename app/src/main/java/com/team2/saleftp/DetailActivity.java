@@ -113,13 +113,13 @@ public class DetailActivity extends AppCompatActivity {
                     double newprice=(Double.parseDouble(pric))*amount;
                     Log.e("addGioHang=",nam+"soluong="+amount+"Giamoi="+newprice);
                     arrCart.add(new Cart(id,nam,image,amount,newprice));
-                }else {
-                    double newprice=amount*(Double.parseDouble(pric));
-                    Log.e("addGioHang222=",nam+"soluong="+amount+"Giamoi="+newprice);
-                    arrCart.add(new Cart(id,nam,image,amount,newprice));
+//                }else {
+//                    double newprice=amount*(Double.parseDouble(pric));
+//                    Log.e("addGioHang222=",nam+"soluong="+amount+"Giamoi="+newprice);
+//                    arrCart.add(new Cart(id,nam,image,amount,newprice));
 
                 }
-                Intent intent=new Intent(getApplicationContext(),Cart.class);
+                Intent intent=new Intent(getApplicationContext(),CartActivity.class);
                 startActivity(intent);
             }
         });
