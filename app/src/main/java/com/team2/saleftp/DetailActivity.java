@@ -125,7 +125,7 @@ public class DetailActivity extends AppCompatActivity {
                 nam = data.get(pos).getName();
                 pric = data.get(pos).getPrice();
                 dao.insertCart(id, nam, pric, image);
-
+                Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
             }
         });
 

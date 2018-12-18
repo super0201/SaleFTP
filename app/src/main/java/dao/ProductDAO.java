@@ -87,22 +87,23 @@ public class ProductDAO {
         return inta;
     }
 
-    public Cart viewDetailCart(){
-        Cart pd = null;
+    public ArrayList<Cart> viewAllCart(){
+        ArrayList<Cart> list = new ArrayList<>();
         SQLiteDatabase mydb = cartDB.getReadableDatabase();
-        String sql = "SELECT * FROM Cart";
+        String sql = "Select * From Cart";
         Cursor cs = mydb.rawQuery(sql, null);
         cs.moveToFirst();
         while (!cs.isAfterLast()){
-            pd = new Cart();
-            pd.setIdproduct(cs.getString(0));
-            pd.setName(cs.getString(1));
-            pd.setPrice(cs.getDouble(2));
-            pd.setImage(cs.getString(3));
-            break;
+            Cart ca = null;
+            String id = cs.getString(0);
+            String nam = cs.getString(1);
+            Double price = cs.getDouble(2);
+            String image = cs.getString(3);
+            ca = new Cart(id, nam, image, price);
+            list.add(ca);
+            cs.moveToNext();
         }
         cs.close();
-        return pd;
-
+        return list;
     }
 }

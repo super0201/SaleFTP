@@ -1,6 +1,9 @@
 package model;
 
-public class Cart {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Cart implements Parcelable {
     public String idproduct;
     public String name;
     public String image;
@@ -18,7 +21,27 @@ public class Cart {
         this.price = price;
     }
 
-    public String getIdproduct() {  
+    protected Cart(Parcel in) {
+        idproduct = in.readString();
+        name = in.readString();
+        image = in.readString();
+        amount = in.readInt();
+        price = in.readDouble();
+    }
+
+    public static final Creator<Cart> CREATOR = new Creator<Cart>() {
+        @Override
+        public Cart createFromParcel(Parcel in) {
+            return new Cart(in);
+        }
+
+        @Override
+        public Cart[] newArray(int size) {
+            return new Cart[size];
+        }
+    };
+
+    public String getIdproduct() {
         return idproduct;
     }
 
@@ -56,5 +79,19 @@ public class Cart {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idproduct);
+        dest.writeString(name);
+        dest.writeString(image);
+        dest.writeInt(amount);
+        dest.writeDouble(price);
     }
 }

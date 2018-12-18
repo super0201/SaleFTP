@@ -1,148 +1,151 @@
 package adapter;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.team2.saleftp.CartActivity;
-import com.team2.saleftp.DetailActivity;
-import com.team2.saleftp.MainActivity;
 import com.team2.saleftp.R;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import model.Cart;
-import model.Product;
 
-public class CartAdapter extends BaseAdapter {
-    Activity activity;
-    ArrayList<Cart> arrCart;
-    ArrayList<Product> products;
-    Context ct;
+public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    Context context;
+    ArrayList<Cart> data;
 
-    public CartAdapter(Activity activity, ArrayList<Cart> arrCart, Context ct, ArrayList<Product> products) {
-        this.activity = activity;
-        this.arrCart = arrCart;
-        this.ct = ct;
-        this.products = products;
-
-    }
-
-
-    @Override
-    public int getCount() {
-        return arrCart.size();
+    public CartAdapter(Context context, ArrayList<Cart> data) {
+        this.context = context;
+        this.data = data;
     }
 
     @Override
-    public Object getItem(int i) {
-        return arrCart.get(i);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        RecyclerView.ViewHolder viewHolder;
+        View v;
+        v = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.item_cart, parent, false);
+        viewHolder = new CartAdapter.MyItemHolder(v);
+
+        return viewHolder;
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
-    }
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Cart cart = data.get(position);
+        MyItemHolder myItemHolder = (MyItemHolder) holder;
 
-    public class ViewHolder{
-        public TextView tvName, tvPrice;
-        public ImageView imvCart;
-        public Button btnMinus, btnAmount, btnPlus;
+        myItemHolder.tvName.setText(cart.getName());
+
+        Glide.with(context).load(data.get(position).getImage())
+                .thumbnail(0.4f)
+                .into(((MyItemHolder) holder).imvCart);
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder = null;
-        if (view == null){
-            viewHolder = new ViewHolder();
-            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.item_cart, null);
-            viewHolder.tvName = view.findViewById(R.id.tvNameCart);
-            viewHolder.tvPrice = view.findViewById(R.id.tvPriceCart);
-            viewHolder.imvCart = view.findViewById(R.id.imvCart);
-            viewHolder.btnMinus = view.findViewById(R.id.btnMinus);
-            viewHolder.btnAmount = view.findViewById(R.id.btnAmount);
-            viewHolder.btnPlus = view.findViewById(R.id.btnPlus);
-            view.setTag(viewHolder);
-        }else{
-            viewHolder = (ViewHolder)view.getTag();
+    public int getItemCount() {
+        return data.size();
+    }
+
+    public static class MyItemHolder extends RecyclerView.ViewHolder {
+        ImageView imvCart;
+        TextView tvName, tvPrice;
+        Button btnAmount;
+
+        public MyItemHolder(View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(R.id.tvNameCart);
+            imvCart = itemView.findViewById(R.id.imvCart);
+            tvPrice = itemView.findViewById(R.id.tvPriceCart);
+            btnAmount = itemView.findViewById(R.id.btnAmount);
         }
-        Cart cart = (Cart) getItem(i);
-        viewHolder.tvName.setText(cart.getName());
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        viewHolder.tvPrice.setText(decimalFormat.format(cart.getPrice()) + "Đ");
-        Glide.with(ct).load(products.get(i).getImage()).into(viewHolder.imvCart);
-        viewHolder.btnAmount.setText(cart.getAmount() + "");
-        int sl = Integer.parseInt(viewHolder.btnAmount.getText().toString());
-        if(sl>10){
-            viewHolder.btnPlus.setVisibility(View.INVISIBLE);
-            viewHolder.btnMinus.setVisibility(View.VISIBLE);
-        }else if(sl <=1){
-            viewHolder.btnMinus.setVisibility(View.INVISIBLE);
-        }else if(sl >= 1){
-            viewHolder.btnMinus.setVisibility(View.VISIBLE);
-            viewHolder.btnPlus.setVisibility(View.VISIBLE);
-        }
-
-        final Button btnplus = viewHolder.btnPlus;
-        final Button btnminus = viewHolder.btnMinus;
-        final Button btnamount = viewHolder.btnAmount;
-        final TextView tvnewprice = viewHolder.tvPrice;
-
-        btnplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
-                int nowamount = DetailActivity.arrCart.get(i).getAmount();
-                double pricenow = DetailActivity.arrCart.get(i).getPrice();
-                DetailActivity.arrCart.get(i).setAmount(newamount);
-                double newprice = (pricenow * newamount) / nowamount;
-                DetailActivity.arrCart.get(i).setPrice(newprice);
-                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
-                CartActivity.Event();
-                if(newamount > 9){
-                    btnplus.setVisibility(View.INVISIBLE);
-                    btnminus.setVisibility(View.VISIBLE);
-                    btnamount.setText(String.valueOf(newamount));
-                }else {
-                    btnminus.setVisibility(View.VISIBLE);
-                    btnplus.setVisibility(View.VISIBLE);
-                    btnamount.setText(String.valueOf(newamount));
-                }
-            }
-        });
-        viewHolder.btnMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
-                int nowamount = DetailActivity.arrCart.get(i).getAmount();
-                double pricenow = DetailActivity.arrCart.get(i).getPrice();
-                DetailActivity.arrCart.get(i).setAmount(newamount);
-                double newprice = (pricenow * newamount) / nowamount;
-                DetailActivity.arrCart.get(i).setPrice(newprice);
-                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
-                CartActivity.Event();
-                if(newamount < 2){
-                    btnminus.setVisibility(View.INVISIBLE);
-                    btnplus.setVisibility(View.VISIBLE);
-                    btnamount.setText(String.valueOf(newamount));
-                }else {
-                    btnminus.setVisibility(View.VISIBLE);
-                    btnplus.setVisibility(View.VISIBLE);
-                    btnamount.setText(String.valueOf(newamount));
-                }
-            }
-        });
-        return view;
     }
 }
+
+//        Cart c = arrCart.get(i);
+//        viewHolder.tvName.setText(c.getName());
+////        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+////        viewHolder.tvPrice.setText(decimalFormat.format(cart.getPrice()) + "Đ");
+//
+//        Glide.with(ct).load(c.getImage()).into(viewHolder.imvCart);
+
+//        viewHolder.btnAmount.setText(cart.getAmount() + "");
+
+//        int sl = Integer.parseInt(viewHolder.btnAmount.getText().toString());
+//        if(sl>10){
+//            viewHolder.btnPlus.setVisibility(View.INVISIBLE);
+//            viewHolder.btnMinus.setVisibility(View.VISIBLE);
+//        }else if(sl <=1){
+//            viewHolder.btnMinus.setVisibility(View.INVISIBLE);
+//        }else if(sl >= 1){
+//            viewHolder.btnMinus.setVisibility(View.VISIBLE);
+//            viewHolder.btnPlus.setVisibility(View.VISIBLE);
+//        }
+
+//        final Button btnplus = viewHolder.btnPlus;
+//        final Button btnminus = viewHolder.btnMinus;
+//        final Button btnamount = viewHolder.btnAmount;
+//        final TextView tvnewprice = viewHolder.tvPrice;
+//
+//        btnplus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
+//                int nowamount = DetailActivity.arrCart.get(i).getAmount();
+//                double pricenow = DetailActivity.arrCart.get(i).getPrice();
+//
+//                DetailActivity.arrCart.get(i).setAmount(newamount);
+//                double newprice = (pricenow * newamount) / nowamount;
+//
+//                DetailActivity.arrCart.get(i).setPrice(newprice);
+//                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//
+//                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
+//                CartActivity.Event();
+//
+//                if(newamount > 9){
+//                    btnplus.setVisibility(View.INVISIBLE);
+//                    btnminus.setVisibility(View.VISIBLE);
+//                    btnamount.setText(String.valueOf(newamount));
+//                }else {
+//                    btnminus.setVisibility(View.VISIBLE);
+//                    btnplus.setVisibility(View.VISIBLE);
+//                    btnamount.setText(String.valueOf(newamount));
+//                }
+//            }
+//        });
+//
+//        viewHolder.btnMinus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int newamount = Integer.parseInt(btnamount.getText().toString()) +1;
+//                int nowamount = DetailActivity.arrCart.get(i).getAmount();
+//                double pricenow = DetailActivity.arrCart.get(i).getPrice();
+//
+//                DetailActivity.arrCart.get(i).setAmount(newamount);
+//                double newprice = (pricenow * newamount) / nowamount;
+//                DetailActivity.arrCart.get(i).setPrice(newprice);
+//
+//                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//                tvnewprice.setText(decimalFormat.format(newprice) + "Đ");
+//                CartActivity.Event();
+//
+//                if(newamount < 2){
+//                    btnminus.setVisibility(View.INVISIBLE);
+//                    btnplus.setVisibility(View.VISIBLE);
+//                    btnamount.setText(String.valueOf(newamount));
+//                }else {
+//                    btnminus.setVisibility(View.VISIBLE);
+//                    btnplus.setVisibility(View.VISIBLE);
+//                    btnamount.setText(String.valueOf(newamount));
+//                }
+//            }
+//        });
+
+

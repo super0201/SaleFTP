@@ -10,12 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CartDB extends SQLiteOpenHelper {
 
     public CartDB(Context context) {
-        super(context, "Product", null, 1);
+        super(context, "Cart", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlCart = "CREATE TABLE Cart(ID text primary key," + "Name text, Price text, Image text)";
+        String sqlCart = "CREATE TABLE Cart (ID text primary key," + "Name text, Price text, Image text)";
         db.execSQL(sqlCart);
 
     }
