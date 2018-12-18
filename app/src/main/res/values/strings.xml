@@ -17,5 +17,6 @@
     <string name="buy">Mua Ngay</string>
     <string name="addCart">Thêm Vào Giỏ Hàng</string>
     <string name="title">Thông Số Sản Phẩm</string>
+    <string name="pric"> Đ</string>
 
 </resources>

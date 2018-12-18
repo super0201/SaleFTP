@@ -28,17 +28,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_13sdp"
         android:textAlignment="center" />
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:maxLines="1"
-        android:layout_marginTop="@dimen/_2sdp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="@dimen/_10sdp"
-        android:textAlignment="center" />
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:maxLines="1"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/_10sdp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:maxLines="1"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/_10sdp"
+            android:text="@string/pric"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

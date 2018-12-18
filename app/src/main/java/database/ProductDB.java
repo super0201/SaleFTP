@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created By JohnNguyen - Onesoft on 11/12/2018
  */
+
 public class ProductDB extends SQLiteOpenHelper {
 
     public ProductDB(Context context) {
@@ -95,5 +96,4 @@ public class ProductDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
 }
