@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -54,6 +55,8 @@ public class CartActivity extends AppCompatActivity {
         }
 
         lvCart.setAdapter(cartAdapter);
+        cartAdapter.changeDataset(cart);
+
 
 //        CheckData();
 //        CatchOnItemListView();
@@ -148,10 +151,14 @@ public class CartActivity extends AppCompatActivity {
 
     public void Event(){
         double total = 0;
-        for (int i = 0; i<cart.size(); i++){
-            total += cart.get(i).getPrice();
+        for (int i = 0; i < cart.size(); i++){
+            int y = cart.get(i).getPrice();
+            total +=  y;
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         tvTotal.setText(decimalFormat.format(total)+ "Đ");
     }
+    
+
+
 }
