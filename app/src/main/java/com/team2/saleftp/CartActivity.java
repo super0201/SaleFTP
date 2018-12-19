@@ -56,8 +56,9 @@ public class CartActivity extends AppCompatActivity {
         lvCart.setAdapter(cartAdapter);
 
 //        CheckData();
-        CatchOnItemListView();
+//        CatchOnItemListView();
         Event();
+
 
         btnPayment = findViewById(R.id.btnPay);
         btnContinue = findViewById(R.id.btnContinue);
@@ -145,7 +146,7 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
-    public  void Event(){
+    public void Event(){
         double total = 0;
         for (int i = 0; i<cart.size(); i++){
             total += cart.get(i).getPrice();

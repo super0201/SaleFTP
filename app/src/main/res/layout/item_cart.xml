@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/imvCart"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="128dp"
             android:layout_margin="5dp"
             android:adjustViewBounds="true" />
     </LinearLayout>
@@ -76,7 +76,7 @@
 
     <ImageView
         android:id="@+id/imvDel"
-        android:layout_width="44dp"
-        android:layout_height="38dp"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_38sdp"
         android:src="@raw/ic_close" />
 </LinearLayout>

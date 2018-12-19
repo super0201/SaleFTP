@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.team2.saleftp.CartActivity;
 import com.team2.saleftp.R;
 
 import java.text.DecimalFormat;
@@ -22,10 +23,13 @@ import model.Cart;
 public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     ArrayList<Cart> data;
+    ProductDAO productDAO;
+
 
     public CartAdapter(Context context, ArrayList<Cart> data) {
         this.context = context;
         this.data = data;
+        productDAO = new ProductDAO(context);
     }
 
     @Override
@@ -40,7 +44,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         Cart cart = data.get(position);
         MyItemHolder myItemHolder = (MyItemHolder) holder;
 
@@ -52,6 +56,14 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Glide.with(context).load(data.get(position).getImage())
                 .thumbnail(0.4f)
                 .into(((MyItemHolder) holder).imvCart);
+        myItemHolder.imvDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                productDAO.deleteCart(data.get(position).getIdproduct());
+                data.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -65,9 +77,9 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView tvPrice;
         TextView tvAmount;
         Button  btnPlus, btnMinus;
-        int amount =1;
         Cart cart;
         ProductDAO productDAO;
+        int amount = 1;
 
 
         public MyItemHolder(View itemView) {
@@ -86,8 +98,6 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View view) {
                     amount++;
                     tvAmount.setText(""+ amount);
-
-
                 }
             });
             btnMinus.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +111,6 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
         }
-
     }
 }
 
