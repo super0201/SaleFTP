@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import adapter.CartAdapter;
 import dao.ProductDAO;
 import model.Cart;
+import session.SessionManager;
 
 public class CartActivity extends AppCompatActivity {
     private ArrayList<Cart> cart = new ArrayList<>();
@@ -30,6 +31,7 @@ public class CartActivity extends AppCompatActivity {
     TextView tvNoti;
     static TextView tvTotal;
     Button btnPayment, btnContinue;
+    SessionManager sessionManager;
     CartAdapter cartAdapter;
     ProductDAO dao;
 
@@ -42,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
 //        tvNoti = findViewById(R.id.tvNoti);
 //        tvTotal = findViewById(R.id.tvTotal);
 
+        sessionManager = new SessionManager(getBaseContext());
         dao = new ProductDAO(getBaseContext());
         cart = dao.viewAllCart();
 
@@ -63,11 +66,18 @@ public class CartActivity extends AppCompatActivity {
 
         btnPayment = findViewById(R.id.btnPay);
         btnContinue = findViewById(R.id.btnContinue);
+
         btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), OrderActivity.class);
-                startActivity(intent);
+                if (sessionManager.isLoggedIn()){
+                    Intent intent = new Intent(getBaseContext(), OrderActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent i =  new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(i);
+                }
+
             }
         });
 
