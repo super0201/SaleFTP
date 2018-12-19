@@ -12,10 +12,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.team2.saleftp.CartActivity;
+import com.team2.saleftp.MainActivity;
 import com.team2.saleftp.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import dao.ProductDAO;
 import model.Cart;
@@ -50,9 +52,11 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         myItemHolder.tvName.setText(cart.getName());
         Integer i = cart.getPrice();
-        myItemHolder.tvPrice.setText(String.valueOf(i));
+
+        CharSequence x = myItemHolder.tvAmount.getText();
+
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        myItemHolder.tvPrice.setText(decimalFormat.format(i)+ "Đ");
+        myItemHolder.tvPrice.setText(decimalFormat.format(i * Integer.parseInt(x.toString()))+ "Đ");
         Glide.with(context).load(data.get(position).getImage())
                 .thumbnail(0.4f)
                 .into(((MyItemHolder) holder).imvCart);
@@ -66,12 +70,18 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         });
     }
 
+
+    public void changeDataset(ArrayList<Cart> items){
+        this.data = items;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return data.size();
     }
 
-    public static class MyItemHolder extends RecyclerView.ViewHolder {
+    public class MyItemHolder extends RecyclerView.ViewHolder {
         ImageView imvCart, imvDel;
         TextView tvName;
         TextView tvPrice;
@@ -80,7 +90,6 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Cart cart;
         ProductDAO productDAO;
         int amount = 1;
-
 
         public MyItemHolder(View itemView) {
             super(itemView);
@@ -91,28 +100,40 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             btnPlus = itemView.findViewById(R.id.btnPlus);
             btnMinus = itemView.findViewById(R.id.btnMinus);
             imvDel = itemView.findViewById(R.id.imvDel);
-            tvAmount.setText(""+amount);
+            tvAmount.setText(""+ amount);
 
             btnPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     amount++;
                     tvAmount.setText(""+ amount);
+                    notifyDataSetChanged();
                 }
             });
+
             btnMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(amount > 0)
-                    {
-                        amount--;
+                    if(amount > 0) {
+                        amount --;
                         tvAmount.setText("" + amount);
+                        notifyDataSetChanged();
                     }
                 }
             });
         }
     }
+
+    public interface OnDataChangeListener{
+        public void onDataChanged(int size);
+    }
+
+    OnDataChangeListener mOnDataChangeListener;
+    public void setOnDataChangeListener(OnDataChangeListener onDataChangeListener){
+        mOnDataChangeListener = onDataChangeListener;
+    }
 }
+
 
 //        Cart c = arrCart.get(i);
 //        viewHolder.tvName.setText(c.getName());

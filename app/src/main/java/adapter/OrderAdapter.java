@@ -1,7 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,8 @@ import com.team2.saleftp.R;
 
 import java.util.ArrayList;
 
-import dao.ProductDAO;
 import model.Cart;
-import model.Product;
+
 
 public class OrderAdapter extends BaseAdapter {
 

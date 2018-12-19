@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".CartActivity">
+
     <LinearLayout
         android:layout_weight="7"
         android:layout_width="match_parent"
         android:layout_height="0dp">
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <!--<TextView-->
                 <!--android:layout_gravity="center"-->
                 <!--android:id="@+id/tvNoti"-->
@@ -22,69 +24,96 @@
                 <!--android:text="Giỏ hàng của bạn trống"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"/>-->
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/lvCart"
+                android:background="@color/colorSilver"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
             </android.support.v7.widget.RecyclerView>
+
         </FrameLayout>
+
     </LinearLayout>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
+        android:background="@drawable/divide_border"
         android:layout_height="0dp">
+
         <LinearLayout
-            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:weightSum="2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:textSize="25sp"
-                    android:textColor="#ff22"
+                    android:textColor="@color/red"
                     android:text="Tổng cộng: "
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
             </LinearLayout>
+
             <LinearLayout
-                android:gravity="right"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/tvTotal"
                     android:layout_gravity="center"
                     android:textSize="25sp"
-                    android:textColor="#ff22"
-                    android:text="Giá tiền: "
+                    android:textColor="@color/red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
+
+    </RelativeLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_weight="2"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="2">
-        <Button
+
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnPay"
-            android:layout_weight="1"
-            android:text="Thanh toán"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            android:text="Thanh Toán"
+            android:theme="@style/AppTheme.Dark" />
+
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnContinue"
-            android:layout_weight="1"
-            android:text="Tiếp tục mua hàng"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:padding="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            android:text="Tiếp Tục Mua Hàng"
+            android:theme="@style/AppTheme.Dark" />
+
     </LinearLayout>
+
 </LinearLayout>
