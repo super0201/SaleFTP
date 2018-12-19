@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import dao.ProductDAO;
@@ -139,13 +140,14 @@ public class DetailActivity extends AppCompatActivity {
         image = data.get(pos).getImage();
         nam = data.get(pos).getName();
         pric = data.get(pos).getPrice();
-        detaill = data.get(pos).getSummary();
+        detaill = data.get(pos).getDetail();
 
         //set data to textview and imageview
         Glide.with(getBaseContext()).load(image).into(prod);
         name.setText(nam);
-        long d = pric;
-        price.setText(String.valueOf(d));
+        int d = pric;
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        price.setText(decimalFormat.format(d));
         detail.setText(detaill);
 
         scr.setText(MainActivity.list2.getScr());

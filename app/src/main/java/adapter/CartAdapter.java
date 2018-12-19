@@ -113,11 +113,11 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             btnMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(amount > 0)
-                    {
-                        amount--;
-                        tvAmount.setText("" + amount);
-                        notifyDataSetChanged();
+                    if(amount > 0) {
+                            amount --;
+                            tvAmount.setText("" + amount);
+                            notifyDataSetChanged();
+                            btnMinus.setEnabled(false);
                     }
                 }
             });
