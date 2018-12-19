@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.team2.saleftp.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import model.Product;
@@ -46,6 +47,8 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         myItemHolder.tvName.setText(Product.getName());
         Integer d = Product.getPrice();
         myItemHolder.tvPrice.setText(String.valueOf(d));
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        myItemHolder.tvPrice.setText(decimalFormat.format(d));
 
         Glide.with(context)
                 .load(data.get(position).getImage())
