@@ -98,7 +98,7 @@ public class UserInfoActivity extends AppCompatActivity {
         tvInvoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), OrderActivity.class);
+                Intent intent = new Intent(getBaseContext(), InvoiceActivity.class);
                 startActivity(intent);
             }
         });
