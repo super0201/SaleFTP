@@ -16,6 +16,7 @@ import com.team2.saleftp.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import dao.ProductDAO;
 import model.Cart;
 
 public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -59,13 +60,14 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class MyItemHolder extends RecyclerView.ViewHolder {
-        ImageView imvCart;
+        ImageView imvCart, imvDel;
         TextView tvName;
         TextView tvPrice;
         TextView tvAmount;
         Button  btnPlus, btnMinus;
         int amount =1;
         Cart cart;
+        ProductDAO productDAO;
 
 
         public MyItemHolder(View itemView) {
@@ -76,6 +78,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvAmount = itemView.findViewById(R.id.tvAmount);
             btnPlus = itemView.findViewById(R.id.btnPlus);
             btnMinus = itemView.findViewById(R.id.btnMinus);
+            imvDel = itemView.findViewById(R.id.imvDel);
             tvAmount.setText(""+amount);
 
             btnPlus.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +86,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View view) {
                     amount++;
                     tvAmount.setText(""+ amount);
+
 
                 }
             });

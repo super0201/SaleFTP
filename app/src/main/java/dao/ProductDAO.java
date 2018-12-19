@@ -107,4 +107,13 @@ public class ProductDAO {
         cs.close();
         return list;
     }
+    public int deleteCart(String id){
+        SQLiteDatabase mydb = cartDB.getReadableDatabase();
+        String sql = "Select * From Cart";
+        Cursor cs = mydb.rawQuery(sql, null);
+        int result = mydb.delete("Cart","id=?", new String[]{id});
+        if (result == 0)
+            return -1;
+        return 1;
+    }
 }
