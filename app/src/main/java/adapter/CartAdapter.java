@@ -23,6 +23,7 @@ import dao.ProductDAO;
 import model.Cart;
 
 public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private Context mContext;
     Context context;
     ArrayList<Cart> data;
     ProductDAO productDAO;
@@ -57,19 +58,21 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         myItemHolder.tvPrice.setText(decimalFormat.format(i * Integer.parseInt(x.toString()))+ "Đ");
+
         Glide.with(context).load(data.get(position).getImage())
                 .thumbnail(0.4f)
                 .into(((MyItemHolder) holder).imvCart);
+
         myItemHolder.imvDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 productDAO.deleteCart(data.get(position).getIdproduct());
                 data.remove(position);
-                notifyDataSetChanged();
+                changeDataset(data);
             }
         });
-    }
 
+    }
 
     public void changeDataset(ArrayList<Cart> items){
         this.data = items;
@@ -107,7 +110,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View view) {
                     amount++;
                     tvAmount.setText(""+ amount);
-                    notifyDataSetChanged();
+                    changeDataset(data);
                 }
             });
 
@@ -117,20 +120,11 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     if(amount > 0) {
                         amount --;
                         tvAmount.setText("" + amount);
-                        notifyDataSetChanged();
+                        changeDataset(data);
                     }
                 }
             });
         }
-    }
-
-    public interface OnDataChangeListener{
-        public void onDataChanged(int size);
-    }
-
-    OnDataChangeListener mOnDataChangeListener;
-    public void setOnDataChangeListener(OnDataChangeListener onDataChangeListener){
-        mOnDataChangeListener = onDataChangeListener;
     }
 }
 

@@ -40,7 +40,7 @@ public class CartActivity extends AppCompatActivity {
 
         lvCart = findViewById(R.id.lvCart);
 //        tvNoti = findViewById(R.id.tvNoti);
-        tvTotal = findViewById(R.id.tvTotal);
+//        tvTotal = findViewById(R.id.tvTotal);
 
         dao = new ProductDAO(getBaseContext());
         cart = dao.viewAllCart();
@@ -56,7 +56,6 @@ public class CartActivity extends AppCompatActivity {
         cartAdapter.changeDataset(cart);
 
         if (cart.size() > 0){
-            Event();
             cartAdapter.notifyDataSetChanged();
         } else {
             Toast.makeText(getBaseContext(), "Không Có Hàng Trong Giỏ", Toast.LENGTH_SHORT).show();
@@ -118,22 +117,17 @@ public class CartActivity extends AppCompatActivity {
 //        });
 //    }
 
-    public void Event(){
-        double total = 0;
-        for (int i = 0; i < cart.size(); i++){
-            int y = cart.get(i).getPrice();
-            total +=  y;
-        }
+//    public void Event(){
+//        double total = 0;
+//        for (int i = 0; i < cart.size(); i++){
+//            int y = cart.get(i).getPrice();
+//            total +=  y;
+//        }
+//
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//        tvTotal.setText(decimalFormat.format(total)+ "Đ");
+//    }
 
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        tvTotal.setText(decimalFormat.format(total)+ "Đ");
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Event();
-    }
 
     @Override
     public void onBackPressed() {
