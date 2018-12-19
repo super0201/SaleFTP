@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ProductDAO dao;
     SearchView search;
     ImageView imvProfile;
+    FloatingActionButton fab;
     ProductMainAdapter mAdapter;
     RecyclerView mRecyclerView;
     SessionManager sessionManager;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         dao = new ProductDAO(getBaseContext());
         list = dao.viewAll();
 
+        fab = findViewById(R.id.fab);
         search = findViewById(R.id.search);
         imvProfile = findViewById(R.id.imvProfile);
 
@@ -79,6 +82,14 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         //setOnClick event
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), CartActivity.class);
+                startActivity(i);
+            }
+        });
+
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getBaseContext(),
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override

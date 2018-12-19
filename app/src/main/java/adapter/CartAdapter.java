@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.team2.saleftp.CartActivity;
+import com.team2.saleftp.MainActivity;
 import com.team2.saleftp.R;
 
 import java.text.DecimalFormat;
@@ -53,7 +54,6 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Integer i = cart.getPrice();
 
         CharSequence x = myItemHolder.tvAmount.getText();
-
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         myItemHolder.tvPrice.setText(decimalFormat.format(i * Integer.parseInt(x.toString()))+ "Đ");
@@ -110,20 +110,30 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     notifyDataSetChanged();
                 }
             });
+
             btnMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(amount > 0) {
-                            amount --;
-                            tvAmount.setText("" + amount);
-                            notifyDataSetChanged();
-                            btnMinus.setEnabled(false);
+                        amount --;
+                        tvAmount.setText("" + amount);
+                        notifyDataSetChanged();
                     }
                 }
             });
         }
     }
+
+    public interface OnDataChangeListener{
+        public void onDataChanged(int size);
+    }
+
+    OnDataChangeListener mOnDataChangeListener;
+    public void setOnDataChangeListener(OnDataChangeListener onDataChangeListener){
+        mOnDataChangeListener = onDataChangeListener;
+    }
 }
+
 
 //        Cart c = arrCart.get(i);
 //        viewHolder.tvName.setText(c.getName());

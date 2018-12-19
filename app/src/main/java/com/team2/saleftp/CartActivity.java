@@ -1,8 +1,10 @@
 package com.team2.saleftp;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -30,12 +33,11 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter cartAdapter;
     ProductDAO dao;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        setTitle("Giỏ hàng");
+
         lvCart = findViewById(R.id.lvCart);
 //        tvNoti = findViewById(R.id.tvNoti);
         tvTotal = findViewById(R.id.tvTotal);
@@ -50,18 +52,15 @@ public class CartActivity extends AppCompatActivity {
 
         cartAdapter = new CartAdapter(getBaseContext(), cart);
 
-        if (cart.size() > 0){
-            cartAdapter.notifyDataSetChanged();
-        }
-
         lvCart.setAdapter(cartAdapter);
         cartAdapter.changeDataset(cart);
 
-
-//        CheckData();
-//        CatchOnItemListView();
-        Event();
-
+        if (cart.size() > 0){
+            Event();
+            cartAdapter.notifyDataSetChanged();
+        } else {
+            Toast.makeText(getBaseContext(), "Không Có Hàng Trong Giỏ", Toast.LENGTH_SHORT).show();
+        }
 
         btnPayment = findViewById(R.id.btnPay);
         btnContinue = findViewById(R.id.btnContinue);
@@ -82,7 +81,7 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
-    private void CatchOnItemListView(){
+//    private void CatchOnItemListView(){
 //        lvCart.(new AdapterView.OnItemLongClickListener() {
 //            @Override
 //            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -117,6 +116,23 @@ public class CartActivity extends AppCompatActivity {
 //                return true;
 //            }
 //        });
+//    }
+
+    public void Event(){
+        double total = 0;
+        for (int i = 0; i < cart.size(); i++){
+            int y = cart.get(i).getPrice();
+            total +=  y;
+        }
+
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        tvTotal.setText(decimalFormat.format(total)+ "Đ");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Event();
     }
 
     @Override
@@ -144,21 +160,5 @@ public class CartActivity extends AppCompatActivity {
 //            lvCart.setVisibility(View.VISIBLE);
 //        }
 //    }
-
-    private void AddCart(View view){
-
-    }
-
-    public void Event(){
-        double total = 0;
-        for (int i = 0; i < cart.size(); i++){
-            int y = cart.get(i).getPrice();
-            total +=  y;
-        }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        tvTotal.setText(decimalFormat.format(total)+ "Đ");
-    }
-    
-
 
 }
