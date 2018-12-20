@@ -1,6 +1,8 @@
 package adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,16 +10,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.team2.saleftp.CartActivity;
-import com.team2.saleftp.MainActivity;
 import com.team2.saleftp.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import dao.ProductDAO;
 import model.Cart;
@@ -27,7 +26,6 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     ArrayList<Cart> data;
     ProductDAO productDAO;
-
 
     public CartAdapter(Context context, ArrayList<Cart> data) {
         this.context = context;
@@ -66,13 +64,21 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         myItemHolder.imvDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                productDAO.deleteCart(data.get(position).getIdproduct());
-                data.remove(position);
-                changeDataset(data);
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
+                alertbox.setMessage("Bạn Muốn Xóa Khỏi Giỏ Hàng?");
+                alertbox.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                productDAO.deleteCart(data.get(position).getIdproduct());
+                                data.remove(position);
+                                changeDataset(data);
+                            }
+                        });
+                alertbox.setNegativeButton("No", null);
+                alertbox.show();
             }
         });
 
-        productDAO.updateCart(Integer.parseInt(x.toString()), cart.getIdproduct());
+//        productDAO.updateCart(Integer.parseInt(x.toString()), cart.getIdproduct());
 
     }
 
