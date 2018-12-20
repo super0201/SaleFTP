@@ -9,16 +9,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.team2.saleftp.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import dao.InvoiceDAO;
-import dao.ProductDAO;
 import model.Invoice;
 
 public class InvoiceAdapter extends BaseAdapter {
@@ -58,7 +54,9 @@ public class InvoiceAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        InvoiceAdapter.ViewHolder holder;
+
+        ViewHolder holder;
+
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.item_invoice, null);
@@ -70,7 +68,7 @@ public class InvoiceAdapter extends BaseAdapter {
             holder.imvDeleteInvocie.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(context)
+                    new AlertDialog.Builder(v.getRootView().getContext())
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .setMessage("Are You Sure You Want to Delete This Invoice?!")
                             .setTitle("Attempt to Delete A Invoice")
@@ -82,30 +80,27 @@ public class InvoiceAdapter extends BaseAdapter {
                                         arrInvoice.remove(position);
                                         notifyDataSetChanged();
 
-                                        Toast.makeText(context, "ooooooh No!!", Toast.LENGTH_SHORT).show();
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
                             })
-                            .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Toast.makeText(context, "Good Choice", Toast.LENGTH_SHORT).show();
-                                }
-                            })
+                            .setNegativeButton("NO", null)
                             .show();
                 }
             });
+
+            convertView.setTag(holder);
 
         } else {
             holder = (InvoiceAdapter.ViewHolder) convertView.getTag();
         }
 
         Invoice invoice = arrInvoice.get(position);
+
         holder.tvNameIn.setText(invoice.getName());
         holder.tvCodeIn.setText(invoice.getCode());
-        holder.tvDatIn.setText(GetDateX.getDateString(invoice.getDate()));
+        holder.tvDatIn.setText(invoice.getDate());
         holder.tvSttIn.setText(invoice.getStt());
 
 

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.team2.saleftp.CartActivity;
 import com.team2.saleftp.R;
 
 import java.text.DecimalFormat;
@@ -78,7 +77,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
-//        productDAO.updateCart(Integer.parseInt(x.toString()), cart.getIdproduct());
+        productDAO.updateCart(Integer.parseInt(x.toString()), cart.getIdproduct());
 
     }
 

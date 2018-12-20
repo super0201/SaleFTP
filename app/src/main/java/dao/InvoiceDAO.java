@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import database.InvoiceDB;
@@ -20,6 +21,7 @@ public class InvoiceDAO {
     }
 
     public long insertInvoice(String code, String name, String dat, String stt) {
+        SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         SQLiteDatabase mydb = invoiceDB.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -55,7 +57,7 @@ public class InvoiceDAO {
             String dat = cs.getString(2);
             String stt = cs.getString(3);
 
-            iv = new Invoice(code, name, dat, stt);
+            iv = new Invoice(code, name, stt , dat);
             list.add(iv);
             cs.moveToNext();
         }

@@ -1,26 +1,30 @@
 package com.team2.saleftp;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
-import adapter.GetDateX;
 import adapter.OrderAdapter;
 import dao.InvoiceDAO;
 import dao.ProductDAO;
-import dao.UserDAO;
 import model.Cart;
 
 public class OrderActivity extends AppCompatActivity {
@@ -33,22 +37,17 @@ public class OrderActivity extends AppCompatActivity {
 
     String name, phone, addre;
 
-    InvoiceDAO invoiceDAO;
-
     private ArrayList<Cart> listCart = new ArrayList<>();
 
     private OrderAdapter orderAdapter;
 
     private ProductDAO productDAO;
+    private InvoiceDAO invoiceDAO;
 
     int count = 0, a = 0;
 
-    int Code;
     int min = 111111;
     int max = 222222;
-
-    GetDateX getDateX;
-
 
     private static int REQUEST_CODE_EXAMPLE = 1;
     @Override
@@ -57,11 +56,12 @@ public class OrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order);
         setTitle("TIẾN HÀNH ĐẶT HÀNG");
 
-        final Date date = new Date();
-
-        Code = min+(int)(Math.random()*(max-min+1));
+//        Date date = inputFormat.parse(inputText);
+//        String outputText = outputFormat.format(date);
 
         productDAO = new ProductDAO(getBaseContext());
+        invoiceDAO = new InvoiceDAO(getBaseContext());
+
         listCart = productDAO.viewAllCart();
 
         orderAdapter = new OrderAdapter(this, listCart);
@@ -79,10 +79,20 @@ public class OrderActivity extends AppCompatActivity {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                invoiceDAO.insertInvoice(getNameCart(), String.valueOf(Code), getDateX.getDateString(String.valueOf(date)), getStt());
-                dialogOrder();
+                String code = getCode();
+                String x = getName();
+                String dat = getDate();
+                String y = getStt();
+                if (listCart.size() == 0){
+                    Toast.makeText(getBaseContext(), "TRỐNG", Toast.LENGTH_SHORT).show();
+                } else {
+                    invoiceDAO.insertInvoice(code, x, dat, y);
+                    dialogOrder();
+                }
             }
         });
+
+        closeKeyboard();
     }
 
     @Override
@@ -98,6 +108,69 @@ public class OrderActivity extends AppCompatActivity {
 
         super.onSaveInstanceState(outState);
 
+    }
+
+    private String getCode() {
+        String Code = String.valueOf(min+(int)(Math.random()*(max-min+1)));
+        return Code;
+    }
+
+    private String getName() {
+        String nam = "";
+        try {
+            for (Cart x : listCart) {
+                nam += x.getName() + ";";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nam;
+    }
+
+    private String getDate() {
+        SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy");
+
+        String getDat = String.valueOf(new Date());
+
+        Date datInput = null;
+
+        String outputDat;
+
+
+        try {
+            datInput = inputDateFormat.parse(getDat);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        outputDat = outputDateFormat.format(datInput);
+
+
+        return outputDat;
+    }
+
+    private String getStt() {
+        String stt = null;
+        try {
+            if (btnOrder.isClickable()) {
+                stt = "Đang giao hàng";
+            } else {
+                stt = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stt;
+    }
+
+    public void closeKeyboard() {
+        View currentFocus = this.getCurrentFocus();
+        if (currentFocus != null) {
+            android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) this.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            Objects.requireNonNull(imm).hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+        }
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     private void initialize() {
@@ -163,24 +236,6 @@ public class OrderActivity extends AppCompatActivity {
         }
 //    }
 
-    private String getNameCart() {
-        String nam = null;
-        for (Cart x : listCart) {
-            nam = x.getName();
-        }
-        return nam;
-    }
-
-    private String getStt() {
-        String stt;
-        if (btnOrder.isClickable()) {
-            stt = "Đang giao hàng";
-        } else {
-            stt = null;
-        }
-        return stt;
-    }
-
     private void dialogOrder(){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog);
@@ -189,8 +244,9 @@ public class OrderActivity extends AppCompatActivity {
         Button btnBack = (Button)dialog.findViewById(R.id.btnBack);
 
         tvCode.setText("");
+        String cod = getCode();
+        tvCode.append("FTP" + cod);
 
-        tvCode.append("FTP" + Code);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
