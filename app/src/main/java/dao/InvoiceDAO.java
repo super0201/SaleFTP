@@ -20,13 +20,15 @@ public class InvoiceDAO {
         invoiceDB = new InvoiceDB(ct);
     }
 
-    public long insertInvoice(String code, String name, String dat, String stt) {
+    public long insertInvoice(String code, String name, int amount, double total, String dat, String stt) {
         SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         SQLiteDatabase mydb = invoiceDB.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("CODE", code);
         values.put("NAME", name);
+        values.put("AMOUNT", amount);
+        values.put("TOTAL", total);
         values.put("DAT", dat);
         values.put("STT", stt);
 
@@ -54,10 +56,12 @@ public class InvoiceDAO {
             Invoice iv = null;
             String code = cs.getString(0);
             String name = cs.getString(1);
-            String dat = cs.getString(2);
-            String stt = cs.getString(3);
+            int amount = cs.getInt(2);
+            double total = cs.getInt(3);
+            String dat = cs.getString(4);
+            String stt = cs.getString(5);
 
-            iv = new Invoice(code, name, stt , dat);
+            iv = new Invoice(code, name, dat, stt, amount, total);
             list.add(iv);
             cs.moveToNext();
         }

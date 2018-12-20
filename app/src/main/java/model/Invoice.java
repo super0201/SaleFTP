@@ -2,15 +2,19 @@ package model;
 
 public class Invoice {
     private String code, name, date, stt;
+    private int amount;
+    private double total;
 
     public Invoice() {
     }
 
-    public Invoice(String code, String name, String date, String stt) {
+    public Invoice(String code, String name, String date, String stt, int amount, double total) {
         this.code = code;
         this.name = name;
         this.date = date;
         this.stt = stt;
+        this.amount = amount;
+        this.total = total;
     }
 
     public String getCode() {
@@ -43,5 +47,21 @@ public class Invoice {
 
     public void setStt(String stt) {
         this.stt = stt;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

@@ -11,7 +11,7 @@ public class InvoiceDB extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlInvoice = "CREATE TABLE Invoice (CODE TEXT PRIMARY KEY, NAME TEXT, DAT DATE, STT TEXT)";
+        String sqlInvoice = "CREATE TABLE Invoice (CODE TEXT PRIMARY KEY, NAME TEXT, AMOUNT INT, TOTAL DOUBLE, DAT DATE, STT TEXT)";
         db.execSQL(sqlInvoice);
     }
 

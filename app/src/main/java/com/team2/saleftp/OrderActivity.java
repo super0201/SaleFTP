@@ -1,6 +1,5 @@
 package com.team2.saleftp;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -74,19 +72,22 @@ public class OrderActivity extends AppCompatActivity {
             a += x.getAmount();
         }
 
-        tvAmountOrder.setText("Tổng sản phẩm: " + String.valueOf(a));
+        tvAmountOrder.setText("Tổng sản phẩm: " + a);
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String code = getCode();
-                String x = getName();
-                String dat = getDate();
-                String y = getStt();
+                String codez = getCode();
+                String namez = getName();
+                int amountz = a;
+                double totalz = Event();
+                String datz = getDate();
+                String sttz = getStt();
+
                 if (listCart.size() == 0){
-                    Toast.makeText(getBaseContext(), "TRỐNG", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Giỏ hàng trống", Toast.LENGTH_SHORT).show();
                 } else {
-                    invoiceDAO.insertInvoice(code, x, dat, y);
+                    invoiceDAO.insertInvoice(codez, namez, amountz, totalz, datz, sttz);
                     dialogOrder();
                 }
             }
@@ -256,16 +257,16 @@ public class OrderActivity extends AppCompatActivity {
         });
     }
 
-    private void Event() {
+    private double Event() {
         double total = 0;
         for (int i = 0; i < listCart.size(); i++){
             int x = listCart.get(i).getAmount();
             int y = listCart.get(i).getPrice();
             total += x * y;
         }
-
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         tvTotalOrder.setText("Tổng tiền: " + decimalFormat.format(total)+ "Đ");
+        return total;
     }
 
     @Override

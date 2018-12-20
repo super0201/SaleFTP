@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.team2.saleftp.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import dao.InvoiceDAO;
@@ -48,7 +49,7 @@ public class InvoiceAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        TextView tvNameIn, tvCodeIn, tvDatIn, tvSttIn;
+        TextView tvNameIn, tvAmountIn, tvTotalIn, tvCodeIn, tvDatIn, tvSttIn;
         ImageView imvDeleteInvocie;
     }
 
@@ -58,13 +59,18 @@ public class InvoiceAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
+
             holder = new ViewHolder();
+
             convertView = inflater.inflate(R.layout.item_invoice, null);
             holder.tvNameIn = (TextView) convertView.findViewById(R.id.tvNameInvoice);
+            holder.tvAmountIn = (TextView) convertView.findViewById(R.id.tvAmountInvoice);
+            holder.tvTotalIn = (TextView) convertView.findViewById(R.id.tvTotalInvoice);
             holder.tvCodeIn = (TextView) convertView.findViewById(R.id.tvCodeInvoice);
             holder.tvDatIn = (TextView) convertView.findViewById(R.id.tvDatInvoice);
             holder.tvSttIn = (TextView) convertView.findViewById(R.id.tvSttInvoice);
             holder.imvDeleteInvocie = (ImageView) convertView.findViewById(R.id.imvDeleteInvoice);
+
             holder.imvDeleteInvocie.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,12 +102,19 @@ public class InvoiceAdapter extends BaseAdapter {
             holder = (InvoiceAdapter.ViewHolder) convertView.getTag();
         }
 
-        Invoice invoice = arrInvoice.get(position);
+        Invoice invoice = (Invoice) arrInvoice.get(position);
 
-        holder.tvNameIn.setText(invoice.getName());
-        holder.tvCodeIn.setText(invoice.getCode());
-        holder.tvDatIn.setText(invoice.getDate());
-        holder.tvSttIn.setText(invoice.getStt());
+        String x = invoice.getName();
+        x = x.substring(0, x.length() -1);
+
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+
+        holder.tvNameIn.setText("Đơn hàng: " + x);
+        holder.tvAmountIn.setText("Số lượng: " + invoice.getAmount());
+        holder.tvTotalIn.setText("Tổng giá: " + decimalFormat.format(invoice.getTotal()) + "Đ");
+        holder.tvCodeIn.setText("Mã đơn hàng: " + invoice.getCode());
+        holder.tvDatIn.setText("Ngày mua: " + invoice.getDate());
+        holder.tvSttIn.setText("Trạng thái: " + invoice.getStt());
 
 
         return convertView;

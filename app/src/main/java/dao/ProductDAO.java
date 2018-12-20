@@ -100,6 +100,7 @@ public class ProductDAO {
             Integer price = cs.getInt(2);
             Integer amount = cs.getInt(3);
             String image = cs.getString(4);
+
             ca = new Cart(id, nam, image, amount, price);
             list.add(ca);
             cs.moveToNext();

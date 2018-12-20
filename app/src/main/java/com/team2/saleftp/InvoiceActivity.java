@@ -3,6 +3,7 @@ package com.team2.saleftp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,11 @@ public class InvoiceActivity extends AppCompatActivity {
 
         invoiceAdapter = new InvoiceAdapter(this, listInvoice);
 
-        lvInvoice.setAdapter(invoiceAdapter);
+        if (listInvoice.size() == 0){
+            Toast.makeText(getBaseContext(), "Hóa đơn trống", Toast.LENGTH_SHORT).show();
+        } else {
+            lvInvoice.setAdapter(invoiceAdapter);
+        }
 
     }
 
