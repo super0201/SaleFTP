@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +67,7 @@ public class OrderActivity extends AppCompatActivity {
         initialize();
 
         lvOrder.setAdapter(orderAdapter);
+        Utility.setListViewHeightBasedOnChildren(lvOrder);
 
         for (Cart x : listCart) {
             a += x.getAmount();
@@ -93,6 +96,7 @@ public class OrderActivity extends AppCompatActivity {
 
         closeKeyboard();
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -179,7 +183,7 @@ public class OrderActivity extends AppCompatActivity {
         imvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
+                startActivity(new Intent(getBaseContext(), CartActivity.class));
             }
         });
 
@@ -265,6 +269,31 @@ public class OrderActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         tvTotalOrder.setText("Tổng tiền: " + decimalFormat.format(total)+ "Đ");
         return total;
+    }
+
+    //Show all item in Listview;
+    public static class Utility
+    {
+        public static void setListViewHeightBasedOnChildren(ListView listView)
+        {
+            ListAdapter listAdapter = listView.getAdapter();
+            if (listAdapter == null)
+            {
+                return;
+            }
+            int totalHeight = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+            for (int i = 0; i < listAdapter.getCount(); i++)
+            {
+                View listItem = listAdapter.getView(i, null, listView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                totalHeight += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+            listView.setLayoutParams(params);
+            listView.requestLayout();
+        }
     }
 
     @Override

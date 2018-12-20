@@ -96,7 +96,7 @@
                 android:id="@+id/lvOrder"
                 android:background="@color/colorSilver"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_280sdp">
+                android:layout_height="match_parent">
 
             </ListView>
 
