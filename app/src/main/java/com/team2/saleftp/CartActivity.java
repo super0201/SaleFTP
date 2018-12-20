@@ -70,11 +70,12 @@ public class CartActivity extends AppCompatActivity {
         btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (sessionManager.isLoggedIn()){
-                    Intent intent = new Intent(getBaseContext(), OrderActivity.class);
-                    startActivity(intent);
+                    Intent i = new Intent(getBaseContext(), OrderActivity.class);
+                    startActivity(i);
                 } else {
-                    Intent i =  new Intent(getBaseContext(), LoginActivity.class);
+                    Intent i = new Intent(getBaseContext(), LoginActivity.class);
                     startActivity(i);
                 }
 

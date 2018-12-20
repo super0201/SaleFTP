@@ -72,6 +72,8 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
+        productDAO.updateCart(Integer.parseInt(x.toString()), cart.getIdproduct());
+
     }
 
     public void changeDataset(ArrayList<Cart> items){
@@ -110,7 +112,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View view) {
                     amount++;
                     tvAmount.setText(""+ amount);
-                    changeDataset(data);
+                    notifyDataSetChanged();
                 }
             });
 
@@ -120,7 +122,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     if(amount > 0) {
                         amount --;
                         tvAmount.setText("" + amount);
-                        changeDataset(data);
+                        notifyDataSetChanged();
                     }
                 }
             });

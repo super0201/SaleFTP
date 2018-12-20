@@ -2,17 +2,17 @@ package com.team2.saleftp;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,7 +22,6 @@ import dao.InvoiceDAO;
 import dao.ProductDAO;
 import dao.UserDAO;
 import model.Cart;
-import model.User;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -38,18 +37,20 @@ public class OrderActivity extends AppCompatActivity {
 
     private ArrayList<Cart> listCart = new ArrayList<>();
 
-    private OrderAdapter orderAdapter = null;
+    private OrderAdapter orderAdapter;
 
-    private UserDAO userDAO;
     private ProductDAO productDAO;
 
     int count = 0, a = 0;
-    double b = 0, c = 0;
 
     int Code;
     int min = 111111;
     int max = 222222;
 
+    GetDateX getDateX;
+
+
+    private static int REQUEST_CODE_EXAMPLE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,52 +61,25 @@ public class OrderActivity extends AppCompatActivity {
 
         Code = min+(int)(Math.random()*(max-min+1));
 
-        initialize();
-
         productDAO = new ProductDAO(getBaseContext());
-
-        userDAO = new UserDAO(OrderActivity.this);
-
         listCart = productDAO.viewAllCart();
 
-        if (savedInstanceState != null){
-
-            name = (String)savedInstanceState.getString("NAME");
-            phone = (String)savedInstanceState.getString("PHONE");
-            addre = (String)savedInstanceState.getString("ADDRESS");
-
-            edtName.setText(name);
-            edtPhone.setText(phone);
-            edtAddress.setText(addre);
-
-        } else {
-
-                edtName.setText(LoginActivity.USER.getName());
-                edtAddress.setText(LoginActivity.USER.getAddr());
-                edtPhone.setText(LoginActivity.USER.getPhone());
-
-        }
-
-
-
         orderAdapter = new OrderAdapter(this, listCart);
+
+        initialize();
+
         lvOrder.setAdapter(orderAdapter);
 
+        for (Cart x : listCart) {
+            a += x.getAmount();
+        }
 
-//        for (Cart x : listCart) {
-//            a = x.getAmount();
-//            b = x.getPrice();
-//            c += (a*b);
-//            return;
-//        }
-
-        //tvAmountOrder.setText(listCart.size());
-        tvTotalOrder.setText(CartActivity.tvTotal.getText());
+        tvAmountOrder.setText("Tổng sản phẩm: " + String.valueOf(a));
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                invoiceDAO.insertInvoice(getNameCart(), String.valueOf(Code), GetDateX.getDateString(String.valueOf(date)), getStt());
+                invoiceDAO.insertInvoice(getNameCart(), String.valueOf(Code), getDateX.getDateString(String.valueOf(date)), getStt());
                 dialogOrder();
             }
         });
@@ -118,9 +92,9 @@ public class OrderActivity extends AppCompatActivity {
         addre = edtAddress.getText().toString();
         phone = edtPhone.getText().toString();
 
-        outState.putString("NAME", name);
-        outState.putString("ADDRESS", addre);
-        outState.putString("PHONE", phone);
+        outState.putString("NAME", name + 1);
+        outState.putString("ADDRESS", addre + 1);
+        outState.putString("PHONE", phone + 1);
 
         super.onSaveInstanceState(outState);
 
@@ -178,9 +152,16 @@ public class OrderActivity extends AppCompatActivity {
         tvAmountOrder = (TextView) findViewById(R.id.tvAmountOrder);
         tvTotalOrder = (TextView) findViewById(R.id.tvTotalOrder);
 
+        Event();
+
         btnOrder = (Button) findViewById(R.id.btnOrder);
 
-    }
+            edtName.setText(LoginActivity.USER.getName());
+            edtAddress.setText(LoginActivity.USER.getAddr());
+            edtPhone.setText(LoginActivity.USER.getPhone());
+
+        }
+//    }
 
     private String getNameCart() {
         String nam = null;
@@ -219,4 +200,23 @@ public class OrderActivity extends AppCompatActivity {
         });
     }
 
+    private void Event() {
+        double total = 0;
+        for (int i = 0; i < listCart.size(); i++){
+            int x = listCart.get(i).getAmount();
+            int y = listCart.get(i).getPrice();
+            total += x * y;
+        }
+
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        tvTotalOrder.setText("Tổng tiền: " + decimalFormat.format(total)+ "Đ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listCart.clear();
+        listCart = productDAO.viewAllCart();
+        orderAdapter.changeDataset(listCart);
+    }
 }

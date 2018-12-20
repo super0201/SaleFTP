@@ -20,6 +20,7 @@ public class InvoiceDAO {
     }
 
     public long insertInvoice(String code, String name, String dat, String stt) {
+
         SQLiteDatabase mydb = invoiceDB.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("CODE", code);
@@ -31,7 +32,17 @@ public class InvoiceDAO {
         return inv;
     }
 
+    public int dltInvoice(String id) {
+        SQLiteDatabase mydb = invoiceDB.getWritableDatabase();
+        int result = mydb.delete("Invoice","CODE=?",new String[]{id});
+        if (result == 0)
+            return -1;
+        return 1;
+
+    }
+
     public ArrayList<Invoice> viewAllInvoice() {
+
         ArrayList<Invoice> list = new ArrayList<>();
         SQLiteDatabase mydb = invoiceDB.getReadableDatabase();
         String sql = "Select * From Invoice";

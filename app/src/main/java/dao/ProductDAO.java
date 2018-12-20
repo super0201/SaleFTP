@@ -114,4 +114,16 @@ public class ProductDAO {
             return -1;
         return 1;
     }
+
+    public int updateCart(int amount, String ID){
+        SQLiteDatabase mydb = cartDB.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Amount",amount);
+
+        int result = mydb.update("Cart",values,"ID=?", new String[]{ID});
+        if (result == 0){
+            return -1;
+        }
+        return 1;
+    }
 }
