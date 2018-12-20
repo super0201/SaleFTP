@@ -123,23 +123,23 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        initial();
+//        initial();
     }
-
-    private void initial() {
-        session = new SessionManager(getBaseContext());
-        if (session.isLoggedIn()){
-            etUser.setText(session.getSharedUsername());
-            etPass.setText(session.getSharedPass());
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    btnLogin.performClick();
-                }
-            },0);
-        }
-
-    }
+//
+//    private void initial() {
+//        session = new SessionManager(getBaseContext());
+//        if (session.isLoggedIn()){
+//            etUser.setText(session.getSharedUsername());
+//            etPass.setText(session.getSharedPass());
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    btnLogin.performClick();
+//                }
+//            },0);
+//        }
+//
+//    }
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Username Hoặc Password Không Đúng!", Toast.LENGTH_SHORT).show();

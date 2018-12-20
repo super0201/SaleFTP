@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +22,10 @@ import java.util.Objects;
 import adapter.ProductMainAdapter;
 import adapter.RecyclerItemClickListener;
 import dao.ProductDAO;
+import dao.UserDAO;
 import model.Product;
 import model.ProductDetail;
+import model.User;
 import session.SessionManager;
 
 /**
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     ProductMainAdapter mAdapter;
     RecyclerView mRecyclerView;
     SessionManager sessionManager;
+    UserDAO userDAO;
+    public static User USER = null;
 
     @SuppressLint("ResourceType")
     @Override
@@ -62,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //insert your profile code here
-//                if (sessionManager.isLoggedIn()){
-//                    Intent i = new Intent(getBaseContext(), UserInfoActivity.class);
-//                    startActivity(i);
-//                } else {
+                if (sessionManager.isLoggedIn()){
+                    Intent i = new Intent(getBaseContext(), UserInfoActivity.class);
+                    startActivity(i);
+                } else {
                     Intent i = new Intent(getBaseContext(), LoginActivity.class);
                     startActivity(i);
                 }
-//            }
+            }
         });
 
         //list product adapter
@@ -138,5 +143,21 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+
+    private void initial() {
+        SessionManager session = new SessionManager(getBaseContext());
+        userDAO = new UserDAO(getBaseContext());
+        if (session.isLoggedIn()) {
+//        String x = session.getSharedUsername();
+            LoginActivity.USER = userDAO.getUserByUsername(session.getSharedUsername());
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initial();
     }
 }
