@@ -56,7 +56,7 @@
             android:backgroundTint="@color/colorPrimary"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/_13sdp"
+            android:layout_margin="@dimen/_11sdp"
             android:src="@raw/cart" />
 
     </RelativeLayout>

@@ -37,7 +37,6 @@ public class InvoiceActivity extends AppCompatActivity {
         } else {
             lvInvoice.setAdapter(invoiceAdapter);
         }
-
     }
 
 

@@ -52,8 +52,6 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
-        setTitle("TIẾN HÀNH ĐẶT HÀNG");
-
 //        Date date = inputFormat.parse(inputText);
 //        String outputText = outputFormat.format(date);
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.team2.saleftp.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import dao.ProductDAO;
@@ -75,7 +76,8 @@ public class OrderAdapter extends BaseAdapter {
 
         holder.tvNameP.setText("Tên: " + cart.getName());
         holder.tvAmountP.setText("Số lượng: " + cart.getAmount());
-        holder.tvPriceP.setText("Giá: " + String.valueOf(cart.getPrice()));
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        holder.tvPriceP.setText("Giá: " + decimalFormat.format(cart.getPrice()));
 
         Glide.with(context).load(arrCart.get(position).getImage())
                 .into(holder.imvIconP);
