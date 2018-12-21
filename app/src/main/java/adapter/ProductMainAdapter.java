@@ -46,7 +46,6 @@ public class ProductMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         MyItemHolder myItemHolder = (MyItemHolder) holder;
         myItemHolder.tvName.setText(Product.getName());
         Integer d = Product.getPrice();
-        myItemHolder.tvPrice.setText(String.valueOf(d));
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         myItemHolder.tvPrice.setText(decimalFormat.format(d));
 
