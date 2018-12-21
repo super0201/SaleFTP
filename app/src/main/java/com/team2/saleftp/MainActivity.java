@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setIcon(R.raw.logo)
                 .setTitle("FTP")
-                .setMessage("You Want To Exit App?")
+                .setMessage("Bạn Muốn Thoát Ứng Dụng?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
