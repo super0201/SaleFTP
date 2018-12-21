@@ -1,5 +1,6 @@
 package com.team2.saleftp;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +10,10 @@ import android.support.v4.content.ContextCompat;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class SplashActivity extends Activity {
     private boolean mIsBackButtonPressed;
@@ -35,7 +40,6 @@ public class SplashActivity extends Activity {
             }
         }, SPLASH_DURATION);
     }
-
 
     @Override
     protected void onPause() {
