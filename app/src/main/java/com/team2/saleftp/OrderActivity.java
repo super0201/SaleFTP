@@ -49,6 +49,8 @@ public class OrderActivity extends AppCompatActivity {
     int min = 111111;
     int max = 222222;
 
+    final String Code = String.valueOf(min+(int)(Math.random()*(max-min+1)));
+
     private static int REQUEST_CODE_EXAMPLE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,7 @@ public class OrderActivity extends AppCompatActivity {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String codez = getCode();
+                String codez = Code;
                 String namez = getName();
                 int amountz = a;
                 double totalz = Event();
@@ -113,10 +115,10 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
-    private String getCode() {
-        String Code = String.valueOf(min+(int)(Math.random()*(max-min+1)));
-        return Code;
-    }
+//    private String getCode() {
+//        String Code = String.valueOf(min+(int)(Math.random()*(max-min+1)));
+//        return Code;
+//    }
 
     private String getName() {
         String nam = "";
@@ -247,7 +249,7 @@ public class OrderActivity extends AppCompatActivity {
         Button btnBack = (Button)dialog.findViewById(R.id.btnBack);
 
         tvCode.setText("");
-        String cod = getCode();
+        String cod = Code;
         tvCode.append("FTP" + cod);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
