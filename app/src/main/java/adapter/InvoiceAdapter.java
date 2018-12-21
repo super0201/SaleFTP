@@ -76,8 +76,7 @@ public class InvoiceAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     new AlertDialog.Builder(v.getRootView().getContext())
                             .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setMessage("Are You Sure You Want to Delete This Invoice?!")
-                            .setTitle("Attempt to Delete A Invoice")
+                            .setMessage("Bạn Muốn Xóa Hóa Đơn Này?!")
                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
