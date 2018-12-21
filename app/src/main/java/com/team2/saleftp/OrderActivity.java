@@ -49,7 +49,7 @@ public class OrderActivity extends AppCompatActivity {
     int min = 111111;
     int max = 222222;
 
-    final String Code = String.valueOf(min+(int)(Math.random()*(max-min+1)));
+    final String Code = "FTP" + String.valueOf(min+(int)(Math.random()*(max-min+1)));
 
     private static int REQUEST_CODE_EXAMPLE = 1;
     @Override
@@ -250,7 +250,7 @@ public class OrderActivity extends AppCompatActivity {
 
         tvCode.setText("");
         String cod = Code;
-        tvCode.append("FTP" + cod);
+        tvCode.append(cod);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
